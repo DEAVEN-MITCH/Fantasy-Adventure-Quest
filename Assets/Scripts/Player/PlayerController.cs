@@ -68,7 +68,6 @@ public class Playercontroller : MonoBehaviour
     public void Move()//ASDsAdas 
     {
         rb.velocity = new Vector2(inputDirection.x* speed * Time.deltaTime, rb.velocity.y);
-        //我去你麻痹
 
         //人物翻转
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
