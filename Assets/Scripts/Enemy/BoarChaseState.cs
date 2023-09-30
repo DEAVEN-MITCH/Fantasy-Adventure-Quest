@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChaseState : BaseState
+public class BoarChaseState : BaseState
 {
     public override void OnEnter(Enemy enemy)
     {

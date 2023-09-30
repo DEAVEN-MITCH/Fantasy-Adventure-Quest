@@ -6,9 +6,9 @@ using UnityEngine.InputSystem;
 public class Restart_2 : MonoBehaviour
 {
     // Start is called before the first frame update
-    private Player pc;
+    private PlayerInputControl pc;
     private Rigidbody2D rb;
-    private Playercontroller pr;
+    private PlayerController pr;
     private void Awake() {
         Debug.Log("awake");
     }
@@ -16,9 +16,9 @@ public class Restart_2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pc = GetComponent<Playercontroller>().inputControl;
+        pc = GetComponent<PlayerController>().inputControl;
         rb = GetComponent<Rigidbody2D>();
-        pr = GetComponent<Playercontroller>();
+        pr = GetComponent<PlayerController>();
         pc.UI.Restart.started += RRestart;
         Debug.Log("start");
     }

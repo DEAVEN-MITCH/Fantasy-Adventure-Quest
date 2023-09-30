@@ -46,7 +46,7 @@ public class PhysicsCheck : MonoBehaviour
     }
     private void OnDrawGizmosSelected()
     {
-        //Gizmos.DrawWireSphere((Vector2)transform.position + new Vector2(sr.flipX ? bottomOffset.x : -bottomOffset.x, bottomOffset.y), checkRadius);
+        Gizmos.DrawWireSphere((Vector2)transform.position + new Vector2(GetComponent<SpriteRenderer>().flipX ? bottomOffset.x : -bottomOffset.x, bottomOffset.y), checkRadius);
         Gizmos.DrawWireSphere((Vector2)transform.position + leftOffset, checkRadius);
         Gizmos.DrawWireSphere((Vector2)transform.position + rightOffset, checkRadius);
     }

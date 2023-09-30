@@ -9,16 +9,18 @@ public class Character : MonoBehaviour
     [Header("基本属性")]
     public float maxHealth;
     public float currentHealth;
-    // Start is called before the first frame update
     [Header("受伤无敌")]
     public float invulnerableDuration;
     private float invulnerableCounter;
     public bool invulnerable;
+    [Header("事件")]
     public UnityEvent<Transform> OnTakeDamage;
+    public UnityEvent<Character> OnHealthChange;
     public UnityEvent OnDie;
     void Start()
     {
         currentHealth = maxHealth;
+        OnHealthChange?.Invoke(this);
     }
     public void TakeDamage(Attack attacker)
     {
@@ -36,6 +38,7 @@ public class Character : MonoBehaviour
             currentHealth = 0;
             OnDie?.Invoke(); 
         }
+        OnHealthChange?.Invoke(this);
     }
 
  

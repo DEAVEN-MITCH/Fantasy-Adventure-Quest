@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Playeranimation : MonoBehaviour
+public class PlayerAnimation : MonoBehaviour
 {
     private Animator anim;
     private Rigidbody2D rb;
     private PhysicsCheck pc;
-    private Playercontroller pr;
+    private PlayerController pr;
     private void Awake()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         //anim.SetFloat("velocityX")
         pc = GetComponent<PhysicsCheck>();
-        pr = GetComponent<Playercontroller>();
+        pr = GetComponent<PlayerController>();
     }
     public void SetAnimation()
     {

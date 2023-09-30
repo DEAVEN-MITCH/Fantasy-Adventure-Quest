@@ -2,14 +2,14 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Playercontroller : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    public Player inputControl;
+    public PlayerInputControl inputControl;
     public Vector2 inputDirection;
     //public Transform AttackArea;
     private Rigidbody2D rb;
     private PhysicsCheck PCheck;// = GetComponent<PhysicsCheck>();
-    private Playeranimation pa;
+    private PlayerAnimation pa;
     [Header("基本参数")]
     public float speed;
     public float hurtForce;
@@ -22,12 +22,12 @@ public class Playercontroller : MonoBehaviour
     public PhysicsMaterial2D wall;
     private void Awake()
     {
-        inputControl = new Player();
+        inputControl = new PlayerInputControl();
         rb = GetComponent<Rigidbody2D>();
         inputControl.Gameplay.Jump.started += Jump;
         PCheck = GetComponent<PhysicsCheck>();
         inputControl.Gameplay.Attack.started += DoAttack;
-        pa = GetComponent<Playeranimation>();
+        pa = GetComponent<PlayerAnimation>();
         normal = new PhysicsMaterial2D("Normal");
         wall = new PhysicsMaterial2D("Wall");
     }
