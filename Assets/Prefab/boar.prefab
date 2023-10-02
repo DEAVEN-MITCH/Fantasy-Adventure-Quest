@@ -297,16 +297,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manual: 1
-  isGround: 0
+  isGround: 1
   touchLeftWall: 0
   touchRightWall: 0
   GroundLayer:
     serializedVersion: 2
     m_Bits: 64
   checkRadius: 0.1
-  bottomOffset: {x: -1, y: -0.91}
+  bottomOffset: {x: -0.36, y: -0.91}
   leftOffset: {x: -0.91, y: -0.36}
   rightOffset: {x: 0.71, y: -0.34}
+  detectedSlopeAngle: 0
 --- !u!114 &7392220754626063765
 MonoBehaviour:
   m_ObjectHideFlags: 0

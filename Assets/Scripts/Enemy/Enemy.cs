@@ -86,6 +86,8 @@ public class Enemy : MonoBehaviour
         }
         if (wait)
         {
+            //if (!isHurt) { rb.velocity = Vector2.zero; }
+            if (!isHurt) { rb.velocity = new Vector2(0, rb.velocity.y); }
             waitCounter -= Time.deltaTime;
             if (waitCounter <= 0)
             {

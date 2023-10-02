@@ -63,6 +63,9 @@ public class PlayerController : MonoBehaviour
         {
             Move();
         }
+        else if (isAttack) {
+            rb.velocity = new Vector2(0,rb.velocity.y);
+        }
         CheckState();
     }
     public void Move()//ASDsAdas 

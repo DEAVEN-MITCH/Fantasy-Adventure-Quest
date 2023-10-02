@@ -16,7 +16,8 @@ public class PhysicsCheck : MonoBehaviour
     public LayerMask GroundLayer;
     public float checkRadius;
     public Vector2 bottomOffset,leftOffset,rightOffset;
-
+    [Tooltip("这个属性控制bottomOffset.x的要旋转多少度检测地面，用于适应各种坡度，单位为degree")]
+    public float detectedSlopeAngle;
     private void Awake()
     {
         coll = GetComponent<CapsuleCollider2D>();
@@ -34,7 +35,9 @@ public class PhysicsCheck : MonoBehaviour
 
         //isNearCliff=!Physics2D.OverlapCircle((Vector2)transform.position+bottomOffset+new Vector2(0.05f,0), checkRadius, GroundLayer)
         //    || !Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset + new Vector2(-0.05f, 0), checkRadius, GroundLayer); 
-        isGround= Physics2D.OverlapCircle((Vector2)transform.position+new Vector2( sr.flipX? bottomOffset.x:-bottomOffset.x,bottomOffset.y), checkRadius, GroundLayer);
+        float detectedSlopeAngle2Rad = detectedSlopeAngle * Mathf.Deg2Rad;
+        float directedOffsetX = sr.flipX ? bottomOffset.x : -bottomOffset.x;
+        isGround = Physics2D.OverlapCircle((Vector2)transform.position+new Vector2(directedOffsetX*Mathf.Cos(detectedSlopeAngle2Rad),bottomOffset.y-Math.Abs(directedOffsetX)*Mathf.Sin(detectedSlopeAngle2Rad)), checkRadius, GroundLayer);
         touchLeftWall=Physics2D.OverlapCircle((Vector2)transform.position+leftOffset, checkRadius, GroundLayer);
         touchRightWall=Physics2D.OverlapCircle((Vector2)transform.position+rightOffset, checkRadius, GroundLayer);
     }
@@ -46,7 +49,10 @@ public class PhysicsCheck : MonoBehaviour
     }
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere((Vector2)transform.position + new Vector2(GetComponent<SpriteRenderer>().flipX ? bottomOffset.x : -bottomOffset.x, bottomOffset.y), checkRadius);
+        float detectedSlopeAngle2Rad = detectedSlopeAngle * Mathf.Deg2Rad;
+        float directedOffsetX = GetComponent<SpriteRenderer>().flipX ? bottomOffset.x : -bottomOffset.x;
+        isGround = Physics2D.OverlapCircle((Vector2)transform.position + new Vector2(directedOffsetX * Mathf.Cos(detectedSlopeAngle2Rad), bottomOffset.y - Math.Abs(directedOffsetX) * Mathf.Sin(detectedSlopeAngle2Rad)), checkRadius, GroundLayer);
+        Gizmos.DrawWireSphere((Vector2)transform.position + new Vector2(directedOffsetX * Mathf.Cos(detectedSlopeAngle2Rad), bottomOffset.y - Math.Abs(directedOffsetX) * Mathf.Sin(detectedSlopeAngle2Rad)), checkRadius);
         Gizmos.DrawWireSphere((Vector2)transform.position + leftOffset, checkRadius);
         Gizmos.DrawWireSphere((Vector2)transform.position + rightOffset, checkRadius);
     }
