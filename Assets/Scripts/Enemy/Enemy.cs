@@ -71,6 +71,10 @@ public class Enemy : MonoBehaviour
         }
         //Debug.Log("?????1?");
         currentState.PhysicsUpdate();
+        if (transform.position.y < -1000)
+        {
+            Die();
+        }
     }
     private void OnDisable()
     {

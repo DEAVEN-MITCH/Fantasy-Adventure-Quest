@@ -20,6 +20,7 @@ public class Character : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        if(transform.gameObject.name =="player")
         OnHealthChange?.Invoke(this);
     }
     public void TakeDamage(Attack attacker)
