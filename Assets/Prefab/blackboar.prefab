@@ -17,9 +17,9 @@ GameObject:
   - component: {fileID: 2058039701850348698}
   - component: {fileID: 5456692137560174524}
   - component: {fileID: 5179010120225189507}
-  - component: {fileID: 7392220754626063765}
+  - component: {fileID: -4815090792379188375}
   m_Layer: 8
-  m_Name: boar
+  m_Name: blackboar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: -408573641
   m_SortingLayer: 4
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1513362261, guid: e06831ea579aab440943f0fbb47af8cb, type: 3}
+  m_Sprite: {fileID: -1610307155, guid: 860823ac9b40df14d9c053011757c9a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -209,7 +209,7 @@ Animator:
   m_GameObject: {fileID: 289165146837653709}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e9d4c7f9c7ad81d4593a4f37ed2e2aa3, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5128b3295b956fb4abd4bc718c4a750c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -232,14 +232,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4afcafd8b27595544bf0c0a483c34f14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 333
+  maxHealth: 500
   currentHealth: 0
   invulnerableDuration: 0.1
   invulnerable: 0
   OnTakeDamage:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7392220754626063765}
+      - m_Target: {fileID: -4815090792379188375}
         m_TargetAssemblyTypeName: Enemy, Assembly-CSharp
         m_MethodName: TakeDamage
         m_Mode: 0
@@ -257,7 +257,7 @@ MonoBehaviour:
   OnDie:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7392220754626063765}
+      - m_Target: {fileID: -4815090792379188375}
         m_TargetAssemblyTypeName: Enemy, Assembly-CSharp
         m_MethodName: Die
         m_Mode: 1
@@ -281,7 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce45b7a2c674da14e9db21ef4bd9c918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
+  damage: 4
   attackRange: 0
   attackRate: 0
 --- !u!114 &5179010120225189507
@@ -297,7 +297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manual: 1
-  isGround: 0
+  isGround: 1
   touchLeftWall: 0
   touchRightWall: 0
   GroundLayer:
@@ -308,7 +308,7 @@ MonoBehaviour:
   leftOffset: {x: -0.91, y: -0.36}
   rightOffset: {x: 0.71, y: -0.34}
   detectedSlopeAngle: 0
---- !u!114 &7392220754626063765
+--- !u!114 &-4815090792379188375
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 289165146837653709}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa658f3db670004439ddbae91186fb45, type: 3}
+  m_Script: {fileID: 11500000, guid: f7a24c90b6fbe304d9a441cb438fc8cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
@@ -325,10 +325,10 @@ MonoBehaviour:
   pc: {fileID: 0}
   sr: {fileID: 0}
   normalSpeed: 100
-  chaseSpeed: 260
+  chaseSpeed: 300
   currentSpeed: 0
   faceDir: {x: 0, y: 0, z: 0}
-  hurtForce: 4.5
+  hurtForce: 3
   attacker: {fileID: 0}
   centerOffset: {x: 0, y: -0.34}
   checkSize: {x: 1, y: 1}
@@ -339,6 +339,6 @@ MonoBehaviour:
   wait: 0
   waitTime: 2
   waitCounter: 0
-  lostTime: 3
+  lostTime: 4
   lostCounter: 0
   isHurt: 0

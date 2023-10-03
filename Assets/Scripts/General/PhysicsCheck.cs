@@ -29,6 +29,10 @@ public class PhysicsCheck : MonoBehaviour
             leftOffset = new Vector2(-rightOffset.x, rightOffset.y);
         }
     }
+    private void OnEnable()
+    {
+        Check();
+    }
     private void Check()
     {
         //int xd =sr.flipX?-1;

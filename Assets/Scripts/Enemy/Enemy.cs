@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Enemy : MonoBehaviour
 {
-    Rigidbody2D rb;
+    [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public Animator anim;
     [HideInInspector]public PhysicsCheck pc;
     [HideInInspector]public SpriteRenderer sr;
@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour
     protected BaseState currentState;
     protected BaseState patrolState;
     protected BaseState chaseState;
+    protected BaseState haltState;
 
     protected virtual  void Awake()
     {
@@ -107,6 +108,7 @@ public class Enemy : MonoBehaviour
         {
             NPCState.Patrol => patrolState,
             NPCState.Chase => chaseState,
+            NPCState.Halt=>haltState,
             _ => null
         };
         currentState.OnExit();
@@ -114,7 +116,7 @@ public class Enemy : MonoBehaviour
         currentState.OnEnter(this);
     }
     #region ÊÂ¼þ
-    public void TakeDamage(Transform attackTrans)
+    public virtual void  TakeDamage(Transform attackTrans)
     {
         rb.velocity = Vector2.zero;
         //Debug.Log("hurt");
