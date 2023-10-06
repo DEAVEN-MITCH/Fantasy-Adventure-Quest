@@ -10,14 +10,15 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private PhysicsCheck PCheck;// = GetComponent<PhysicsCheck>();
     private PlayerAnimation pa;
-    [Header("»ù±¾²ÎÊý")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public float speed;
     public float hurtForce;
     public float jumpForce;
-    [Header("»ù±¾×´Ì¬")]
-    public bool isHurt,isDead;
+    [Header("ï¿½ï¿½ï¿½ï¿½×´Ì¬")]
+    public bool isHurt, isDead;
     public bool isAttack;
-    [Header("ÎïÀí²ÄÖÊ")]
+    public int jumpCounter;
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public PhysicsMaterial2D normal;
     public PhysicsMaterial2D wall;
     private void Awake()
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
         pa = GetComponent<PlayerAnimation>();
         normal = new PhysicsMaterial2D("Normal");
         wall = new PhysicsMaterial2D("Wall");
+        jumpCounter = 1;
     }
 
 
@@ -54,39 +56,51 @@ public class PlayerController : MonoBehaviour
         inputDirection = inputControl.Gameplay.Move.ReadValue<Vector2>();
         if (transform.position.y < -50)
         {
-            transform.position =new Vector3(-0.5112553f, 3, 0f);
+            transform.position = new Vector3(-0.5112553f, 3, 0f);
         }
     }
     private void FixedUpdate()
     {
-        if (!isHurt&& !isAttack)
+        if (!isHurt && !isAttack)
         {
             Move();
         }
-        else if (isAttack) {
-            rb.velocity = new Vector2(0,rb.velocity.y);
+        else if (isAttack)
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
         }
+        if(PCheck.isGround)
+            jumpCounter = 1;
         CheckState();
     }
     public void Move()//ASDsAdas 
     {
-        rb.velocity = new Vector2(inputDirection.x* speed * Time.deltaTime, rb.velocity.y);
+        rb.velocity = new Vector2(inputDirection.x * speed * Time.deltaTime, rb.velocity.y);
 
-        //ÈËÎï·­×ª
+        //ï¿½ï¿½ï¿½ï·­×ª
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        sr.flipX = rb.velocity.x < 0 || (rb.velocity.x<=0 && sr.flipX);
-        transform.Find("Attack Area").transform.localScale = sr.flipX ? new Vector3(-1, 1, 1) :new Vector3 (1, 1, 1);
-}
+        sr.flipX = rb.velocity.x < 0 || (rb.velocity.x <= 0 && sr.flipX);
+        transform.Find("Attack Area").transform.localScale = sr.flipX ? new Vector3(-1, 1, 1) : new Vector3(1, 1, 1);
+    }
     private void Jump(InputAction.CallbackContext obj)
     {
-        //throw new NotImplementedException();
         if(PCheck.isGround)
-        rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+        {
+            rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+            jumpCounter = 1;
+        }
+        else if(jumpCounter > 0)
+        {
+            // set velocity to 0, so the jump effect could be the same
+            rb.velocity = new Vector2(rb.velocity.x,0);
+            rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+            jumpCounter = 0;
+        }
     }
     public void GetHurt(Transform attacker)
     {
         isHurt = true;
-        Vector2 dir = new Vector2((transform.position.x - attacker.position.x),0).normalized;
+        Vector2 dir = new Vector2((transform.position.x - attacker.position.x), 0).normalized;
         rb.velocity = Vector2.zero;
         //Debug.Log(dir);
         rb.AddForce(dir * hurtForce, ForceMode2D.Impulse);

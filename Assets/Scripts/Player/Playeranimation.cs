@@ -25,6 +25,7 @@ public class PlayerAnimation : MonoBehaviour
         anim.SetBool("isGround", pc.isGround);
         anim.SetBool("isDead", pr.isDead);
         anim.SetBool("isAttack", pr.isAttack);
+        anim.SetInteger("jumpCounter",pr.jumpCounter);
     }
     // Start is called before the first frame update
     void Start()
