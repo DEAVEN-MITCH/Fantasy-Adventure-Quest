@@ -1,5 +1,5 @@
 {
-    "name": "Player",
+    "name": "PlayerInputControl",
     "maps": [
         {
             "name": "Gameplay",
@@ -45,6 +45,15 @@
                     "name": "Attack",
                     "type": "Button",
                     "id": "ddc2b2c7-9818-422b-8a7d-0ff59da243ac",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "InteractE",
+                    "type": "Button",
+                    "id": "2a0f64dc-cc6c-45aa-a846-ef40b519c234",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -313,6 +322,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "27d00f18-01bf-40c6-8c70-122d2abce45d",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "InteractE",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

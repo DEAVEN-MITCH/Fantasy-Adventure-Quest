@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BlackBoar : Enemy
 {
+    //public float timeToMaxChaseSpeed;
     override protected void Awake()
     {
         patrolState = new BlackBoarPatrolState();

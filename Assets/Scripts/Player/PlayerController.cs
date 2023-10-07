@@ -10,15 +10,16 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private PhysicsCheck PCheck;// = GetComponent<PhysicsCheck>();
     private PlayerAnimation pa;
-    [Header("��������")]
+    [Header("基本参数")]
     public float speed;
     public float hurtForce;
     public float jumpForce;
-    [Header("����״̬")]
+    [Header("基本状态")]
     public bool isHurt, isDead;
     public bool isAttack;
+    public bool isDoubleJumpUnlocked;
     public int jumpCounter;
-    [Header("��������")]
+    [Header("物理材质")]
     public PhysicsMaterial2D normal;
     public PhysicsMaterial2D wall;
     private void Awake()
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
         normal = new PhysicsMaterial2D("Normal");
         wall = new PhysicsMaterial2D("Wall");
         jumpCounter = 1;
+        isDoubleJumpUnlocked = false;
     }
 
 
@@ -77,7 +79,7 @@ public class PlayerController : MonoBehaviour
     {
         rb.velocity = new Vector2(inputDirection.x * speed * Time.deltaTime, rb.velocity.y);
 
-        //���﷭ת
+        //人物翻转
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         sr.flipX = rb.velocity.x < 0 || (rb.velocity.x <= 0 && sr.flipX);
         transform.Find("Attack Area").transform.localScale = sr.flipX ? new Vector3(-1, 1, 1) : new Vector3(1, 1, 1);
@@ -89,7 +91,7 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
             jumpCounter = 1;
         }
-        else if(jumpCounter > 0)
+        else if(isDoubleJumpUnlocked&&jumpCounter > 0)
         {
             // set velocity to 0, so the jump effect could be the same
             rb.velocity = new Vector2(rb.velocity.x,0);
