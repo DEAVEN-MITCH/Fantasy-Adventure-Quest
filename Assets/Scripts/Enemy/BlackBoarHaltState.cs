@@ -27,5 +27,6 @@ public class BlackBoarHaltState : BaseState
 
     public override void OnExit()
     {
+        currentEnemy.sr.flipX = !currentEnemy.sr.flipX;
     }
 }

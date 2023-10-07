@@ -311,7 +311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manual: 1
-  isGround: 1
+  isGround: 0
   touchLeftWall: 0
   touchRightWall: 0
   GroundLayer:
