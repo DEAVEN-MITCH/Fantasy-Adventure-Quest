@@ -15,7 +15,10 @@ public class PlayerStateBar : MonoBehaviour
     {
         healthImage.fillAmount = percentage;
     }
-
+    public void OnPowerChange(float percentage)
+    {
+        powerImage.fillAmount = percentage;
+    }
     /// <summary>
     /// 假如delay慢于生命值变化，则显示延迟更新效果，如果血量回复，立即让delay保持一致
     /// </summary>

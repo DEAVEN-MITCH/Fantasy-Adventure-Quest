@@ -1852,6 +1852,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: bullet
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 182
+        width: 12
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80490336b495b444393861a97548e86c
+      internalID: 845091987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1944,6 +1965,7 @@ TextureImporter:
       HealthRed: -2120078932
       Power: -563467624
       PowerFrame: -1313263713
+      bullet: 845091987
       greene: 2016644094
       rede: -520907216
   mipmapLimitGroupName: 

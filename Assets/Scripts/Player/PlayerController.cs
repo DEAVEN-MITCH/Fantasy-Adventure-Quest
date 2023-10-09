@@ -12,10 +12,15 @@ public class PlayerController : MonoBehaviour
     private PlayerAnimation pa;
     [Header("Events")]
     public UnityEvent afterDeathAnimation;
+    public UnityEvent<float> onPowerChange;
     [Header("基本参数")]
     public float speed;
     public float hurtForce;
     public float jumpForce;
+    public float maxPower;
+    public float currentPower;
+    public float shootInterval;
+    public float shootCount;
     [Header("基本状态")]
     public bool isHurt, isDead;
     public bool isAttack;
@@ -24,6 +29,8 @@ public class PlayerController : MonoBehaviour
     [Header("物理材质")]
     public PhysicsMaterial2D normal;
     public PhysicsMaterial2D wall;
+    [Header("bullet prefabs")]
+    public GameObject bulletPrefab;
     private void Awake()
     {
         inputControl = new PlayerInputControl();
@@ -31,13 +38,14 @@ public class PlayerController : MonoBehaviour
         inputControl.Gameplay.Jump.started += Jump;
         PCheck = GetComponent<PhysicsCheck>();
         inputControl.Gameplay.Attack.started += DoAttack;
+        inputControl.Gameplay.RangedAttack.started += RangedAttack;
         pa = GetComponent<PlayerAnimation>();
         normal = new PhysicsMaterial2D("Normal");
         wall = new PhysicsMaterial2D("Wall");
         jumpCounter = 1;
         isDoubleJumpUnlocked = false;
+        currentPower = maxPower;
     }
-
 
 
     private void OnEnable()
@@ -51,12 +59,16 @@ public class PlayerController : MonoBehaviour
     //Start is called before the first frame update
     void Start()
     {
-
+        onPowerChange.Invoke(currentPower / maxPower);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (shootCount > 0)
+        {
+            shootCount = Mathf.Max(shootCount - Time.deltaTime, 0);
+        }
         inputDirection = inputControl.Gameplay.Move.ReadValue<Vector2>();
         if (transform.position.y < -50)
         {
@@ -129,5 +141,21 @@ public class PlayerController : MonoBehaviour
     public void AfterDeadthAnimation()
     {
         afterDeathAnimation.Invoke();
+    }
+    private void RangedAttack(InputAction.CallbackContext obj)
+    {
+        float powerComsumption = bulletPrefab.GetComponent<Bullet>().powerConsumption;
+        if (currentPower > powerComsumption&&shootCount==0)
+        {
+            Instantiate(bulletPrefab);
+            currentPower -= powerComsumption;
+            //Debug.Log("shot!");
+            onPowerChange.Invoke(currentPower / maxPower);
+            shootCount = shootInterval;
+        }
+        else
+        {
+            //not enough power
+        }
     }
 }
