@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using UnityEngine.Events;
 public class PlayerController : MonoBehaviour
 {
     public PlayerInputControl inputControl;
@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private PhysicsCheck PCheck;// = GetComponent<PhysicsCheck>();
     private PlayerAnimation pa;
+    [Header("Events")]
+    public UnityEvent afterDeathAnimation;
     [Header("基本参数")]
     public float speed;
     public float hurtForce;
@@ -58,7 +60,8 @@ public class PlayerController : MonoBehaviour
         inputDirection = inputControl.Gameplay.Move.ReadValue<Vector2>();
         if (transform.position.y < -50)
         {
-            transform.position = new Vector3(-0.5112553f, 3, 0f);
+            //transform.position = new Vector3(-0.5112553f, 3, 0f);
+            GetComponent<Character>().OnDie.Invoke();
         }
     }
     private void FixedUpdate()
@@ -122,5 +125,9 @@ public class PlayerController : MonoBehaviour
     private void CheckState()
     {
         rb.sharedMaterial = PCheck.isGround ? normal : wall;
+    }
+    public void AfterDeadthAnimation()
+    {
+        afterDeathAnimation.Invoke();
     }
 }
