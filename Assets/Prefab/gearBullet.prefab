@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 8680143722905712869}
   - component: {fileID: 4605468582614586984}
   - component: {fileID: 8299364895195378296}
-  - component: {fileID: -6005379054042729431}
+  - component: {fileID: -6575258861374143074}
   - component: {fileID: 2518532810534360357}
   - component: {fileID: 8874713557933245470}
   m_Layer: 0
-  m_Name: bullet
+  m_Name: gearBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce45b7a2c674da14e9db21ef4bd9c918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
+  damage: 5
   attackRange: 20
   attackRate: 0
 --- !u!212 &8299364895195378296
@@ -103,7 +103,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-6005379054042729431
+--- !u!114 &-6575258861374143074
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2986093427967310705}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a109ad6edc175514d8723c96527a50a4, type: 3}
+  m_Script: {fileID: 11500000, guid: 48f5d2b51158118408e4fdf36d86db41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   touchLeftWall: 0
@@ -125,8 +125,8 @@ MonoBehaviour:
   rightOffset: {x: 0.25, y: 0}
   flyingSpeed: 1000
   isShotToLeft: 0
-  powerConsumption: 3
-  originalOffset: {x: 1, y: 0.9}
+  powerConsumption: 0
+  originalOffset: {x: 1, y: -0.5}
   destroyDelay: 0.02
 --- !u!50 &2518532810534360357
 Rigidbody2D:
@@ -180,7 +180,7 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 128
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295

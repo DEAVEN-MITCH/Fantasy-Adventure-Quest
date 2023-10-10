@@ -14,13 +14,17 @@ public class Bullet : MonoBehaviour
     public float powerConsumption;
     public Vector2 originalOffset;
     private Vector3 originalPosition;
-    private GameObject player;
+    protected GameObject player;
     private Attack at;
     public float destroyDelay;
     // Start is called before the first frame update
+    protected virtual void InitPlayer()
+    {
+
+    }
     private void OnEnable()
     {
-        player = GameObject.Find("player");
+        InitPlayer();
         isShotToLeft = player.GetComponent<SpriteRenderer>().flipX;
         originalOffset = new (isShotToLeft ? -originalOffset.x : originalOffset.x, originalOffset.y);
         originalPosition=transform.position = player.transform.position + (Vector3)originalOffset;
