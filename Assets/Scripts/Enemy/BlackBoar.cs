@@ -17,9 +17,18 @@ public class BlackBoar : Enemy
     }
     public override void TakeDamage(Transform attackTrans)
     {
-        if(currentState is BlackBoarChaseState)
+        if (currentState is BlackBoarChaseState)
         {
             //attacker = attackTrans;
+        }
+        else if (currentState is BlackBoarHaltState)
+        {
+            rb.velocity = Vector2.zero;
+            attacker = attackTrans;
+            isHurt = true;
+            anim.SetTrigger("hurt");
+            Vector2 dir = new Vector2(transform.position.x - attackTrans.position.x, 0).normalized;
+            rb.AddForce(dir * hurtForce, ForceMode2D.Impulse);
         }
         else
         {
