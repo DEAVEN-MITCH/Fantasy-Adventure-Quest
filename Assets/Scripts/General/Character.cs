@@ -6,14 +6,14 @@ using UnityEngine.Events;
 
 public class Character : MonoBehaviour
 {
-    [Header("»ù±¾ÊôĞÔ")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public float maxHealth;
     public float currentHealth;
-    [Header("ÊÜÉËÎŞµĞ")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½Şµï¿½")]
     public float invulnerableDuration;
     private float invulnerableCounter;
     public bool invulnerable;
-    [Header("ÊÂ¼ş")]
+    [Header("ï¿½Â¼ï¿½")]
     public UnityEvent<Transform> OnTakeDamage;
     public UnityEvent<Character> OnHealthChange;
     public UnityEvent OnDie;
@@ -31,7 +31,7 @@ public class Character : MonoBehaviour
         {
             currentHealth -= attacker.damage;
             TriggerInvulnerable();
-            //ÊÜÉË
+            //ï¿½ï¿½ï¿½ï¿½
             OnTakeDamage?.Invoke(attacker.transform);
         }
         else
@@ -42,7 +42,21 @@ public class Character : MonoBehaviour
         OnHealthChange?.Invoke(this);
     }
 
- 
+    public void HealthRegen(int amount)
+    {
+        if (currentHealth + amount > maxHealth)
+            currentHealth = maxHealth;
+        else
+            currentHealth += amount;
+        OnHealthChange?.Invoke(this);
+    }
+
+    public bool HealthFull()
+    {
+        if (currentHealth >= maxHealth)
+            return true;
+        return false;
+    }
 
     // Update is called once per frame
     void Update()

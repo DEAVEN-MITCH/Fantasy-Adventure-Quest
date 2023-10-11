@@ -356,6 +356,9 @@ MonoBehaviour:
   lostTime: 4
   lostCounter: 0
   isHurt: 0
+  dropProbability: 32000000
+  dropItem:
+  - {fileID: 8689731383966613573, guid: e44b18fd59aa68d4482fedd36d6763be, type: 3}
 --- !u!114 &7226382894654525160
 MonoBehaviour:
   m_ObjectHideFlags: 0

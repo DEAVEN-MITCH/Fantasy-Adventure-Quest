@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,20 +9,20 @@ public class Enemy : MonoBehaviour
     [HideInInspector]public PhysicsCheck pc;
     [HideInInspector]public SpriteRenderer sr;
     
-    [Header("»ù±¾²ÎÊý")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public float normalSpeed;
     public float chaseSpeed;
     public float currentSpeed;
     public Vector3 faceDir;
     public float hurtForce;
     public Transform attacker;
-    [Header("¼ì²â")]
+    [Header("ï¿½ï¿½ï¿½")]
     public Vector2 centerOffset;
     public Vector2 checkSize;
     public LayerMask attackLayer;
     public float checkDistance;
 
-    [Header("¼ÆÊ±Æ÷")]
+    [Header("ï¿½ï¿½Ê±ï¿½ï¿½")]
     public bool wait;
     public float waitTime;
     public float waitCounter;
@@ -33,6 +34,10 @@ public class Enemy : MonoBehaviour
     protected BaseState patrolState;
     protected BaseState chaseState;
     protected BaseState haltState;
+
+    public int[] dropProbability; //unit:%
+    public GameObject[] dropItem;
+    private int looted;
 
     protected virtual  void Awake()
     {
@@ -47,6 +52,7 @@ public class Enemy : MonoBehaviour
     {
         currentState = patrolState;
         currentState.OnEnter(this);
+        looted = 0;
     }
     // Update is called once per frame
     void Update()
@@ -119,7 +125,7 @@ public class Enemy : MonoBehaviour
         currentState = newState;
         currentState.OnEnter(this);
     }
-    #region ÊÂ¼þ
+    #region ï¿½Â¼ï¿½
     public virtual void  TakeDamage(Transform attackTrans)
     {
         rb.velocity = Vector2.zero;
@@ -140,10 +146,22 @@ public class Enemy : MonoBehaviour
     }
     public void Die()
     {
+        System.Random ran = new System.Random();
+        for(int i = 0; i < 1; i++) {
+            int n = ran.Next(100);
+            //Debug.Log(n);
+            if (n < dropProbability[i] && looted == 0) {
+                float xBias = (ran.Next(100) - 50) / 100f;
+                Vector3 location = new Vector3(this.gameObject.transform.position.x + xBias, this.gameObject.transform.position.y, 0);
+                Instantiate(dropItem[i], location, this.gameObject.transform.rotation);
+            }
+        }
+        looted = 1;
         this.gameObject.layer = 2;
         anim.SetTrigger("dead");
     }
-    #endregion ÊÂ¼þ
+
+    #endregion ï¿½Â¼ï¿½
     protected void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(transform.position + (Vector3)(centerOffset ), .2f);
