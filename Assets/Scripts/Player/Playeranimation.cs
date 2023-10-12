@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Playeranimation : MonoBehaviour
+public class PlayerAnimation : MonoBehaviour
 {
     private Animator anim;
     private Rigidbody2D rb;
     private PhysicsCheck pc;
-    private Playercontroller pr;
+    private PlayerController pr;
     private void Awake()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         //anim.SetFloat("velocityX")
         pc = GetComponent<PhysicsCheck>();
-        pr = GetComponent<Playercontroller>();
+        pr = GetComponent<PlayerController>();
     }
     public void SetAnimation()
     {
@@ -25,6 +25,7 @@ public class Playeranimation : MonoBehaviour
         anim.SetBool("isGround", pc.isGround);
         anim.SetBool("isDead", pr.isDead);
         anim.SetBool("isAttack", pr.isAttack);
+        anim.SetInteger("jumpCounter",pr.jumpCounter);
     }
     // Start is called before the first frame update
     void Start()

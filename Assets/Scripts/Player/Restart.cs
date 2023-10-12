@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class Restart : MonoBehaviour
 {
-    private Player pc;
+    private PlayerInputControl pc;
     private Rigidbody2D rb;
-    private Playercontroller pr;
+    private PlayerController pr;
     private void Awake()
     {
-        pc = GetComponent<Playercontroller>().inputControl;
+        pc = GetComponent<PlayerController>().inputControl;
         rb = GetComponent<Rigidbody2D>();
-        pr = GetComponent<Playercontroller>();
+        pr = GetComponent<PlayerController>();
         pc.UI.Restart.started += RRestart;
     }
     // Start is called before the first frame update
@@ -36,6 +36,7 @@ public class Restart : MonoBehaviour
         pc.Gameplay.Enable();
         Character t = GetComponent<Character>();
         t.currentHealth = t.maxHealth;
+        t.OnHealthChange?.Invoke(t);
     }
     // Update is called once per frame
     void Update()
