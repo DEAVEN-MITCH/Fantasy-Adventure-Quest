@@ -15,7 +15,7 @@ public class Gear : MonoBehaviour
     public GameObject bulletPrefab;
     public float shootInterval;
     public float shootCount;
-
+    public Vector3 bullutOffset;
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -44,7 +44,8 @@ public class Gear : MonoBehaviour
     {
         if (shootCount == 0)
         {
-            Instantiate(bulletPrefab);
+            Vector3 offset = new(spriteRenderer.flipX ? -bullutOffset.x : bullutOffset.x, bullutOffset.y, bullutOffset.z);
+            Instantiate(bulletPrefab,transform.position+offset,Quaternion.Euler(0, spriteRenderer.flipX ? 180 : 0, 0));
             // Debug.Log("shot!");
             shootCount = shootInterval;
         }
@@ -53,5 +54,6 @@ public class Gear : MonoBehaviour
     protected void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(transform.position + (Vector3)centerOffset, .2f);
+        Gizmos.DrawWireSphere(transform.position + bullutOffset, .1f);
     }
 }

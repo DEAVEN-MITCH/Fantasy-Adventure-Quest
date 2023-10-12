@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private PhysicsCheck PCheck;// = GetComponent<PhysicsCheck>();
     private PlayerAnimation pa;
+    private SpriteRenderer sr;
     [Header("Events")]
     public UnityEvent afterDeathAnimation;
     public UnityEvent<float> onPowerChange;
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public float currentPower;
     public float shootInterval;
     public float shootCount;
+    public Vector3 bulletOffset;//1,0.9,0
     [Header("基本状态")]
     public bool isHurt, isDead;
     public bool isAttack;
@@ -45,6 +47,7 @@ public class PlayerController : MonoBehaviour
         jumpCounter = 1;
         isDoubleJumpUnlocked = false;
         currentPower = maxPower;
+        sr = GetComponent<SpriteRenderer>();
     }
 
 
@@ -95,7 +98,6 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(inputDirection.x * speed * Time.deltaTime, rb.velocity.y);
 
         //人物翻转
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
         sr.flipX = rb.velocity.x < 0 || (rb.velocity.x <= 0 && sr.flipX);
         transform.Find("Attack Area").transform.localScale = sr.flipX ? new Vector3(-1, 1, 1) : new Vector3(1, 1, 1);
     }
@@ -147,7 +149,9 @@ public class PlayerController : MonoBehaviour
         float powerComsumption = bulletPrefab.GetComponent<Bullet>().powerConsumption;
         if (currentPower > powerComsumption&&shootCount==0)
         {
-            Instantiate(bulletPrefab);
+            Vector3 dir = new(0, sr.flipX ? 180 : 0, 0);
+            Vector2 offset = new(sr.flipX ? -bulletOffset.x : bulletOffset.x, bulletOffset.y);
+            Instantiate(bulletPrefab,transform.position+bulletOffset,Quaternion.Euler(dir));
             currentPower -= powerComsumption;
             //Debug.Log("shot!");
             onPowerChange.Invoke(currentPower / maxPower);
