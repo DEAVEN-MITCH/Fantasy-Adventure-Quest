@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4581463850796408152}
   - component: {fileID: 9085389534234792785}
-  - component: {fileID: 6149775416205626679}
   - component: {fileID: 277340269908998613}
   m_Layer: 0
   m_Name: Gear
@@ -27,9 +26,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3767050969052233358}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.85, y: 0.94000006, z: 0}
-  m_LocalScale: {x: 1, y: 0.87003994, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 146310607, guid: 441c4478cc15090498c160b1e917a024, type: 3}
+  m_Sprite: {fileID: 905174034, guid: e9c0e91b9b6603248bcf2c947ab6c402, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -86,41 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &6149775416205626679
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3767050969052233358}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: fcc7b5fac9107ce42bdcda5bc15e7cb9, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.000000039100627, y: -0.37699404}
-  m_Size: {x: 1.0000001, y: 0.39539033}
-  m_Direction: 1
 --- !u!114 &277340269908998613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,13 +98,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centerOffset: {x: 0, y: -0.1}
-  faceDir: {x: 1, y: 0, z: 0}
+  faceDir: {x: 1, y: 1, z: 0}
   checkSize: {x: 1, y: 1}
-  checkDistance: 6
+  checkDistance: 10
   attackLayer:
     serializedVersion: 2
     m_Bits: 128
   bulletPrefab: {fileID: 2986093427967310705, guid: 69d46334c26f4734c8dcff9acd8fd955, type: 3}
   shootInterval: 3
   shootCount: 0
-  bullutOffset: {x: 0.38, y: -0.3, z: 0}
+  bullutOffset: {x: 0, y: 0, z: 0}

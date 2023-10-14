@@ -45,7 +45,7 @@ public class Gear : MonoBehaviour
         if (shootCount == 0)
         {
             Vector3 offset = new(spriteRenderer.flipX ? -bullutOffset.x : bullutOffset.x, bullutOffset.y, bullutOffset.z);
-            Instantiate(bulletPrefab,transform.position+offset,Quaternion.Euler(0, spriteRenderer.flipX ? 180 : 0, 0));
+            Instantiate(bulletPrefab,transform.position+offset,transform.rotation);
             // Debug.Log("shot!");
             shootCount = shootInterval;
         }
