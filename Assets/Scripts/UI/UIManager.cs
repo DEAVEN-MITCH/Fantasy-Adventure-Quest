@@ -34,6 +34,8 @@ public class UIManager : MonoBehaviour
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene("OpeningScene");
+        ResumeGame();
+
     }
     public void ShowRestartMenu()
     {

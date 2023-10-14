@@ -113,8 +113,8 @@ TextureImporter:
       name: Forest!!!_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 384
+        x: 291
+        y: 269
         width: 16
         height: 16
       alignment: 0
@@ -11718,7 +11718,7 @@ TextureImporter:
         width: 1
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -11739,7 +11739,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -11781,7 +11781,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -11802,7 +11802,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -11810,6 +11810,27 @@ TextureImporter:
       bones: []
       spriteID: 78e837b4d64df004ba82740a71fd1f0d
       internalID: 939099526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemporaryExit
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79dd8e621bc540f44ba7c032ffa69a22
+      internalID: -45344815
       vertices: []
       indices: 
       edges: []
@@ -12292,6 +12313,7 @@ TextureImporter:
       Forest!!!_97: 1202511964
       Forest!!!_98: -184158469
       Forest!!!_99: 1795927169
+      TemporaryExit: -45344815
       chest_close: -735216065
       chest_open: 939099526
   mipmapLimitGroupName: 
