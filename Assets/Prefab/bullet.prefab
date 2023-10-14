@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 8680143722905712869}
   - component: {fileID: 4605468582614586984}
   - component: {fileID: 8299364895195378296}
-  - component: {fileID: -6005379054042729431}
   - component: {fileID: 2518532810534360357}
   - component: {fileID: 8874713557933245470}
+  - component: {fileID: 4654775142360024395}
   m_Layer: 0
   m_Name: bullet
   m_TagString: Untagged
@@ -29,13 +29,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2986093427967310705}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.99907094, z: -0, w: -0.043096337}
   m_LocalPosition: {x: -5.54, y: 4.71, z: -0.08109421}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 184.94, z: 0}
 --- !u!114 &4605468582614586984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,31 +103,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-6005379054042729431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2986093427967310705}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a109ad6edc175514d8723c96527a50a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  touchLeftWall: 0
-  touchRightWall: 0
-  GroundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  checkRadius: 0.125
-  leftOffset: {x: -0.25, y: 0}
-  rightOffset: {x: 0.25, y: 0}
-  flyingSpeed: 1000
-  isShotToLeft: 0
-  powerConsumption: 3
-  originalOffset: {x: 1, y: 0.9}
-  destroyDelay: 0.02
 --- !u!50 &2518532810534360357
 Rigidbody2D:
   serializedVersion: 4
@@ -200,3 +175,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.75, y: 0.25}
   m_EdgeRadius: 0
+--- !u!114 &4654775142360024395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2986093427967310705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4858c9d9dfa67c4cbf7e1c019b0428f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  touchLeftWall: 0
+  touchRightWall: 0
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  checkRadius: 0.125
+  leftOffset: {x: -0.25, y: 0}
+  rightOffset: {x: 0.25, y: 0}
+  flyingSpeed: 1000
+  powerConsumption: 3
+  destroyDelay: 0.02
