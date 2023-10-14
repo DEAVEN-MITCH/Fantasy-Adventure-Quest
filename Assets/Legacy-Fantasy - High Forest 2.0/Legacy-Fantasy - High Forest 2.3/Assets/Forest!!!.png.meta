@@ -11709,6 +11709,111 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Forest!!!_17
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 128
+        width: 1
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 636f326f0077a464581c627afe0d897d
+      internalID: 1905448872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest!!!_18
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 376a2a735963dcc4fadd6763ca6bedc3
+      internalID: -816425251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest!!!_19
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 110
+        width: 39
+        height: 25
+      alignment: 9
+      pivot: {x: 0.42899498, y: 0.5000003}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d242ef982841ef418acd7a0481688e9
+      internalID: -105811632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chest_close
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 542ed05e80fafa84d8e3ceb37290939a
+      internalID: -735216065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chest_open
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78e837b4d64df004ba82740a71fd1f0d
+      internalID: 939099526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -11835,6 +11940,7 @@ TextureImporter:
       Forest!!!_167: -1504979579
       Forest!!!_168: 1289652417
       Forest!!!_169: -1543216861
+      Forest!!!_17: 2134204583
       Forest!!!_170: 712714005
       Forest!!!_171: -33810761
       Forest!!!_172: 1664872270
@@ -11845,6 +11951,7 @@ TextureImporter:
       Forest!!!_177: 439971513
       Forest!!!_178: -411012036
       Forest!!!_179: 472472272
+      Forest!!!_18: 1905448872
       Forest!!!_180: 1231052299
       Forest!!!_181: 621650357
       Forest!!!_182: 214598685
@@ -11855,6 +11962,7 @@ TextureImporter:
       Forest!!!_187: -1593518505
       Forest!!!_188: -1206114888
       Forest!!!_189: 1191692558
+      Forest!!!_19: -816425251
       Forest!!!_190: 631855951
       Forest!!!_191: 902797568
       Forest!!!_192: -409224143
@@ -12184,6 +12292,8 @@ TextureImporter:
       Forest!!!_97: 1202511964
       Forest!!!_98: -184158469
       Forest!!!_99: 1795927169
+      chest_close: -735216065
+      chest_open: 939099526
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

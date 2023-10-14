@@ -196,5 +196,5 @@ MonoBehaviour:
   leftOffset: {x: -0.25, y: 0}
   rightOffset: {x: 0.25, y: 0}
   flyingSpeed: 1000
-  powerConsumption: 3
+  powerConsumption: 10
   destroyDelay: 0.02

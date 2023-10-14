@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4afcafd8b27595544bf0c0a483c34f14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 333
+  maxHealth: 150
   currentHealth: 0
   invulnerableDuration: 0.1
   invulnerable: 0
@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce45b7a2c674da14e9db21ef4bd9c918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
+  damage: 5
   attackRange: 0
   attackRate: 0
 --- !u!114 &5179010120225189507

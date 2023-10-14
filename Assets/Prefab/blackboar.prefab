@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4afcafd8b27595544bf0c0a483c34f14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 500
+  maxHealth: 250
   currentHealth: 0
   invulnerableDuration: 0.1
   invulnerable: 0
@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce45b7a2c674da14e9db21ef4bd9c918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 4
+  damage: 8
   attackRange: 0
   attackRate: 0
 --- !u!114 &5179010120225189507
@@ -339,7 +339,7 @@ MonoBehaviour:
   pc: {fileID: 0}
   sr: {fileID: 0}
   normalSpeed: 100
-  chaseSpeed: 300
+  chaseSpeed: 600
   currentSpeed: 0
   faceDir: {x: 0, y: 0, z: 0}
   hurtForce: 3
@@ -351,7 +351,7 @@ MonoBehaviour:
     m_Bits: 128
   checkDistance: 5
   wait: 0
-  waitTime: 2
+  waitTime: 5
   waitCounter: 0
   lostTime: 4
   lostCounter: 0
