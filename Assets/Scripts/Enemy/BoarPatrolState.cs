@@ -22,7 +22,7 @@ public class BoarPatrolState: BaseState {
         {
             //currentEnemy.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             //Debug.Log("isng");
-            //if (!currentEnemy.pc.isGround ) Debug.Log("аќПе");else Debug.Log("");
+            //if (!currentEnemy.pc.isGround ) Debug.Log(" ");else Debug.Log("");
             currentEnemy.wait = true;
             //Debug.Log("no walk?");
             currentEnemy.anim.SetBool("walk", false);
