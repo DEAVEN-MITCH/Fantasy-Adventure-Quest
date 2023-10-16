@@ -45,10 +45,10 @@ public class Gear : MonoBehaviour
 
     private void Shoot()
     {
-        if (shootCount == 0)
+        if (shootCount <= 0)
         {
             Vector3 offset = new(spriteRenderer.flipX ? -bulletOffset.x : bulletOffset.x, bulletOffset.y, bulletOffset.z);
-            Instantiate(bulletPrefab, transform.position + offset, transform.rotation);
+            Instantiate(bulletPrefab, transform.position + offset, transform.rotation * Quaternion.Euler(0, 0, 90));
             // Debug.Log("shot!");
             shootCount = shootInterval;
         }
