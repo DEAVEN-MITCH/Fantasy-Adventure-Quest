@@ -6,8 +6,6 @@ using UnityEngine.InputSystem;
 
 public class TreasureTrigger : MonoBehaviour
 {
-
-    public float fadeSpeed = 1.0f;
     private PlayerController pc;
     public bool isGet = false;
 
