@@ -38,7 +38,7 @@ public class TreasureTrigger : MonoBehaviour
             timeElapsed += Time.deltaTime;
             renderer.material.color = Color.Lerp(currentColor, targetColor, timeElapsed * fadeSpeed);
 
-            // 在达到目标透明度后销毁游戏对象
+            // 
             if (renderer.material.color.a <= 0f)
             {
                 Destroy(gameObject);

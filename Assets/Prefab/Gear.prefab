@@ -99,7 +99,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   centerOffset: {x: 0, y: -0.1}
   faceDir: {x: 1, y: 1, z: 0}
-  checkSize: {x: 1, y: 1}
+  checkSize: {x: 0, y: 0}
+  checkRadius: 5
   checkDistance: 10
   attackLayer:
     serializedVersion: 2
@@ -107,4 +108,4 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2986093427967310705, guid: 69d46334c26f4734c8dcff9acd8fd955, type: 3}
   shootInterval: 3
   shootCount: 0
-  bullutOffset: {x: 0, y: 0, z: 0}
+  bulletOffset: {x: 1, y: 0, z: 0}
