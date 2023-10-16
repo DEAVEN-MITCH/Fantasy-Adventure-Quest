@@ -6,20 +6,11 @@ using UnityEngine.InputSystem;
 
 public class TreasureTrigger : MonoBehaviour
 {
-    private new Renderer renderer;
-    private Color currentColor;
-    private Color targetColor;
+
     public float fadeSpeed = 1.0f;
-    private float timeElapsed = 0f;
     private PlayerController pc;
-    private bool isGet = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        renderer = GetComponent<Renderer>();
-        currentColor = renderer.material.color;
-        targetColor = new Color(currentColor.r, currentColor.g, currentColor.b, 0f);
-    }
+    public bool isGet = false;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Debug.Log(collision.name + "enter");
@@ -31,9 +22,9 @@ public class TreasureTrigger : MonoBehaviour
         pc.inputControl.Gameplay.InteractE.started -= UnlockDoubleJump;
         //Debug.Log("exit");
     }
-    private void Update()
+/*    private void Update()
     {
-        while (isGet == true && renderer.material.color.a > 0)
+*//*        while (isGet == true && renderer.material.color.a > 0)
         {
             timeElapsed += Time.deltaTime;
             renderer.material.color = Color.Lerp(currentColor, targetColor, timeElapsed * fadeSpeed);
@@ -43,8 +34,8 @@ public class TreasureTrigger : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-        }
-    }
+        }*//*
+    }*/
     private void UnlockDoubleJump(InputAction.CallbackContext obj)
     {
         pc.isDoubleJumpUnlocked = true;
