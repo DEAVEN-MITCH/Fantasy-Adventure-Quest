@@ -27,7 +27,7 @@ public class BlackBoarChaseState : BaseState
             currentEnemy.SwitchState(NPCState.Patrol);
             return;
         }
-        //´¥Ç½·­×ªÍ£Ö¹
+        //
         if (!currentEnemy.pc.isGround || currentEnemy.pc.touchLeftWall && currentEnemy.faceDir.x == -1 || currentEnemy.pc.touchRightWall && currentEnemy.faceDir.x == 1)
         {
             //currentEnemy.sr.flipX = !currentEnemy.sr.flipX;

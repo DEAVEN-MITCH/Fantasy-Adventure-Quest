@@ -7,10 +7,10 @@ public class Enemy : MonoBehaviour
 {
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public Animator anim;
-    [HideInInspector] public PhysicsCheck pc;
-    [HideInInspector] public SpriteRenderer sr;
-
-    [Header("��������")]
+    [HideInInspector]public PhysicsCheck pc;
+    [HideInInspector]public SpriteRenderer sr;
+    
+    [Header("Basic Parameters")]
     public float normalSpeed;
     public float chaseSpeed;
     public float currentSpeed;
@@ -18,19 +18,19 @@ public class Enemy : MonoBehaviour
     public float hurtForce;
     public Transform attacker;
     public int scoreValue;
-    [Header("���")]
+    [Header("Check Attributes")]
     public Vector2 centerOffset;
     public Vector2 checkSize;
     public LayerMask attackLayer;
     public float checkDistance;
 
-    [Header("��ʱ��")]
+    [Header("Time Counter")]
     public bool wait;
     public float waitTime;
     public float waitCounter;
     public float lostTime;
     public float lostCounter;
-    [Header("״̬")]
+    [Header("State")]
     public bool isHurt;
     public bool isDead=false;
     protected BaseState currentState;
@@ -130,8 +130,8 @@ public class Enemy : MonoBehaviour
         currentState = newState;
         currentState.OnEnter(this);
     }
-    #region �¼�
-    public virtual void TakeDamage(Transform attackTrans)
+    #region Event
+    public virtual void  TakeDamage(Transform attackTrans)
     {
         rb.velocity = Vector2.zero;
         //Debug.Log("hurt");
@@ -170,7 +170,7 @@ public class Enemy : MonoBehaviour
         anim.SetTrigger("dead");
     }
 
-    #endregion �¼�
+    #endregion Event
     protected void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(transform.position + (Vector3)(centerOffset), .2f);

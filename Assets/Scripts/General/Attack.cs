@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    [Header("»ù±¾ÊôĞÔ")]
+    [Header("Attack Attributes")]
     public int damage;
     public float attackRange, attackRate;
     // Start is called before the first frame update

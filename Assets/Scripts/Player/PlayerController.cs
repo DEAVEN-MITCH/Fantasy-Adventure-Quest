@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     [Header("Events")]
     public UnityEvent afterDeathAnimation;
     public UnityEvent<float> onPowerChange;
-    [Header("基本参数")]
+    [Header("Basic Parameters")]
     public float speed;
     public float hurtForce;
     public float jumpForce;
@@ -23,15 +23,15 @@ public class PlayerController : MonoBehaviour
     public float shootInterval;
     public float shootCount;
     public Vector3 bulletOffset;//1,0.9,0
-    [Header("基本状态")]
+    [Header("Basic Status")]
     public bool isHurt, isDead;
     public bool isAttack;
     public bool isDoubleJumpUnlocked;
     public int jumpCounter;
-    [Header("物理材质")]
+    [Header("Physics Material")]
     public PhysicsMaterial2D normal;
     public PhysicsMaterial2D wall;
-    [Header("bullet prefabs")]
+    [Header("Bullet Prefab")]
     public GameObject bulletPrefab;
     private void Awake()
     {

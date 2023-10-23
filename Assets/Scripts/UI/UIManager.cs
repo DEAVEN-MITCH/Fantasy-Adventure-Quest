@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 public class UIManager : MonoBehaviour
 {
-    [Header("事件监听")]
+    [Header("Attributes")]
     public CharacterEventSO healthEvent;
     public ScoreEventSO scoreEvent;
     public PlayerStateBar playerStateBar;
@@ -17,7 +17,7 @@ public class UIManager : MonoBehaviour
     public TMP_Text scoreRenderer;
     private int score=0;
     private float startTime;
-    // 当对象已启用并处于活动状态时调用此函数
+    // 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟矫诧拷锟斤拷锟节活动状态时锟斤拷锟矫此猴拷锟斤拷
     private void OnEnable()
     {
         healthEvent.OnEventRaised += OnHealthEvent;
@@ -38,10 +38,10 @@ public class UIManager : MonoBehaviour
     public void RestartGame()
     {
         //restartMenuCanvas.SetActive("false");
-        // 获取当前场景的名称
+        // 
         string currentSceneName = SceneManager.GetActiveScene().name;
 
-        // 重新加载当前场景
+        // 
         SceneManager.LoadScene(currentSceneName);
         ResumeGame();
     }
@@ -57,20 +57,20 @@ public class UIManager : MonoBehaviour
         restartMenuCanvas.SetActive(true);
         PauseGame();
     }
-    // 暂停游戏
+    // 
     public void PauseGame()
     {
-        Time.timeScale = 0; // 设置时间缩放为0，暂停游戏
+        Time.timeScale = 0; 
         isGamePaused = true;
     }
 
-    // 恢复游戏
+    // 
     public void ResumeGame()
     {
-        Time.timeScale = 1; // 设置时间缩放为1，恢复游戏
+        Time.timeScale = 1; // 
         isGamePaused = false;
     }
-    // 当行为被禁用或处于非活动状态时调用此函数
+    // 
     private void OnDisable()
     {
         healthEvent.OnEventRaised -= OnHealthEvent;

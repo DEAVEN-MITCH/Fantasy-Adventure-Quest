@@ -7,7 +7,7 @@ public class PhysicsCheck : MonoBehaviour
 {
     private CapsuleCollider2D coll;
     SpriteRenderer sr;
-    [Header("检测参数")]
+    [Header("Attributes")]
     public bool manual;
     public bool isGround;
     //public bool isNearCliff;
@@ -16,7 +16,7 @@ public class PhysicsCheck : MonoBehaviour
     public LayerMask GroundLayer;
     public float checkRadius;
     public Vector2 bottomOffset,leftOffset,rightOffset;
-    [Tooltip("这个属性控制bottomOffset.x的要旋转多少度检测地面，用于适应各种坡度，单位为degree")]
+    [Tooltip("bottomOffset.x")]
     public float detectedSlopeAngle;
     private void Awake()
     {
