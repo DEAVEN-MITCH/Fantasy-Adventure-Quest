@@ -13,6 +13,7 @@ public class Character : MonoBehaviour
     public float invulnerableDuration;
     private float invulnerableCounter;
     public bool invulnerable;
+    public bool isDead=false;
     [Header("�¼�")]
     public UnityEvent<Transform> OnTakeDamage;
     public UnityEvent<Character> OnHealthChange;
@@ -34,10 +35,12 @@ public class Character : MonoBehaviour
             //����
             OnTakeDamage?.Invoke(attacker.transform);
         }
-        else
+        else if(!isDead)
         {
+            isDead = true;
             currentHealth = 0;
-            OnDie?.Invoke(); 
+            OnDie?.Invoke();
+            //Debug.Log("deadly Attack!");
         }
         OnHealthChange?.Invoke(this);
     }

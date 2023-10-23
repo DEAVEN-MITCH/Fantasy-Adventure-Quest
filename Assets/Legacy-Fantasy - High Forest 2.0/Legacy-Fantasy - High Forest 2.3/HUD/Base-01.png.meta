@@ -1160,7 +1160,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Base-01_51
+      name: darkbrownsphere
       rect:
         serializedVersion: 2
         x: 33
@@ -1349,7 +1349,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Base-01_60
+      name: setting
       rect:
         serializedVersion: 2
         x: 50
@@ -1861,7 +1861,7 @@ TextureImporter:
         width: 12
         height: 4
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1927,7 +1927,6 @@ TextureImporter:
       Base-01_49: -104275137
       Base-01_5: -1752468904
       Base-01_50: 2111610296
-      Base-01_51: -1088500638
       Base-01_52: -1679192520
       Base-01_53: 1497817077
       Base-01_54: -1094744558
@@ -1937,7 +1936,6 @@ TextureImporter:
       Base-01_58: -1195105663
       Base-01_59: 1243377945
       Base-01_6: -717064438
-      Base-01_60: -377215440
       Base-01_61: -1811383212
       Base-01_62: -1273847255
       Base-01_63: 94034097
@@ -1966,8 +1964,10 @@ TextureImporter:
       Power: -563467624
       PowerFrame: -1313263713
       bullet: 845091987
+      darkbrownsphere: -1088500638
       greene: 2016644094
       rede: -520907216
+      setting: -377215440
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

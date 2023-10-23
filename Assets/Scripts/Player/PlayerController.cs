@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
-        if(PCheck.isGround)
+        if (PCheck.isGround)
             jumpCounter = 1;
         CheckState();
     }
@@ -103,15 +103,15 @@ public class PlayerController : MonoBehaviour
     }
     private void Jump(InputAction.CallbackContext obj)
     {
-        if(PCheck.isGround)
+        if (PCheck.isGround)
         {
             rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
             jumpCounter = 1;
         }
-        else if(isDoubleJumpUnlocked&&jumpCounter > 0)
+        else if (isDoubleJumpUnlocked && jumpCounter > 0)
         {
             // set velocity to 0, so the jump effect could be the same
-            rb.velocity = new Vector2(rb.velocity.x,0);
+            rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
             jumpCounter = 0;
         }
@@ -147,11 +147,11 @@ public class PlayerController : MonoBehaviour
     private void RangedAttack(InputAction.CallbackContext obj)
     {
         float powerComsumption = bulletPrefab.GetComponent<Bullet>().powerConsumption;
-        if (currentPower > powerComsumption&&shootCount==0)
+        if (currentPower >= powerComsumption && shootCount == 0)
         {
             Vector3 dir = new(0, sr.flipX ? 180 : 0, 0);
-            Vector2 offset = new(sr.flipX ? -bulletOffset.x : bulletOffset.x, bulletOffset.y);
-            Instantiate(bulletPrefab,transform.position+bulletOffset,Quaternion.Euler(dir));
+            Vector3 offset = new(sr.flipX ? -bulletOffset.x : bulletOffset.x, bulletOffset.y, bulletOffset.z);
+            Instantiate(bulletPrefab, transform.position + offset, Quaternion.Euler(dir));
             currentPower -= powerComsumption;
             //Debug.Log("shot!");
             onPowerChange.Invoke(currentPower / maxPower);

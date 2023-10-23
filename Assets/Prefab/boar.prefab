@@ -344,6 +344,7 @@ MonoBehaviour:
   faceDir: {x: 0, y: 0, z: 0}
   hurtForce: 4.5
   attacker: {fileID: 0}
+  scoreValue: 100
   centerOffset: {x: 0, y: -0.34}
   checkSize: {x: 1, y: 1}
   attackLayer:
@@ -359,6 +360,21 @@ MonoBehaviour:
   dropProbability: 32000000
   dropItem:
   - {fileID: 8689731383966613573, guid: e44b18fd59aa68d4482fedd36d6763be, type: 3}
+  changeScore:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: c49fff3eb7d04b7428b894266ec6ee11, type: 2}
+        m_TargetAssemblyTypeName: ScoreEventSO, Assembly-CSharp
+        m_MethodName: RaiseEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3087273780706943229
 MonoBehaviour:
   m_ObjectHideFlags: 0
