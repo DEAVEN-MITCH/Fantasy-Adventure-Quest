@@ -7,9 +7,9 @@ public class Enemy : MonoBehaviour
 {
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public Animator anim;
-    [HideInInspector]public PhysicsCheck pc;
-    [HideInInspector]public SpriteRenderer sr;
-    
+    [HideInInspector] public PhysicsCheck pc;
+    [HideInInspector] public SpriteRenderer sr;
+
     [Header("Basic Parameters")]
     public float normalSpeed;
     public float chaseSpeed;
@@ -32,12 +32,12 @@ public class Enemy : MonoBehaviour
     public float lostCounter;
     [Header("State")]
     public bool isHurt;
-    public bool isDead=false;
+    public bool isDead = false;
     protected BaseState currentState;
     protected BaseState patrolState;
     protected BaseState chaseState;
     protected BaseState haltState;
-
+    protected BaseState skillState;
     public int[] dropProbability; //unit:%
     public GameObject[] dropItem;
     private int looted;
@@ -58,7 +58,7 @@ public class Enemy : MonoBehaviour
         looted = 0;
     }
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         faceDir = new Vector3(sr.flipX ? 1 : -1, 0, 0);
 
@@ -71,7 +71,7 @@ public class Enemy : MonoBehaviour
     {
         rb.velocity = new Vector2(currentSpeed * faceDir.x * Time.deltaTime, rb.velocity.y);
     }
-    private void FixedUpdate()
+    protected void FixedUpdate()
     {
         if (!wait && !isHurt)
         {
@@ -80,7 +80,7 @@ public class Enemy : MonoBehaviour
         }
         //Debug.Log("?????1?");
         currentState.PhysicsUpdate();
-        if (transform.position.y < -1000&&!isDead)
+        if (transform.position.y < -1000 && !isDead)
         {
             isDead = true;
             Die();
@@ -113,7 +113,7 @@ public class Enemy : MonoBehaviour
             }
         }
     }
-    public bool FoundPlayer()
+    virtual public bool FoundPlayer()
     {
         return Physics2D.BoxCast((Vector2)transform.position + centerOffset * faceDir, checkSize, 0, faceDir, checkDistance, attackLayer);
     }
@@ -124,6 +124,7 @@ public class Enemy : MonoBehaviour
             NPCState.Patrol => patrolState,
             NPCState.Chase => chaseState,
             NPCState.Halt => haltState,
+            NPCState.Skill=>skillState,
             _ => null
         };
         currentState.OnExit();
@@ -131,7 +132,7 @@ public class Enemy : MonoBehaviour
         currentState.OnEnter(this);
     }
     #region Event
-    public virtual void  TakeDamage(Transform attackTrans)
+    public virtual void TakeDamage(Transform attackTrans)
     {
         rb.velocity = Vector2.zero;
         //Debug.Log("hurt");
