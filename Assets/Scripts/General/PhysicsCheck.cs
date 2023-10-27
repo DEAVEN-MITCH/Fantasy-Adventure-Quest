@@ -15,7 +15,7 @@ public class PhysicsCheck : MonoBehaviour
     public bool touchRightWall;
     public LayerMask GroundLayer;
     public float checkRadius;
-    public Vector2 bottomOffset,leftOffset,rightOffset;
+    public Vector2 bottomOffset, leftOffset, rightOffset;
     [Tooltip("bottomOffset.x")]
     public float detectedSlopeAngle;
     private void Awake()
@@ -25,7 +25,7 @@ public class PhysicsCheck : MonoBehaviour
         bottomOffset = new Vector2(Math.Abs(bottomOffset.x), bottomOffset.y);
         if (!manual)
         {
-            rightOffset = new Vector2((coll.bounds.size.x/2 + coll.offset.x) , coll.offset.y);
+            rightOffset = new Vector2((coll.bounds.size.x / 2 + coll.offset.x), coll.offset.y);
             leftOffset = new Vector2(-rightOffset.x, rightOffset.y);
         }
     }
@@ -41,9 +41,9 @@ public class PhysicsCheck : MonoBehaviour
         //    || !Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset + new Vector2(-0.05f, 0), checkRadius, GroundLayer); 
         float detectedSlopeAngle2Rad = detectedSlopeAngle * Mathf.Deg2Rad;
         float directedOffsetX = sr.flipX ? bottomOffset.x : -bottomOffset.x;
-        isGround = Physics2D.OverlapCircle((Vector2)transform.position+new Vector2(directedOffsetX*Mathf.Cos(detectedSlopeAngle2Rad),bottomOffset.y-Math.Abs(directedOffsetX)*Mathf.Sin(detectedSlopeAngle2Rad)), checkRadius, GroundLayer);
-        touchLeftWall=Physics2D.OverlapCircle((Vector2)transform.position+leftOffset, checkRadius, GroundLayer);
-        touchRightWall=Physics2D.OverlapCircle((Vector2)transform.position+rightOffset, checkRadius, GroundLayer);
+        isGround = Physics2D.OverlapCircle((Vector2)transform.position + new Vector2(directedOffsetX * Mathf.Cos(detectedSlopeAngle2Rad), bottomOffset.y - Math.Abs(directedOffsetX) * Mathf.Sin(detectedSlopeAngle2Rad)), checkRadius, GroundLayer);
+        touchLeftWall = Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, checkRadius, GroundLayer);
+        touchRightWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, checkRadius, GroundLayer);
     }
 
     // Update is called once per frame

@@ -71,7 +71,7 @@ public class Enemy : MonoBehaviour
     {
         rb.velocity = new Vector2(currentSpeed * faceDir.x * Time.deltaTime, rb.velocity.y);
     }
-    protected void FixedUpdate()
+    virtual protected void FixedUpdate()
     {
         if (!wait && !isHurt)
         {
@@ -124,7 +124,7 @@ public class Enemy : MonoBehaviour
             NPCState.Patrol => patrolState,
             NPCState.Chase => chaseState,
             NPCState.Halt => haltState,
-            NPCState.Skill=>skillState,
+            NPCState.Skill => skillState,
             _ => null
         };
         currentState.OnExit();
@@ -172,7 +172,7 @@ public class Enemy : MonoBehaviour
     }
 
     #endregion Event
-    protected void OnDrawGizmosSelected()
+    virtual protected void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(transform.position + (Vector3)(centerOffset), .2f);
         //Gizmos.DrawWireSphere((Vector2)transform.position + pc.bottomOffset, .2f);
