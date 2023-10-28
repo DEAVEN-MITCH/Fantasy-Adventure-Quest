@@ -39,20 +39,11 @@ public class BeeChaseState : BaseState
             bee.anim.SetTrigger("attack");
             Shoot();
         }
-        // TODO: find the player and calculate the direction towards him
-        // TODO: it is significant to notice that how to handle different flipX
-        Vector3 direction = (playerPosition - bee.transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(Vector3.forward, direction);
+
         if (playerPosition.x - bee.transform.position.x >= 0)
-        {
             bee.sr.flipX = true;
-            bee.transform.rotation = lookRotation * Quaternion.Euler(0, 0, 90);
-        }
         else
-        {
             bee.sr.flipX = false;
-            bee.transform.rotation = lookRotation * Quaternion.Euler(0, 0, -90);
-        }
     }
 
     public override void PhysicsUpdate()
@@ -70,7 +61,14 @@ public class BeeChaseState : BaseState
     {
         if (bee.shootCount <= 0)
         {
-            Quaternion bulletRotation = bee.sr.flipX ? Quaternion.Euler(0, 0, 0) : Quaternion.Euler(0, 0, 180);
+            Vector3 playerPosition = bee.players[0].transform.position;
+
+            // TODO: find the player and calculate the direction towards him
+            // TODO: it is significant to notice that how to handle different flipX
+            Vector3 direction = (playerPosition - bee.transform.position).normalized;
+            Quaternion bulletRotation = Quaternion.LookRotation(Vector3.forward, direction);
+            bulletRotation *= Quaternion.Euler(0, 0, 90);
+
             Object.Instantiate(bee.bulletPrefab, bee.transform.position + bee.bulletOffset, bee.transform.rotation * bulletRotation);
             // Debug.Log("shot!");
             bee.shootCount = bee.shootInterval;
