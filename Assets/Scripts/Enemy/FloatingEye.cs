@@ -24,6 +24,10 @@ public class FloatingEye : Enemy
     public float indicativeLineWidth,attackLineWidth;
     public float maxHeight, minHeight, minRandomDistanceToWall;
     public  LayerMask groundLayer;
+    public Vector2[] pointsForMovememt;
+    public Attack rayAttack;
+    public float attackRayDiaplayDuration;
+
     protected override void Awake()
     {
         patrolState = new FloatingEyePatrolState();
@@ -67,7 +71,8 @@ public class FloatingEye : Enemy
     public void RandomMove()
     {
         //
-        StartCoroutine(AsynRandomMove());
+        //StartCoroutine(AsynRandomMove());
+        RandomMoveAmongPoints();
         
     }
 
@@ -122,9 +127,9 @@ public class FloatingEye : Enemy
             GameObject hitObject = hit.transform.gameObject;
             // 在这里处理接触到的物体，例如打印名称或执行其他操作
             //Debug.Log("接触到物体：" + hitObject.name);
-            hitObject.GetComponent<Character>().TakeDamage(attack);
+            hitObject.GetComponent<Character>().TakeDamage(rayAttack);
         }
-        yield return new WaitForSeconds(.3f);
+        yield return new WaitForSeconds(attackRayDiaplayDuration);
         lineRenderer.endWidth = lineRenderer.startWidth=indicativeLineWidth;
         //Debug.Log("reset linerenderer");
         lineRenderer.enabled = false;
@@ -132,7 +137,7 @@ public class FloatingEye : Enemy
     }
     IEnumerator AsynRandomMove()
     {
-        Vector2 center = bounds.transform.position;
+        Vector2 center = (Vector2)bounds.transform.position+bounds.offset;
         Vector2 size = bounds.size;
         Vector2 point1 = center - 0.5f* size,point2=center+0.5f*size;
         // 生成随机的x坐标和y坐标，确保它们在point1和point2范围内
@@ -186,5 +191,11 @@ public class FloatingEye : Enemy
             }
         return distance;
     }
-
+    private void RandomMoveAmongPoints()
+    {
+        int size = pointsForMovememt.Length;
+        int randomIndex = UnityEngine.Random.Range(0, size);
+        transform.position = pointsForMovememt[randomIndex];
+        return;
+    }
 }
