@@ -45,7 +45,7 @@ public class Character : MonoBehaviour
         OnHealthChange?.Invoke(this);
     }
 
-    public void HealthRegen(int amount)
+    public void HealthRegen(float amount)
     {
         if (currentHealth + amount > maxHealth)
             currentHealth = maxHealth;

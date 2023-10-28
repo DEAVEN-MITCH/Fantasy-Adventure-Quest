@@ -6,7 +6,7 @@ using UnityEngine;
 public class HealthPotion : MonoBehaviour
 {
 
-    public int healthGenerate;
+    public float healthGenerate;
     private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()

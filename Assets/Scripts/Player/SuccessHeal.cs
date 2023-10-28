@@ -22,7 +22,7 @@ public class SuccessHeal : StateMachineBehaviour
         int healAmount = animator.GetComponent<PlayerHealController>().healAmount;
         int energyCost = animator.GetComponent<PlayerHealController>().healEnergyCost;
         animator.GetComponent<Character>().HealthRegen(healAmount);
-        animator.GetComponent<PlayerController>().currentPower -= energyCost;
+        animator.GetComponent<PlayerController>().PowerConsume(energyCost);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
