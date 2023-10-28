@@ -89,6 +89,15 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Heal"",
+                    ""type"": ""Button"",
+                    ""id"": ""bf9b281d-67a3-4372-8294-54c775ca456e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -375,6 +384,17 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""RangedAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e0a29f48-ee45-4839-bdf2-9405f4e31635"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Heal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -989,6 +1009,7 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
         m_Gameplay_Attack = m_Gameplay.FindAction("Attack", throwIfNotFound: true);
         m_Gameplay_InteractE = m_Gameplay.FindAction("InteractE", throwIfNotFound: true);
         m_Gameplay_RangedAttack = m_Gameplay.FindAction("RangedAttack", throwIfNotFound: true);
+        m_Gameplay_Heal = m_Gameplay.FindAction("Heal", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1070,6 +1091,7 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Attack;
     private readonly InputAction m_Gameplay_InteractE;
     private readonly InputAction m_Gameplay_RangedAttack;
+    private readonly InputAction m_Gameplay_Heal;
     public struct GameplayActions
     {
         private @PlayerInputControl m_Wrapper;
@@ -1081,6 +1103,7 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_Gameplay_Attack;
         public InputAction @InteractE => m_Wrapper.m_Gameplay_InteractE;
         public InputAction @RangedAttack => m_Wrapper.m_Gameplay_RangedAttack;
+        public InputAction @Heal => m_Wrapper.m_Gameplay_Heal;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1111,6 +1134,9 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
             @RangedAttack.started += instance.OnRangedAttack;
             @RangedAttack.performed += instance.OnRangedAttack;
             @RangedAttack.canceled += instance.OnRangedAttack;
+            @Heal.started += instance.OnHeal;
+            @Heal.performed += instance.OnHeal;
+            @Heal.canceled += instance.OnHeal;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -1136,6 +1162,9 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
             @RangedAttack.started -= instance.OnRangedAttack;
             @RangedAttack.performed -= instance.OnRangedAttack;
             @RangedAttack.canceled -= instance.OnRangedAttack;
+            @Heal.started -= instance.OnHeal;
+            @Heal.performed -= instance.OnHeal;
+            @Heal.canceled -= instance.OnHeal;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -1333,6 +1362,7 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnInteractE(InputAction.CallbackContext context);
         void OnRangedAttack(InputAction.CallbackContext context);
+        void OnHeal(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
