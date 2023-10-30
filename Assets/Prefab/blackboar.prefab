@@ -40,6 +40,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6608982963219347283}
+  - {fileID: 6690459592660063187}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7213486445184092087
@@ -238,6 +239,7 @@ MonoBehaviour:
   currentHealth: 0
   invulnerableDuration: 0.1
   invulnerable: 0
+  isDead: 0
   OnTakeDamage:
     m_PersistentCalls:
       m_Calls:
@@ -311,7 +313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manual: 1
-  isGround: 1
+  isGround: 0
   touchLeftWall: 0
   touchRightWall: 0
   GroundLayer:
@@ -357,6 +359,7 @@ MonoBehaviour:
   lostTime: 4
   lostCounter: 0
   isHurt: 0
+  isDead: 0
   dropProbability: 32000000
   dropItem:
   - {fileID: 8689731383966613573, guid: e44b18fd59aa68d4482fedd36d6763be, type: 3}
@@ -389,6 +392,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthImage: {fileID: 3393187436530502285}
   healthBackgroundImage: {fileID: 6615505643604836946}
+--- !u!1 &8662437826201587140
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6690459592660063187}
+  m_Layer: 8
+  m_Name: bombing
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6690459592660063187
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8662437826201587140}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1617595439677577266}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8308255929382424844
 PrefabInstance:
   m_ObjectHideFlags: 0

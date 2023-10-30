@@ -13,6 +13,7 @@ public class BoarChaseState : BaseState
     }
     public override void LogicUpdate()
     {
+/*        Debug.Log("chase");*/
         if (currentEnemy.lostCounter <= 0)
         {
             currentEnemy.SwitchState(NPCState.Patrol);
