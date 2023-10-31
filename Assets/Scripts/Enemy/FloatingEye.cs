@@ -9,13 +9,13 @@ public class FloatingEye : Enemy
     public float attackCount;
     public float preAttackInterval;
     public float preAttackCount;
-    public bool isPreAttack;
+    public bool isPreAttack=false;
     public float attackDistance;//attack ray length the same as detection radius
     public bool hurtSignal;//to trigger some steps once hurt , in comparison with isHurt,isHurt is a lasting state
     Collider2D[] players = new Collider2D[1];//the players in detection
     ContactFilter2D contactFilter2D = new();
     public CircleCollider2D detectionCircle;
-    public BoxCollider2D bounds;//boundary of the center of the RandomMove destination
+    //public BoxCollider2D bounds;//boundary of the center of the RandomMove destination
     [Header("Attack Attributes")]
     public Color lineColor = Color.red; //color of the indicative line 
     private LineRenderer lineRenderer;
@@ -79,6 +79,7 @@ public class FloatingEye : Enemy
     internal void DePreAttack()
     {
         lineRenderer.enabled = false ;
+        isPreAttack = false;
         //destory the indicative ray
     }
 
@@ -92,6 +93,7 @@ public class FloatingEye : Enemy
         lineRenderer.SetPosition(0, transform.position);
         lineRenderer.SetPosition(1, endPoint);
         lineRenderer.enabled = true;
+        isPreAttack = true;
         //Debug.Log("preattack!");
         //locate current player's position and make a ray to indicate the attack
         //the attack range is attackDistance
@@ -132,40 +134,40 @@ public class FloatingEye : Enemy
         yield return new WaitForSeconds(attackRayDiaplayDuration);
         lineRenderer.endWidth = lineRenderer.startWidth=indicativeLineWidth;
         //Debug.Log("reset linerenderer");
-        lineRenderer.enabled = false;
+        DePreAttack();
         yield break;
     }
-    IEnumerator AsynRandomMove()
-    {
-        Vector2 center = (Vector2)bounds.transform.position+bounds.offset;
-        Vector2 size = bounds.size;
-        Vector2 point1 = center - 0.5f* size,point2=center+0.5f*size;
-        // 生成随机的x坐标和y坐标，确保它们在point1和point2范围内
-        int count = 0;
-        //max loop=1000 to avoid dead loop
-        Vector2 checkArea = new Vector2(4, 4);//the rectangular size of the destination check area
-        while (++count < 1000)
-        {
-            float randomX = UnityEngine.Random.Range(point1.x, point2.x);
-            float randomY = UnityEngine.Random.Range(point1.y, point2.y);
+    //IEnumerator AsynRandomMove()
+    //{
+    //    Vector2 center = (Vector2)bounds.transform.position+bounds.offset;
+    //    Vector2 size = bounds.size;
+    //    Vector2 point1 = center - 0.5f* size,point2=center+0.5f*size;
+    //    // 生成随机的x坐标和y坐标，确保它们在point1和point2范围内
+    //    int count = 0;
+    //    //max loop=1000 to avoid dead loop
+    //    Vector2 checkArea = new Vector2(4, 4);//the rectangular size of the destination check area
+    //    while (++count < 1000)
+    //    {
+    //        float randomX = UnityEngine.Random.Range(point1.x, point2.x);
+    //        float randomY = UnityEngine.Random.Range(point1.y, point2.y);
 
-            // 创建Vector2表示随机点
-            Vector2 randomPoint = new Vector2(randomX, randomY);
-            var curHeight = currentHeightAboveTheGround(randomPoint);
-            //check the distance to the ground
-            if (curHeight > maxHeight || curHeight < minHeight) continue;
-            //check whether up to the minRandomDistanceToWall
-            if (distanceToTheNearestWall(randomPoint) < minRandomDistanceToWall) continue;
-            //check whether the destination will overlap with Ground
-            if ( Physics2D.OverlapArea(randomPoint-.5f*checkArea, randomPoint+.5f*checkArea, groundLayer)){
-                continue;
-            }
-            //every check is fine ,let's move;
-            transform.position = randomPoint;
-            break;
-        }
-        yield break;
-    }
+    //        // 创建Vector2表示随机点
+    //        Vector2 randomPoint = new Vector2(randomX, randomY);
+    //        var curHeight = currentHeightAboveTheGround(randomPoint);
+    //        //check the distance to the ground
+    //        if (curHeight > maxHeight || curHeight < minHeight) continue;
+    //        //check whether up to the minRandomDistanceToWall
+    //        if (distanceToTheNearestWall(randomPoint) < minRandomDistanceToWall) continue;
+    //        //check whether the destination will overlap with Ground
+    //        if ( Physics2D.OverlapArea(randomPoint-.5f*checkArea, randomPoint+.5f*checkArea, groundLayer)){
+    //            continue;
+    //        }
+    //        //every check is fine ,let's move;
+    //        transform.position = randomPoint;
+    //        break;
+    //    }
+    //    yield break;
+    //}
     public  float currentHeightAboveTheGround(Vector2 position)
     {
         RaycastHit2D[] hits = Physics2D.RaycastAll(position, Vector3.down, 100, groundLayer);//current detection set distance to 100 which is enough now
@@ -198,4 +200,15 @@ public class FloatingEye : Enemy
         transform.position = pointsForMovememt[randomIndex];
         return;
     }
+    public void DirectionFollowPlayer()
+    {
+        if (players[0] != null)
+        {
+            Vector3 playerPosition = players[0].transform.position;
+            float dirX = playerPosition.x - transform.position.x;//negative means player left
+            sr.flipX = dirX > 0 ? true : dirX < 0 ? false : sr.flipX;//assume the flipX ==false means face left
+        }
+    }
+
+
 }

@@ -24,6 +24,7 @@ public class FloatingEyeSkillState : BaseState
                 return;
             }
             floatingEye.attackCount = Mathf.Max(0, floatingEye.attackCount - Time.deltaTime);
+            if(!floatingEye.isPreAttack)floatingEye.DirectionFollowPlayer();
             if (floatingEye.attackCount == 0)//cool down,get into preattack state
             {
                 floatingEye.preAttackCount = floatingEye.preAttackInterval;//ǰҡ
