@@ -18,11 +18,20 @@ public class Character : MonoBehaviour
     public UnityEvent<Transform> OnTakeDamage;
     public UnityEvent<Character> OnHealthChange;
     public UnityEvent OnDie;
+    [Header("Status")]
+    public bool isFrost;
+    public bool frostImmune;
+    public float frostDuration;
+    [Header("Speed")]
+    public Vector2 speedBeforeCorrection;
+    public Vector2 speedAfterCorrection;
     void Start()
     {
         currentHealth = maxHealth;
         if(transform.gameObject.name =="player")
         OnHealthChange?.Invoke(this);
+        isFrost = false;
+        frostDuration = 0;
     }
     public void TakeDamage(Attack attacker)
     {
@@ -43,6 +52,34 @@ public class Character : MonoBehaviour
             //Debug.Log("deadly Attack!");
         }
         OnHealthChange?.Invoke(this);
+        //Apply abnormal status
+        for (int i = 0; i < attacker.statusApply.Length; i++)
+        {
+            switch(attacker.statusApply[i])
+            {
+                case AbnormalStatus.Frost:
+                    if(!frostImmune)
+                        if(!isFrost || frostDuration < attacker.statusDuration[i])
+                        {
+                            isFrost = true;
+                            frostDuration = attacker.statusDuration[i];
+                        }
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    public void FixedUpdate()
+    {
+        if(isFrost && frostDuration > 0)
+        {
+            frostDuration -= Time.deltaTime;
+            if(frostDuration <= 0)
+                isFrost = false;
+        }
+
     }
 
     public void HealthRegen(float amount)

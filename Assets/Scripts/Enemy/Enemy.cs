@@ -154,7 +154,7 @@ public class Enemy : MonoBehaviour
     {
         //Debug.Log(this + "dies!");
         System.Random ran = new System.Random();
-        for (int i = 0; i < 1; i++)
+        for (int i = 0; i < dropItem.Length; i++)
         {
             int n = ran.Next(100);
             //Debug.Log(n);

@@ -7,6 +7,9 @@ public class Attack : MonoBehaviour
     [Header("Attack Attributes")]
     public int damage;
     public float attackRange, attackRate;
+    [Header("Status")]
+    public AbnormalStatus[] statusApply;
+    public float[] statusDuration;
     // Start is called before the first frame update
     void Start()
     {
