@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class TreasureTrigger : MonoBehaviour
@@ -9,8 +11,14 @@ public class TreasureTrigger : MonoBehaviour
     private PlayerController pc;
     public bool isGet = false;
 
+    [Header("Hint Message")]
+    public TextMeshProUGUI hintText;
+    public UnityEvent<TextMeshProUGUI> onHintTrigger;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (isGet)
+            return;
         //Debug.Log(collision.name + "enter");
         pc = collision.GetComponent<PlayerController>();
         pc.inputControl.Gameplay.InteractE.started += UnlockDoubleJump;
@@ -20,32 +28,16 @@ public class TreasureTrigger : MonoBehaviour
         pc.inputControl.Gameplay.InteractE.started -= UnlockDoubleJump;
         //Debug.Log("exit");
     }
-/*    private void Update()
-    {
-*//*        while (isGet == true && renderer.material.color.a > 0)
-        {
-            timeElapsed += Time.deltaTime;
-            renderer.material.color = Color.Lerp(currentColor, targetColor, timeElapsed * fadeSpeed);
 
-            // 
-            if (renderer.material.color.a <= 0f)
-            {
-                Destroy(gameObject);
-            }
-        }*//*
-    }*/
     private void UnlockDoubleJump(InputAction.CallbackContext obj)
     {
         pc.isDoubleJumpUnlocked = true;
         isGet = true;
         //Debug.Log(obj);
+
+        // trigger a hint text
+        onHintTrigger.Invoke(hintText);
     }
-
-    //    // Update is called once per frame
-    //    void Update()
-    //    {
-
-    //    }
 }
 
 

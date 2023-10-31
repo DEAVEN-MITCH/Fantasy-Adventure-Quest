@@ -82,7 +82,7 @@ public class Bee : Enemy
         else
             lastTime = Time.time;       // This is essential. Otherwise, each frame will arbitrarily pick a target point.
         // Debug.Log("Move!");
-        Vector2 center = beeBound.offset;
+        Vector2 center = (Vector2)beeBound.transform.position + beeBound.offset;
         Vector2 size = beeBound.size;
         // point1 is the left bottom point, point2 is the right upper point.
         // we can use the two points to arbitrarily choose a point as destination.
