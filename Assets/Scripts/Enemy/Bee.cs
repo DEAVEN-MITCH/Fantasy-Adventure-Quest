@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Bee : Enemy
 {
@@ -43,6 +44,8 @@ public class Bee : Enemy
     public bool isStop;
     // A time counter recording when start stopping
     public float stopTime;
+
+    public LayerMask groundLayer;
     override protected void Awake()
     {
         patrolState = new BeePatrolState();
@@ -125,7 +128,23 @@ public class Bee : Enemy
 
     public override bool FoundPlayer()
     {
-        return detectionCircle.OverlapCollider(contactFilter2D, players) > 0;
+        if (detectionCircle.OverlapCollider(contactFilter2D, players) > 0)
+        {
+            // TODO: Cast a ray from the bee to the player
+            // TODO: The length of this ray should be the smaller of radius of detection circle,
+            // TODO: and the distance between the player and the bee
+            if (Physics2D.Raycast(
+                transform.position,
+                (players[0].transform.position - transform.position).normalized,
+                Mathf.Min(detectionCircle.radius, Vector2.Distance(players[0].transform.position, transform.position)),
+                groundLayer))
+            {
+                // Debug.Log("hits a wall!");
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 
     // used to help find the minimum distance of movement
@@ -133,5 +152,19 @@ public class Bee : Enemy
     {
         Gizmos.DrawWireSphere(transform.position, minimumDistance);
         Gizmos.DrawWireSphere(targetPoint, 1);
+        if (players[0] != null)
+        {
+            Vector2 hitWallPoint = Physics2D.Raycast(
+                transform.position,
+                (players[0].transform.position - transform.position).normalized,
+                Mathf.Min(detectionCircle.radius, Vector2.Distance(players[0].transform.position, transform.position)),
+                groundLayer).point;
+
+            if(Vector2.Distance(players[0].transform.position, transform.position) <= detectionCircle.radius)
+            {
+                Vector2 hitPoint = (hitWallPoint == Vector2.zero) ? players[0].transform.position : hitWallPoint;
+                Gizmos.DrawLine(transform.position, hitPoint);
+            }
+        }
     }
 }

@@ -61,13 +61,21 @@ public class BeeChaseState : BaseState
     {
         if (bee.shootCount <= 0)
         {
-            Vector3 playerPosition = bee.players[0].transform.position;
+            Quaternion bulletRotation;
 
-            // TODO: find the player and calculate the direction towards him
-            // TODO: it is significant to notice that how to handle different flipX
-            Vector3 direction = (playerPosition - bee.transform.position).normalized;
-            Quaternion bulletRotation = Quaternion.LookRotation(Vector3.forward, direction);
-            bulletRotation *= Quaternion.Euler(0, 0, 90);
+            if (bee.FoundPlayer())
+            {
+                Vector3 playerPosition = bee.players[0].transform.position;
+
+                // TODO: find the player and calculate the direction towards him
+                // TODO: it is significant to notice that how to handle different flipX
+                Vector3 direction = (playerPosition - bee.transform.position).normalized;
+                bulletRotation = Quaternion.LookRotation(Vector3.forward, direction);
+                bulletRotation *= Quaternion.Euler(0, 0, 90);
+            }
+            // TODO: if cannot find player, shoot at the horizontal orientation
+            else
+                bulletRotation = bee.sr.flipX ? Quaternion.Euler(0, 0, 0) : Quaternion.Euler(0, 0, 180);
 
             Object.Instantiate(bee.bulletPrefab, bee.transform.position + bee.bulletOffset, bee.transform.rotation * bulletRotation);
             // Debug.Log("shot!");
