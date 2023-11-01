@@ -207,6 +207,20 @@ public class FloatingEye : Enemy
             Vector3 playerPosition = players[0].transform.position;
             float dirX = playerPosition.x - transform.position.x;//negative means player left
             sr.flipX = dirX > 0 ? true : dirX < 0 ? false : sr.flipX;//assume the flipX ==false means face left
+            Vector3 spriteDir = sr.flipX?new(1,0,0): new(-1, 0, 0);
+            Vector3 dir = (playerPosition - transform.position).normalized ;
+            // 计算两个向量之间的夹角
+            float angle = Vector3.Angle(spriteDir, dir);
+            //since angle < 180,so we need to judge the rotation dir from the cross product
+            // 使用Cross方法来计算两个向量的叉积，以确定旋转轴
+            Vector3 cross = Vector3.Cross(spriteDir, dir);
+            if (cross.z < 0)
+            {
+                angle = 360 - angle;
+            }
+            // 现在，将夹角表示为Vector3欧拉角
+            Vector3 eulerAngle = new Vector3(0, 0, angle);
+            transform.rotation =UnityEngine.Quaternion.Euler( eulerAngle);
         }
     }
 
