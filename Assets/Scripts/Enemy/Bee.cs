@@ -55,6 +55,7 @@ public class Bee : Enemy
         attack = GetComponent<Attack>();
         lastTime = Time.time;
         arrived = true;
+        character = GetComponent<Character>();
     }
 
     protected override void FixedUpdate()
@@ -106,7 +107,7 @@ public class Bee : Enemy
                 continue;
             else
             {
-                rb.velocity = direction * currentSpeed;
+                rb.velocity = direction * currentSpeed * character.speedCorrection;
                 arrived = false;
                 break;
             }
