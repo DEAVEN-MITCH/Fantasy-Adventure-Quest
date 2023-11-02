@@ -25,6 +25,8 @@ public class Character : MonoBehaviour
     [Header("Speed")]
     public Vector2 speedBeforeCorrection;
     public Vector2 speedAfterCorrection;
+    public float speedCorrection;
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -79,7 +81,11 @@ public class Character : MonoBehaviour
             if(frostDuration <= 0)
                 isFrost = false;
         }
-
+        
+        //Correct Speed
+        speedCorrection = 1.0f;
+        if(isFrost)
+            speedCorrection *= 0.5f;
     }
 
     public void HealthRegen(float amount)

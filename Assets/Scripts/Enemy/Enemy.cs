@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public Animator anim;
     [HideInInspector] public PhysicsCheck pc;
     [HideInInspector] public SpriteRenderer sr;
+    [HideInInspector] public Character character;
 
     [Header("Basic Parameters")]
     public float normalSpeed;
@@ -49,6 +50,7 @@ public class Enemy : MonoBehaviour
         currentSpeed = normalSpeed;
         pc = GetComponent<PhysicsCheck>();
         sr = GetComponent<SpriteRenderer>();
+        character = GetComponent<Character>();
         waitCounter = waitTime;
     }
     private void OnEnable()
@@ -69,7 +71,7 @@ public class Enemy : MonoBehaviour
     }
     virtual public void Move()
     {
-        rb.velocity = new Vector2(currentSpeed * faceDir.x * Time.deltaTime, rb.velocity.y);
+        rb.velocity = new Vector2(character.speedCorrection * currentSpeed * faceDir.x * Time.deltaTime, rb.velocity.y);
     }
     virtual protected void FixedUpdate()
     {

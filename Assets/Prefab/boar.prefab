@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2782098093100155552}
   - component: {fileID: 5935819542661216147}
   - component: {fileID: 2058039701850348698}
+  - component: {fileID: -5217778366366836533}
   - component: {fileID: 5456692137560174524}
   - component: {fileID: 5179010120225189507}
   - component: {fileID: 7392220754626063765}
@@ -238,6 +239,7 @@ MonoBehaviour:
   currentHealth: 0
   invulnerableDuration: 0.1
   invulnerable: 0
+  isDead: 0
   OnTakeDamage:
     m_PersistentCalls:
       m_Calls:
@@ -283,6 +285,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isFrost: 0
+  frostImmune: 0
+  frostDuration: 0
+  speedBeforeCorrection: {x: 0, y: 0}
+  speedAfterCorrection: {x: 0, y: 0}
+  speedCorrection: 0
+--- !u!114 &-5217778366366836533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289165146837653709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cc2eb01cdff29c4cb1b63876466d5cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5456692137560174524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,6 +318,8 @@ MonoBehaviour:
   damage: 5
   attackRange: 0
   attackRate: 0
+  statusApply: 
+  statusDuration: []
 --- !u!114 &5179010120225189507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,6 +360,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   pc: {fileID: 0}
   sr: {fileID: 0}
+  character: {fileID: 0}
   normalSpeed: 100
   chaseSpeed: 260
   currentSpeed: 0
@@ -357,6 +380,7 @@ MonoBehaviour:
   lostTime: 3
   lostCounter: 0
   isHurt: 0
+  isDead: 0
   dropProbability: 32000000
   dropItem:
   - {fileID: 8689731383966613573, guid: e44b18fd59aa68d4482fedd36d6763be, type: 3}
