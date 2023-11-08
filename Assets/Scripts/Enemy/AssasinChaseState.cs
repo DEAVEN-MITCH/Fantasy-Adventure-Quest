@@ -15,7 +15,13 @@ public class AssasinChaseState : BaseState
     }
     public override void LogicUpdate()
     {
-/*        Debug.Log("chase");*/
+        if(assasin.stage == 1 && currentEnemy.character.currentHealth < currentEnemy.character.maxHealth * 0.5f && !currentEnemy.isHurt && !assasin.isAttack)
+        {
+            assasin.isHinding = true;
+            currentEnemy.character.TriggerInvulnerable();
+            currentEnemy.anim.SetTrigger("hide");
+            currentEnemy.SwitchState(NPCState.Skill);
+        }
         if (currentEnemy.lostCounter <= 0)
         {
             currentEnemy.SwitchState(NPCState.Patrol);
@@ -25,9 +31,11 @@ public class AssasinChaseState : BaseState
         {
             currentEnemy.sr.flipX = !currentEnemy.sr.flipX;
         }
-        if (assasin.playerInDistance) //This is a false contition; We need to change it later
+        if (assasin.playerInDistance)
         {
             //attack
+            assasin.isAttack = true;
+            currentEnemy.anim.SetBool("isAttack", assasin.isAttack);
             currentEnemy.anim.SetTrigger("attack");
             currentEnemy.SwitchState(NPCState.Skill);
             return;

@@ -4,25 +4,30 @@ using UnityEngine;
 
 public class AssasinPatrolState : BaseState
 {
+    private Assasin assasin;
     public override void OnEnter(Enemy enemy)
     {
         currentEnemy = enemy;
+        assasin = (Assasin)enemy;
         currentEnemy.currentSpeed = currentEnemy.normalSpeed;
-
     }
 
     public override void LogicUpdate()
     {
-        if (currentEnemy.FoundPlayer())
+        if(assasin.stage == 1 && currentEnemy.character.currentHealth < currentEnemy.character.maxHealth * 0.5f && !currentEnemy.isHurt && !assasin.isAttack)
+        {
+            assasin.isHinding = true;
+            currentEnemy.character.TriggerInvulnerable();
+            currentEnemy.anim.SetTrigger("hide");
+            currentEnemy.SwitchState(NPCState.Skill);
+        }
+        if (currentEnemy.FoundPlayer() && !currentEnemy.wait)
         {
             currentEnemy.SwitchState(NPCState.Chase);
             return;
         }
-        if (!currentEnemy.pc.isGround||currentEnemy.pc.touchLeftWall && currentEnemy.faceDir.x == -1 || currentEnemy.pc.touchRightWall && currentEnemy.faceDir.x == 1)
+        if (!currentEnemy.pc.isGround||currentEnemy.pc.touchLeftWall && currentEnemy.faceDir.x == -1 || currentEnemy.pc.touchRightWall && currentEnemy.faceDir.x == 1 || currentEnemy.wait)
         {
-            //currentEnemy.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            //Debug.Log("isng");
-            //if (!currentEnemy.pc.isGround ) Debug.Log(" ");else Debug.Log("");
             currentEnemy.wait = true;
             //Debug.Log("no walk?");
             currentEnemy.anim.SetBool("walk", false);
