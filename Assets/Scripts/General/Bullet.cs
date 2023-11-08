@@ -15,6 +15,7 @@ public class Bullet : MonoBehaviour
     private Attack at;
     public float destroyDelay;
     private Vector3 dir;
+    public LayerMask enemyLayer;
     private void OnEnable()
     {
         originalPosition = transform.position;
@@ -44,11 +45,19 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Debug.Log("Destroy in 0.05s!");
+        if(!collision.tag.Equals("player rebounce"))
         Destroy(this.gameObject, destroyDelay);//must has delay here so that the attack's OnTriggerStay2D can work
     }
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere((Vector2)transform.position + leftOffset, checkRadius);
         Gizmos.DrawWireSphere((Vector2)transform.position + rightOffset, checkRadius);
+    }
+    public void ReboundedByPlayer()
+    {
+        dir = -dir;
+        originalPosition = transform.position;
+        var collider = GetComponent<BoxCollider2D>();
+        collider.contactCaptureLayers = enemyLayer;
     }
 }

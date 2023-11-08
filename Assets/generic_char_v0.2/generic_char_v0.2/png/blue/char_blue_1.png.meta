@@ -1475,7 +1475,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: char_blue_1_65
+      name: rebounce1
       rect:
         serializedVersion: 2
         x: 0
@@ -1496,7 +1496,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: char_blue_1_66
+      name: rebounce2
       rect:
         serializedVersion: 2
         x: 56
@@ -1517,7 +1517,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: char_blue_1_67
+      name: rebounce3
       rect:
         serializedVersion: 2
         x: 112
@@ -1593,9 +1593,6 @@ TextureImporter:
       char_blue_1_62: -423931200
       char_blue_1_63: 1115468151
       char_blue_1_64: -229765993
-      char_blue_1_65: -205731773
-      char_blue_1_66: -1392154377
-      char_blue_1_67: -2091957648
       jump1-1: -1823649612
       jump1-2: 892541344
       jump2-1: 316106018
@@ -1612,6 +1609,9 @@ TextureImporter:
       jump5-1: 102300457
       jump5-2: -623669263
       jump5-3: -791524059
+      rebounce1: -205731773
+      rebounce2: -1392154377
+      rebounce3: -2091957648
       td1: -1406079196
       td2: -362729286
       td3: -1307512695
