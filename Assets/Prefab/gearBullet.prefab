@@ -51,6 +51,8 @@ MonoBehaviour:
   damage: 7
   attackRange: 15
   attackRate: 0
+  statusApply: 
+  statusDuration: []
 --- !u!212 &8299364895195378296
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -155,7 +157,7 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 2176
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -198,3 +200,6 @@ MonoBehaviour:
   flyingSpeed: 1000
   powerConsumption: 0
   destroyDelay: 0.02
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 256
