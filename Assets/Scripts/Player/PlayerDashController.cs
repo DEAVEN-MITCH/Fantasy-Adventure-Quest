@@ -10,26 +10,27 @@ public class PlayerDashController : MonoBehaviour
     private PlayerController pc;
     private PlayerHealController phc;
     private PlayerDashAnimation pda;
-    
+    private Rigidbody2D rb;
+    private PhysicsCheck PCheck;
 
-    [Header("Dash²ÎÊý")]
-    public float dashTime;//dashÊ±³¤
-    public float dashTimeLeft;//dashÊ£ÓàÊ±¼ä
-    public float lastDash = -10f;//ÉÏÒ»´ÎdashÊ±¼äµã
+
+    [Header("Dashï¿½ï¿½ï¿½ï¿½")]
+    public float dashTime;//dashÊ±ï¿½ï¿½
+    public float dashTimeLeft;//dashÊ£ï¿½ï¿½Ê±ï¿½ï¿½
+    public float currentCoolDown;
     public float dashCoolDown;
     public float dashSpeed;
     public bool isDashing;
 
-    //Ë«»÷A/D¼ü´¥·¢³å´Ì¶¯×÷
+    //Ë«ï¿½ï¿½A/Dï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ï¿½
     public float maxAwaitTime;
-    private float leftPressTime, rightPressTime;
     private bool moving, canDash;
 
     public float walkSpeed;
     private float currentSpeed;
 
     private float h;
-    
+    SpriteRenderer sr;
 
     private void Awake()
     {
@@ -37,184 +38,74 @@ public class PlayerDashController : MonoBehaviour
         phc = GetComponent<PlayerHealController>();
         pda = GetComponent<PlayerDashAnimation>();
         character = GetComponent<Character>();
-        leftPressTime = rightPressTime = -maxAwaitTime;//Áî×óÓÒ¼ü°´ÏÂµÄÊ±¼ä¶¼³õÊ¼»¯Îª¸ºµÄ×î´óµÈ´ýÊ±¼ä
+        rb = GetComponent<Rigidbody2D>();
+        PCheck = GetComponent<PhysicsCheck>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
 
     void Start()
     {
         inputControl = pc.inputControl;
-        //inputControl.Gameplay.Dash.started += Dash;
+        inputControl.Gameplay.Dash.started += Dash;
     }
 
     private void FixedUpdate()
     {
-        //Dash();
 
+        h = sr.flipX ?-1 : 1;
+        if (isDashing)
+        {
+            if (dashTimeLeft > 0)
+            {
+                if (!PCheck.isGround)
+                {
+                    rb.velocity = new Vector2(dashSpeed * h, 0);
+                }
+                else
+                    rb.velocity = new Vector2(dashSpeed * h, 0);
+                dashTimeLeft -= Time.deltaTime;
+                ShadowPool.instance.GetFromPool();
+            }
+            if (dashTimeLeft <= 0)
+            {
+                isDashing = false;
+                if (!PCheck.isGround)
+                {
+                    //rb.velocity = new Vector2(dashSpeed * h, pc.jumpForce);
+                }
+                rb.gravityScale = 4;
+                character.invulnerable = false;
+            }
+        }
+
+        if (currentCoolDown > 0)
+            currentCoolDown -= Time.deltaTime;
     }
 
     // Update is called once per frame
     void Update()
     {
-        h = Input.GetAxisRaw("Horizontal");
-        changeFaceDirection();
-        //Dash();
-        Dash();
-        if (isDashing)
-            return;
-    }
-
-    void changeFaceDirection()
-    {
-        if(h == 1)
-        {
-            transform.localScale = new Vector3(1, 1, 1);
-        }
-
-        if(h == -1)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
-    }
-
-    /*void checkDash()
-    {
-        if(h == 1 && !moving)
-        {
-            if(Time.time - rightPressTime <= maxAwaitTime)
-            {
-                canDash = true;
-            }
-            rightPressTime = Time.time;
-        }
-        if (h == -1 && !moving)
-        {
-            if (Time.time - leftPressTime <= maxAwaitTime)
-            {
-                canDash = true;
-            }
-            leftPressTime = Time.time;
-        }
-
-    }*/
-
-    public void Dash()
-    {
-           Debug.Log("Dash");
-           
-
-           if (isDashing)
-          {
-                if(dashTimeLeft > 0)
-                {
-                        
-                     pc.Dash();
-                     dashTimeLeft -= Time.deltaTime;
-                     ShadowPool.instance.GetFromPool();
-                }
-           }
-           if(dashTimeLeft <= 0)
-          {
-                isDashing = false;
-           }
-
-                 /*if (Mathf.Abs(h) == 1)
-                 {
-                     moving = true;
-                     if (canDash)
-                     {
-                          isDashing = true;
-                         currentSpeed = dashSpeed;
-                         pda.PlayDash();//¸Ä²½²¥·Å³å´Ì¶¯»­¼´Ê¹ÓÃ¶ÔÏó³Ø
-                      }
-                     else
-                     {
-                          isDashing = false;
-                          currentSpeed = walkSpeed;
-                          pc.Move();
-                      }
-                 }
-                else
-                {
-                    isDashing = false;
-                    pda.SetAnimation();
-                    moving = false;
-                    canDash = false;
-                 }
-
-                pda.PlayDash();*/
-            
-        
-
-            
-    }
-
-
-
-    public float getDashTimeLeft()
-    {
-        return dashTimeLeft;
-    }
-
-    public float geth()
-    {
-        return h;
-    }
-
-    public void PlayDash()
-    {
-        if (isDashing)
-        {
-            if (dashTimeLeft > 0)
-            {
-                pc.UpSpeed(h, currentSpeed);
-
-                dashTimeLeft -= Time.deltaTime;
-
-                ShadowPool.instance.GetFromPool();
-            }
-        }
-        if(dashTimeLeft <= 0)
-        {
-            isDashing = false;
-        }
-        //anim.SetTrigger("dash");
     }
 
     public void ReadyToDash()
     {
-        isDashing = pc.isDashing = true;
+        isDashing = true;
         dashTimeLeft = dashTime;
-        lastDash = Time.time;
+        currentCoolDown = dashCoolDown;
+        rb.gravityScale = 0;
     }
 
-    /*public void Dash()
+    public void Dash(InputAction.CallbackContext obj)
     {
         Debug.Log("Dash");
 
-
-        if (isDashing)
+        if (!isDashing && currentCoolDown <= 0 && !pc.isHurt && !phc.isHeal)
         {
-            if (pdc.dashTimeLeft > 0)
-            {
-                if (rb.velocity.y > 0 && !PCheck.isGround)
-                {
-                    rb.velocity = new Vector2(dashSpeed * pdc.geth(), jumpForce);
-                }
-                rb.velocity = new Vector2(dashSpeed * pdc.geth(), rb.velocity.y);
-                pdc.dashTimeLeft -= Time.deltaTime;
-                ShadowPool.instance.GetFromPool();
-            }
-            if (pdc.dashTimeLeft <= 0)
-            {
-                isDashing = false;
-                if (!PCheck.isGround)
-                {
-                    rb.velocity = new Vector2(dashSpeed * pdc.geth(), jumpForce);
-                }
-            }
+            ReadyToDash();
+            pda.PlayDash();
+            character.TriggerInvulnerable();
         }
-
-    }*/
+    }
 }
 

@@ -29,13 +29,6 @@ public class PlayerDashAnimation : MonoBehaviour
 
     public void PlayDash()
     {
-       /* if (pdc.isDashing)
-        {
-            if(pdc.getDashTimeLeft() > 0)
-            {
-                pdc.pc.Up
-            }
-        }
-        anim.SetTrigger("dash");*/
+        anim.SetTrigger("dash");
     }
 }

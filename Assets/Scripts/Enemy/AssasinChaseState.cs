@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class AssasinChaseState : BaseState
 {
+    private Assasin assasin;
     public override void OnEnter(Enemy enemy)
     {
         currentEnemy = enemy;
+        assasin = (Assasin)enemy;
         enemy.anim.SetBool("walk", true);
         currentEnemy.currentSpeed = currentEnemy.chaseSpeed;
         currentEnemy.lostCounter = currentEnemy.lostTime;
@@ -23,7 +25,7 @@ public class AssasinChaseState : BaseState
         {
             currentEnemy.sr.flipX = !currentEnemy.sr.flipX;
         }
-        if (currentEnemy.hurtForce > 0) //This is a false contition; We need to change it later
+        if (assasin.playerInDistance) //This is a false contition; We need to change it later
         {
             //attack
             currentEnemy.anim.SetTrigger("attack");

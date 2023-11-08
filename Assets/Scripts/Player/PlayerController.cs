@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
+using System.IO;
+
 public class PlayerController : MonoBehaviour
 {
     public PlayerInputControl inputControl;
@@ -12,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private PlayerAnimation pa;
     private SpriteRenderer sr;
     private PlayerHealController phc;
+    private PlayerDashController pdc;//add
     [Header("Events")]
     public UnityEvent afterDeathAnimation;
     public UnityEvent<float> onPowerChange;
@@ -23,9 +26,10 @@ public class PlayerController : MonoBehaviour
     public float currentPower;
     public float shootInterval;
     public float shootCount;
+    public float dashSpeed;//add
     public Vector3 bulletOffset;//1,0.9,0
     [Header("Basic Status")]
-    public bool isHurt, isDead;
+    public bool isHurt, isDead;//add
     public bool isAttack;
     public bool isDoubleJumpUnlocked;
     public int jumpCounter;
@@ -44,6 +48,7 @@ public class PlayerController : MonoBehaviour
         inputControl.Gameplay.RangedAttack.started += RangedAttack;
         pa = GetComponent<PlayerAnimation>();
         phc = GetComponent<PlayerHealController>();
+        pdc = GetComponent<PlayerDashController>();//add
         normal = new PhysicsMaterial2D("Normal");
         wall = new PhysicsMaterial2D("Wall");
         jumpCounter = 1;
@@ -81,9 +86,10 @@ public class PlayerController : MonoBehaviour
             GetComponent<Character>().OnDie.Invoke();
         }
     }
+
     private void FixedUpdate()
     {
-        if (!isHurt && !isAttack && !phc.isHeal)
+        if (!isHurt && !isAttack && !phc.isHeal && !pdc.isDashing)//add  && !pdc.isDashing
         {
             Move();
         }
@@ -94,6 +100,7 @@ public class PlayerController : MonoBehaviour
         if (PCheck.isGround)
             jumpCounter = 1;
         CheckState();
+
     }
     public void Move()//ASDsAdas 
     {
@@ -105,7 +112,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Jump(InputAction.CallbackContext obj)
     {
-        if(!isHurt && !phc.isHeal)
+        if(!isHurt && !phc.isHeal && !pdc.isDashing)//add
         {
             if (PCheck.isGround)
             {
@@ -195,4 +202,11 @@ public class PlayerController : MonoBehaviour
             return true;
         return false;
     }
+
+    //add
+    public void UpSpeed(float h , float currentSpeed)
+    {
+        rb.velocity = new Vector2(h * currentSpeed * Time.deltaTime, rb.velocity.y);
+    }
+
 }

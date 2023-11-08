@@ -107,6 +107,15 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""13667b88-c451-4dd4-b2b6-03123b5b0b78"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -415,6 +424,17 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Rebound"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3e4e3482-8ace-4b8a-8cd5-8c43f993980c"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1031,6 +1051,7 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
         m_Gameplay_RangedAttack = m_Gameplay.FindAction("RangedAttack", throwIfNotFound: true);
         m_Gameplay_Heal = m_Gameplay.FindAction("Heal", throwIfNotFound: true);
         m_Gameplay_Rebound = m_Gameplay.FindAction("Rebound", throwIfNotFound: true);
+        m_Gameplay_Dash = m_Gameplay.FindAction("Dash", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1114,6 +1135,7 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_RangedAttack;
     private readonly InputAction m_Gameplay_Heal;
     private readonly InputAction m_Gameplay_Rebound;
+    private readonly InputAction m_Gameplay_Dash;
     public struct GameplayActions
     {
         private @PlayerInputControl m_Wrapper;
@@ -1127,6 +1149,7 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
         public InputAction @RangedAttack => m_Wrapper.m_Gameplay_RangedAttack;
         public InputAction @Heal => m_Wrapper.m_Gameplay_Heal;
         public InputAction @Rebound => m_Wrapper.m_Gameplay_Rebound;
+        public InputAction @Dash => m_Wrapper.m_Gameplay_Dash;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1163,6 +1186,9 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
             @Rebound.started += instance.OnRebound;
             @Rebound.performed += instance.OnRebound;
             @Rebound.canceled += instance.OnRebound;
+            @Dash.started += instance.OnDash;
+            @Dash.performed += instance.OnDash;
+            @Dash.canceled += instance.OnDash;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -1194,6 +1220,9 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
             @Rebound.started -= instance.OnRebound;
             @Rebound.performed -= instance.OnRebound;
             @Rebound.canceled -= instance.OnRebound;
+            @Dash.started -= instance.OnDash;
+            @Dash.performed -= instance.OnDash;
+            @Dash.canceled -= instance.OnDash;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -1393,6 +1422,7 @@ public partial class @PlayerInputControl: IInputActionCollection2, IDisposable
         void OnRangedAttack(InputAction.CallbackContext context);
         void OnHeal(InputAction.CallbackContext context);
         void OnRebound(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
