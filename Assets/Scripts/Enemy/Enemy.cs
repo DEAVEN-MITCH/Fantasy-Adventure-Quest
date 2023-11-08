@@ -80,7 +80,7 @@ public class Enemy : MonoBehaviour
             Move();
             //Debug.Log("just move!");
         }
-        //Debug.Log("?????1?");
+
         currentState.PhysicsUpdate();
         if (transform.position.y < -1000 && !isDead)
         {
@@ -137,7 +137,7 @@ public class Enemy : MonoBehaviour
     public virtual void TakeDamage(Transform attackTrans)
     {
         rb.velocity = Vector2.zero;
-        //Debug.Log("hurt");
+        // Debug.Log("hurt");
         attacker = attackTrans;
         if (attackTrans.position.x - transform.position.x < 0)
         {
@@ -152,7 +152,7 @@ public class Enemy : MonoBehaviour
         Vector2 dir = new Vector2(transform.position.x - attackTrans.position.x, 0).normalized;
         rb.AddForce(dir * hurtForce, ForceMode2D.Impulse);
     }
-    public void Die()
+    virtual public void Die()
     {
         //Debug.Log(this + "dies!");
         System.Random ran = new System.Random();
