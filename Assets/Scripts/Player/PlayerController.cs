@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer sr;
     private PlayerHealController phc;
     private PlayerDashController pdc;//add
+    private PlayerRebounceController prc;
     [Header("Events")]
     public UnityEvent afterDeathAnimation;
     public UnityEvent<float> onPowerChange;
@@ -49,6 +50,7 @@ public class PlayerController : MonoBehaviour
         pa = GetComponent<PlayerAnimation>();
         phc = GetComponent<PlayerHealController>();
         pdc = GetComponent<PlayerDashController>();//add
+        prc = GetComponent<PlayerRebounceController>();
         normal = new PhysicsMaterial2D("Normal");
         wall = new PhysicsMaterial2D("Wall");
         jumpCounter = 1;
@@ -89,11 +91,11 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isHurt && !isAttack && !phc.isHeal && !pdc.isDashing)//add  && !pdc.isDashing
+        if (!isHurt && !isAttack && !phc.isHeal && !pdc.isDashing&&!prc.isRebounce)//add  && !pdc.isDashing
         {
             Move();
         }
-        else if (isAttack || phc.isHeal)
+        else if (isAttack || phc.isHeal||prc.isRebounce)
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
@@ -112,7 +114,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Jump(InputAction.CallbackContext obj)
     {
-        if(!isHurt && !phc.isHeal && !pdc.isDashing)//add
+        if(!isHurt && !phc.isHeal && !pdc.isDashing&&!prc.isRebounce)//add
         {
             if (PCheck.isGround)
             {
@@ -144,7 +146,7 @@ public class PlayerController : MonoBehaviour
     }
     private void DoAttack(InputAction.CallbackContext obj)
     {
-        if(!isHurt && !phc.isHeal)
+        if(!isHurt && !phc.isHeal&&!prc.isRebounce)
         {
             pa.PlayAttack();
             isAttack = true;
@@ -161,7 +163,7 @@ public class PlayerController : MonoBehaviour
     }
     private void RangedAttack(InputAction.CallbackContext obj)
     {
-        if(!isHurt && !phc.isHeal)
+        if(!isHurt && !phc.isHeal&&!prc.isRebounce)
         {
             float powerComsumption = bulletPrefab.GetComponent<Bullet>().powerConsumption;
             if (currentPower >= powerComsumption && shootCount == 0)

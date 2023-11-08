@@ -45,8 +45,15 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Debug.Log("Destroy in 0.05s!");
-        if(!collision.tag.Equals("player rebounce"))
-        Destroy(this.gameObject, destroyDelay);//must has delay here so that the attack's OnTriggerStay2D can work
+        if (!collision.tag.Equals("player rebounce"))
+        {
+            //Debug.Log(string.Format("collision:{0}", collision));
+            Destroy(this.gameObject, destroyDelay);//must has delay here so that the attack's OnTriggerStay2D can work
+        }
+        else
+        {
+            //Debug.Log("bullet touch rebounce");
+        }
     }
     private void OnDrawGizmosSelected()
     {

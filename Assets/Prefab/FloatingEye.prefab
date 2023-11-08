@@ -287,6 +287,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isFrost: 0
+  frostImmune: 0
+  frostDuration: 0
+  speedBeforeCorrection: {x: 0, y: 0}
+  speedAfterCorrection: {x: 0, y: 0}
+  speedCorrection: 0
 --- !u!114 &5456692137560174524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,6 +308,8 @@ MonoBehaviour:
   damage: 20
   attackRange: 0
   attackRate: 0
+  statusApply: 
+  statusDuration: []
 --- !u!114 &5179010120225189507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,13 +364,14 @@ MonoBehaviour:
   anim: {fileID: 0}
   pc: {fileID: 0}
   sr: {fileID: 0}
+  character: {fileID: 0}
   normalSpeed: 0
   chaseSpeed: 0
   currentSpeed: 0
   faceDir: {x: 0, y: 0, z: 0}
   hurtForce: 5
   attacker: {fileID: 0}
-  scoreValue: 0
+  scoreValue: 900
   centerOffset: {x: 0, y: 0}
   checkSize: {x: 0, y: 0}
   attackLayer:
@@ -401,7 +410,6 @@ MonoBehaviour:
   attackDistance: 20
   hurtSignal: 0
   detectionCircle: {fileID: 6696016740718549695}
-  bounds: {fileID: 0}
   lineColor: {r: 1, g: 0, b: 0, a: 1}
   indicativeLineWidth: 0.1
   attackLineWidth: 0.2
@@ -602,6 +610,8 @@ MonoBehaviour:
   damage: 70
   attackRange: 0
   attackRate: 0
+  statusApply: 
+  statusDuration: []
 --- !u!1001 &1791042314460517889
 PrefabInstance:
   m_ObjectHideFlags: 0

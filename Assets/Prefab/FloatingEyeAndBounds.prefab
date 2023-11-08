@@ -166,6 +166,10 @@ PrefabInstance:
       propertyPath: bounds
       value: 
       objectReference: {fileID: 1216325556220964760}
+    - target: {fileID: 5876834404520645341, guid: ec98a925f089aa14fb62756a94bb16d0, type: 3}
+      propertyPath: scoreValue
+      value: 900
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
