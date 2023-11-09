@@ -20,6 +20,8 @@ public class AssasinSwitchStage2 : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.GetComponent<Assasin>().stage = 2;
+        animator.GetComponent<Transform>().Find("HeathBar").Find("R").GetComponent<SpriteRenderer>().color = new Color(1,1,1,0);
+        animator.GetComponent<Transform>().Find("HeathBar").Find("G").GetComponent<SpriteRenderer>().color = new Color(1,1,1,0);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

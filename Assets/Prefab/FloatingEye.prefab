@@ -398,8 +398,9 @@ MonoBehaviour:
   lostCounter: 0
   isHurt: 0
   isDead: 0
-  dropProbability: 
-  dropItem: []
+  dropProbability: 32000000
+  dropItem:
+  - {fileID: 7891887983668267691, guid: edb797cc94cbc6647adc40a7cfd42bcd, type: 3}
   changeScore:
     m_PersistentCalls:
       m_Calls:

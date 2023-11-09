@@ -9,7 +9,7 @@ public class AssasinPatrolState : BaseState
     {
         currentEnemy = enemy;
         assasin = (Assasin)enemy;
-        currentEnemy.currentSpeed = currentEnemy.normalSpeed;
+        currentEnemy.currentSpeed = currentEnemy.normalSpeed * assasin.speedParameter;
     }
 
     public override void LogicUpdate()

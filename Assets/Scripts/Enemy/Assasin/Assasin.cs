@@ -10,6 +10,9 @@ public class Assasin : Enemy
     public bool isAttack;
     public bool isHinding;
     public int stage;
+    public float speedParameter;
+    
+    public Vector2[] pointsForMovememt;
 
     override protected void Awake()
     {
@@ -29,6 +32,7 @@ public class Assasin : Enemy
         skillState = new AssasinSkillState();
         playerInDistance = false;
         stage = 1;
+        speedParameter = 1;
     }
 
     override protected void FixedUpdate() {
@@ -50,6 +54,11 @@ public class Assasin : Enemy
         else
             playerInDistance = false;
 
+        if(stage == 2)
+            speedParameter = 0.4f;
+        else
+            speedParameter = 1f;
+            
         anim.SetBool("isAttack", isAttack);
         anim.SetInteger("stage", stage);
     }
@@ -74,5 +83,13 @@ public class Assasin : Enemy
         changeScore?.Invoke(scoreValue);
         anim.SetTrigger("dead");
         currentSpeed = 0;
+    }
+
+    public void Teleport()
+    {
+        int size = pointsForMovememt.Length;
+        int randomIndex = UnityEngine.Random.Range(0, size);
+        transform.position = pointsForMovememt[randomIndex];
+        return;
     }
 }

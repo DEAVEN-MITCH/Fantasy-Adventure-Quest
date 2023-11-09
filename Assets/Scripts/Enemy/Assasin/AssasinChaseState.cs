@@ -10,7 +10,7 @@ public class AssasinChaseState : BaseState
         currentEnemy = enemy;
         assasin = (Assasin)enemy;
         enemy.anim.SetBool("walk", true);
-        currentEnemy.currentSpeed = currentEnemy.chaseSpeed;
+        currentEnemy.currentSpeed = currentEnemy.chaseSpeed * assasin.speedParameter;
         currentEnemy.lostCounter = currentEnemy.lostTime;
     }
     public override void LogicUpdate()
@@ -31,7 +31,7 @@ public class AssasinChaseState : BaseState
         {
             currentEnemy.sr.flipX = !currentEnemy.sr.flipX;
         }
-        if (assasin.playerInDistance)
+        if (assasin.playerInDistance && currentEnemy.FoundPlayer())
         {
             //attack
             assasin.isAttack = true;
