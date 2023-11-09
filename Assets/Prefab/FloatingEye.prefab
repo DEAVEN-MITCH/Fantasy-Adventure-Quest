@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2782098093100155552}
   - component: {fileID: 5935819542661216147}
   - component: {fileID: 2058039701850348698}
+  - component: {fileID: -5543699875491925022}
   - component: {fileID: 5456692137560174524}
   - component: {fileID: 5179010120225189507}
   - component: {fileID: 3087273780706943229}
@@ -37,7 +38,7 @@ Transform:
   m_GameObject: {fileID: 289165146837653709}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.716, y: 0.029, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -86,7 +87,7 @@ SpriteRenderer:
   m_SortingLayerID: -408573641
   m_SortingLayer: 4
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1513362261, guid: e06831ea579aab440943f0fbb47af8cb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e0bee9110d9a07e4bab156fe86b323e9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -156,18 +157,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.090789795, y: -0.87751335}
+  m_Offset: {x: -0.11081231, y: -0.37027478}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3, y: 2}
+    oldSize: {x: 1.38, y: 0.96}
     newSize: {x: 3, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.3191242, y: 0.19777477}
+  m_Size: {x: 1.0388081, y: 0.22447157}
   m_EdgeRadius: 0
 --- !u!70 &2782098093100155552
 CapsuleCollider2D:
@@ -201,8 +202,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.09822386, y: -0.3383285}
-  m_Size: {x: 1.6685271, y: 1.3233656}
+  m_Offset: {x: 0.00188959, y: 0.02875257}
+  m_Size: {x: 1.5217001, y: 1.0697533}
   m_Direction: 1
 --- !u!95 &5935819542661216147
 Animator:
@@ -214,7 +215,7 @@ Animator:
   m_GameObject: {fileID: 289165146837653709}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e9d4c7f9c7ad81d4593a4f37ed2e2aa3, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -237,7 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4afcafd8b27595544bf0c0a483c34f14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 400
+  maxHealth: 120
   currentHealth: 0
   invulnerableDuration: 0.1
   invulnerable: 0
@@ -293,6 +294,18 @@ MonoBehaviour:
   speedBeforeCorrection: {x: 0, y: 0}
   speedAfterCorrection: {x: 0, y: 0}
   speedCorrection: 0
+--- !u!114 &-5543699875491925022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289165146837653709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cc2eb01cdff29c4cb1b63876466d5cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5456692137560174524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,7 +336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manual: 1
-  isGround: 0
+  isGround: 1
   touchLeftWall: 0
   touchRightWall: 0
   GroundLayer:
@@ -411,8 +424,8 @@ MonoBehaviour:
   hurtSignal: 0
   detectionCircle: {fileID: 6696016740718549695}
   lineColor: {r: 1, g: 0, b: 0, a: 1}
-  indicativeLineWidth: 0.1
-  attackLineWidth: 0.2
+  indicativeLineWidth: 0.05
+  attackLineWidth: 0.21
   maxHeight: 10
   minHeight: 0
   minRandomDistanceToWall: 3
@@ -620,6 +633,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1617595439677577266}
     m_Modifications:
+    - target: {fileID: 2952963062725043807, guid: 4bdc818ef96daeb4285871d411e565ea, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.1
+      objectReference: {fileID: 0}
     - target: {fileID: 2952963062725043807, guid: 4bdc818ef96daeb4285871d411e565ea, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
