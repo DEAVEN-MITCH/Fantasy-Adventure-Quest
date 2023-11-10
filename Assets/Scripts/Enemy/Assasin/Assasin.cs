@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class Assasin : Enemy
 {
-    public GameObject player;
+    private GameObject player;
+    private WarningSign warningSign;
     public float attackDistance;
     public bool playerInDistance;
     public bool isAttack;
     public bool isHinding;
     public int stage;
+
+    //speed related
+    public float speedInStage2;
     public float speedParameter;
     
     public Vector2[] pointsForMovememt;
@@ -33,6 +37,8 @@ public class Assasin : Enemy
         playerInDistance = false;
         stage = 1;
         speedParameter = 1;
+        player = GameObject.Find("player");
+        warningSign = player.transform.Find("WarningArea").GetComponent<WarningSign>();
     }
 
     override protected void FixedUpdate() {
@@ -55,7 +61,11 @@ public class Assasin : Enemy
             playerInDistance = false;
 
         if(stage == 2)
-            speedParameter = 0.4f;
+        {
+            speedParameter = speedInStage2;
+            if(FoundPlayer())
+                warningSign.invisibleEnemyNum += 1;
+        }
         else
             speedParameter = 1f;
             

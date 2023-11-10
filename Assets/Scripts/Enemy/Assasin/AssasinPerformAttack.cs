@@ -7,7 +7,8 @@ public class AssasinPerformAttack : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-       animator.GetComponent<Transform>().Find("AttackArea").gameObject.SetActive(true);
+       animator.GetComponent<Transform>().Find("AttackArea").localScale = new Vector3(animator.GetComponent<SpriteRenderer>().flipX? -1 : 1, 1, 1);
+       animator.GetComponent<Transform>().Find("AttackArea").Find("Attack").gameObject.SetActive(true);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -19,7 +20,7 @@ public class AssasinPerformAttack : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.GetComponent<Transform>().Find("AttackArea").gameObject.SetActive(false);
+        animator.GetComponent<Transform>().Find("AttackArea").Find("Attack").gameObject.SetActive(false);
         //animator.GetComponent<Assasin>().wait = true;
     }
 
