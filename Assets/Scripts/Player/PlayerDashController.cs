@@ -14,15 +14,15 @@ public class PlayerDashController : MonoBehaviour
     private PhysicsCheck PCheck;
 
 
-    [Header("Dashï¿½ï¿½ï¿½ï¿½")]
-    public float dashTime;//dashÊ±ï¿½ï¿½
-    public float dashTimeLeft;//dashÊ£ï¿½ï¿½Ê±ï¿½ï¿½
+    [Header("Dash²ÎÊý")]
+    public float dashTime;//dashÊ±³¤
+    public float dashTimeLeft;//dashÊ£ÓàÊ±¼ä
     public float currentCoolDown;
     public float dashCoolDown;
     public float dashSpeed;
     public bool isDashing;
 
-    //Ë«ï¿½ï¿½A/Dï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ï¿½
+    //Ë«»÷A/D¼ü´¥·¢³å´Ì¶¯×÷
     public float maxAwaitTime;
     private bool moving, canDash;
 
@@ -76,11 +76,19 @@ public class PlayerDashController : MonoBehaviour
                 }
                 rb.gravityScale = 4;
                 character.invulnerable = false;
+                dashTimeLeft = 0;//add
             }
         }
 
         if (currentCoolDown > 0)
+        {
             currentCoolDown -= Time.deltaTime;
+        }
+        else
+        {
+            currentCoolDown = 0;//add
+        }
+            
     }
 
     // Update is called once per frame
