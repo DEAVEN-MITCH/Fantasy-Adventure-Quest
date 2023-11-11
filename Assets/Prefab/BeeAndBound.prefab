@@ -442,7 +442,7 @@ MonoBehaviour:
   faceDir: {x: 0, y: 0, z: 0}
   hurtForce: 0
   attacker: {fileID: 0}
-  scoreValue: 0
+  scoreValue: 300
   centerOffset: {x: 0, y: 0}
   checkSize: {x: 1, y: 1}
   attackLayer:
@@ -462,7 +462,19 @@ MonoBehaviour:
   - {fileID: 3998840048904216020, guid: 964fb2e91cfa3634c92a6dce208b4f3e, type: 3}
   changeScore:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: c49fff3eb7d04b7428b894266ec6ee11, type: 2}
+        m_TargetAssemblyTypeName: ScoreEventSO, Assembly-CSharp
+        m_MethodName: RaiseEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   beeBound: {fileID: 279334980488257057}
   detectionCircle: {fileID: 8459405969713182353}
   contactFilter2D:

@@ -15,9 +15,11 @@ GameObject:
   - component: {fileID: 7387330473288698582}
   - component: {fileID: 3116396296321884651}
   - component: {fileID: 3027930538297541023}
+  - component: {fileID: 6949769551596456670}
   - component: {fileID: 5208421518720978467}
   - component: {fileID: 8821328176588248845}
   - component: {fileID: 7908846208659870172}
+  - component: {fileID: 7074675938328282056}
   m_Layer: 8
   m_Name: GreenSlime
   m_TagString: Untagged
@@ -37,7 +39,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5970782614747285957}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2887902932157847297
@@ -222,7 +225,7 @@ MonoBehaviour:
   faceDir: {x: 0, y: 0, z: 0}
   hurtForce: 2
   attacker: {fileID: 0}
-  scoreValue: 0
+  scoreValue: 50
   centerOffset: {x: 0, y: 0}
   checkSize: {x: 1, y: 1}
   attackLayer:
@@ -236,11 +239,24 @@ MonoBehaviour:
   lostCounter: 0
   isHurt: 0
   isDead: 0
-  dropProbability: 
-  dropItem: []
+  dropProbability: 64000000
+  dropItem:
+  - {fileID: 8689731383966613573, guid: e44b18fd59aa68d4482fedd36d6763be, type: 3}
   changeScore:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: c49fff3eb7d04b7428b894266ec6ee11, type: 2}
+        m_TargetAssemblyTypeName: ScoreEventSO, Assembly-CSharp
+        m_MethodName: RaiseEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   slimeBound: {fileID: 0}
   jumpTime: 0
   jumpInterval: 1
@@ -267,7 +283,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 50
   currentHealth: 0
-  invulnerableDuration: 2
+  invulnerableDuration: 0.1
   invulnerable: 1
   isDead: 0
   OnTakeDamage:
@@ -287,7 +303,19 @@ MonoBehaviour:
         m_CallState: 2
   OnHealthChange:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7074675938328282056}
+        m_TargetAssemblyTypeName: EnemyHealthBar, Assembly-CSharp
+        m_MethodName: OnHealthChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDie:
     m_PersistentCalls:
       m_Calls:
@@ -309,6 +337,18 @@ MonoBehaviour:
   speedBeforeCorrection: {x: 0, y: 0}
   speedAfterCorrection: {x: 0, y: 0}
   speedCorrection: 0
+--- !u!114 &6949769551596456670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2285212838150157689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cc2eb01cdff29c4cb1b63876466d5cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5208421518720978467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,7 +379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manual: 1
-  isGround: 0
+  isGround: 1
   touchLeftWall: 0
   touchRightWall: 0
   GroundLayer:
@@ -371,3 +411,89 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7074675938328282056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2285212838150157689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e29f94eee29683242adefde59c8b9d06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthImage: {fileID: 2773280743670101019}
+  healthBackgroundImage: {fileID: 5955261256309128388}
+--- !u!1001 &8802130878030704538
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4743649813186584729}
+    m_Modifications:
+    - target: {fileID: 2952963062725043807, guid: 4bdc818ef96daeb4285871d411e565ea, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2952963062725043807, guid: 4bdc818ef96daeb4285871d411e565ea, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2952963062725043807, guid: 4bdc818ef96daeb4285871d411e565ea, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2952963062725043807, guid: 4bdc818ef96daeb4285871d411e565ea, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2952963062725043807, guid: 4bdc818ef96daeb4285871d411e565ea, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2952963062725043807, guid: 4bdc818ef96daeb4285871d411e565ea, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2952963062725043807, guid: 4bdc818ef96daeb4285871d411e565ea, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2952963062725043807, guid: 4bdc818ef96daeb4285871d411e565ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2952963062725043807, guid: 4bdc818ef96daeb4285871d411e565ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2952963062725043807, guid: 4bdc818ef96daeb4285871d411e565ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8696811879333245678, guid: 4bdc818ef96daeb4285871d411e565ea, type: 3}
+      propertyPath: m_Name
+      value: HeathBar
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4bdc818ef96daeb4285871d411e565ea, type: 3}
+--- !u!212 &2773280743670101019 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6655158345968081793, guid: 4bdc818ef96daeb4285871d411e565ea, type: 3}
+  m_PrefabInstance: {fileID: 8802130878030704538}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &5955261256309128388 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2918937198486606686, guid: 4bdc818ef96daeb4285871d411e565ea, type: 3}
+  m_PrefabInstance: {fileID: 8802130878030704538}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5970782614747285957 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2952963062725043807, guid: 4bdc818ef96daeb4285871d411e565ea, type: 3}
+  m_PrefabInstance: {fileID: 8802130878030704538}
+  m_PrefabAsset: {fileID: 0}
