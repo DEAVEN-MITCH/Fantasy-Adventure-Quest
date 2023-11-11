@@ -7,6 +7,8 @@ public class PlayerHealController : MonoBehaviour
     public PlayerInputControl inputControl;
     private Character character;
     private PlayerController pc;
+    private PlayerDashController pdc;
+    private PlayerRebounceController prc;
     private PlayerHealAnimation pha;
 
     public int healEnergyCost;
@@ -15,6 +17,8 @@ public class PlayerHealController : MonoBehaviour
     private void Awake()
     {
         pc = GetComponent<PlayerController>();
+        pdc = GetComponent<PlayerDashController>();
+        prc = GetComponent<PlayerRebounceController>();
         pha = GetComponent<PlayerHealAnimation>();
         character = GetComponent<Character>();
     }
@@ -33,7 +37,7 @@ public class PlayerHealController : MonoBehaviour
 
     private void Heal(InputAction.CallbackContext obj)
     {
-        if (!isHeal && !pc.isHurt && pc.currentPower >= healEnergyCost && !character.HealthFull())
+        if (!isHeal && !pc.isHurt && !pdc.isDashing && !prc.isRebounce && pc.currentPower >= healEnergyCost && !character.HealthFull())
         {
             Debug.Log("Heal");
             isHeal = true;
