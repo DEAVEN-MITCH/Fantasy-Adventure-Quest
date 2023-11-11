@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Slime : Enemy
@@ -68,8 +69,14 @@ public class Slime : Enemy
         // TODO: generate two sub slimes
         if (isSplitable)
         {
-            Instantiate(blueSlimePrefab, transform.position + (Vector3)blueSlimeOffset, transform.rotation);
-            Instantiate(greenSlimePrefab, transform.position + (Vector3)greenSlimeOffset, transform.rotation);
+            GameObject blue = Instantiate(blueSlimePrefab, transform.position + (Vector3)blueSlimeOffset, transform.rotation);
+            GameObject green = Instantiate(greenSlimePrefab, transform.position + (Vector3)greenSlimeOffset, transform.rotation);
+        
+            Slime blueSlime = blue.GetComponent<Slime>();
+            Slime greenSlime = green.GetComponent<Slime>();
+            // TODO: now inherit parent slime's bound correctly
+            blueSlime.slimeBound = slimeBound;
+            greenSlime.slimeBound = slimeBound;
         }
         base.Die();
     }
