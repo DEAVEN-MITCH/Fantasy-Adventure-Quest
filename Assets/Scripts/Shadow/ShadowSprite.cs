@@ -17,7 +17,7 @@ public class ShadowSprite : MonoBehaviour
     public float activeStart;//开始显示的时间点
 
     [Header("不透明度控制")]
-    private float alpha;//根据时间不断改变的透明度
+    public float alpha;//根据时间不断改变的透明度
     public float alphaSet;//不透明度的初试值
     public float alphaMultiplier;//不透明度衰减系数
 
@@ -38,7 +38,7 @@ public class ShadowSprite : MonoBehaviour
         activeStart = Time.time;
     }
 
-    void Update()
+    private void FixedUpdate()   //add
     {
         alpha *= alphaMultiplier;
 
