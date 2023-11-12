@@ -98484,9 +98484,8 @@ GameObject:
   - component: {fileID: 501346549}
   - component: {fileID: 501346548}
   - component: {fileID: 501346547}
-  - component: {fileID: 501346546}
   - component: {fileID: 501346545}
-  - component: {fileID: 501346544}
+  - component: {fileID: 501346550}
   m_Layer: 0
   m_Name: treasure
   m_TagString: Untagged
@@ -98494,18 +98493,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &501346544
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 501346543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaea8d22988c63c4aa1dd17caa607057, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &501346545
 Animator:
   serializedVersion: 5
@@ -98527,23 +98514,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &501346546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 501346543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20a928c919024f141b7ede869de86bd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isGet: 0
-  hintText: {fileID: 0}
-  onHintTrigger:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &501346547
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -98656,6 +98626,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &501346550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501346543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e842782f20dbe648ad29cf252b0d89f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGet: 0
+  hintText: {fileID: 0}
+  onHintTrigger:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &508003477
 GameObject:
   m_ObjectHideFlags: 0
@@ -102772,6 +102759,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5312747303838502649, guid: 4bb2cc796c053da4c960c08b9e4a2249, type: 3}
   m_PrefabInstance: {fileID: 1497152024}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1502868849
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1502868851}
+  - component: {fileID: 1502868850}
+  m_Layer: 0
+  m_Name: GainDoubleJump
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1502868850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1502868849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c9c581717ae4e9439b19fc374e35bb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pc: {fileID: 1819588154}
+--- !u!4 &1502868851
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1502868849}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 721.13696, y: 217.84164, z: -3.5078354}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1544982997
 GameObject:
   m_ObjectHideFlags: 0
@@ -103842,6 +103874,7 @@ MonoBehaviour:
   dashCoolDown: 1
   dashSpeed: 45
   isDashing: 0
+  isDashUnlocked: 0
   maxAwaitTime: 1
   walkSpeed: 20
 --- !u!114 &1819588151
@@ -107113,3 +107146,4 @@ SceneRoots:
   - {fileID: 501346549}
   - {fileID: 1004503123}
   - {fileID: 79701937}
+  - {fileID: 1502868851}
