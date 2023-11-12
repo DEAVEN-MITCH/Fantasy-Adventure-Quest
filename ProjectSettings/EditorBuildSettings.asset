@@ -5,15 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: ed6ab7a10adccba4faa8c531418119e1
   - enabled: 1
     path: Assets/Scenes/OpeningScene.unity
     guid: 94074f9fee30adf4981d31e7de7274b9
-  - enabled: 0
-    path: Assets/Scenes/ZhangZirui.unity
-    guid: b0407463345bdf64b819d0f248f67b84
   - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: 66b2056a2bd132943bf9463ac6aa09a6

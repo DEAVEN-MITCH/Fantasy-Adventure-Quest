@@ -203,13 +203,16 @@ MonoBehaviour:
   players: {fileID: 0}
   aim: {x: 0, y: 0}
   pointsForhit:
-  - {x: -30, y: -2.7}
-  - {x: -22.4, y: -2.7}
-  - {x: -19.8, y: -2.7}
-  flyTime: 5
-  bulletPrefab: {fileID: 2986093427967310705, guid: 69d46334c26f4734c8dcff9acd8fd955, type: 3}
-  throwtime: 2
-  cd: 2
-  gravity: 9.8
-  speed_X: 9.8
+  - {x: -3, y: 0}
+  - {x: -6.5, y: 0}
+  - {x: -10, y: 0}
+  flyTime: 12
+  bulletPrefab: {fileID: 4550882724841628203, guid: df8272354fde8ab459279b1d051d1171, type: 3}
+  throwtime: 5
+  cd: 5
+  gravity: 4
+  speed_X: 8
   random: 3
+  offect1: 4
+  offect2: 8
+  offect3: 12

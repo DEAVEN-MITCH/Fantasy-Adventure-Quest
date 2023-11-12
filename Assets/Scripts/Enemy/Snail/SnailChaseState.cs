@@ -30,11 +30,11 @@ public class SnailChaseState : BaseState
         }
         else if (distance_2 < distance_1 && distance_2 < distance_3)
         {
-            snail.aim = snail.pointsForhit[1]+new Vector2(Random.Range(-snail.random,snail.random),0); 
+            snail.aim = snail.pointsForhit[1];
         }
         else
         {
-            snail.aim = snail.pointsForhit[2] + new Vector2(Random.Range(-snail.random, snail.random), 0);
+            snail.aim = snail.pointsForhit[2];
         }
 /*        if (distance > snail.checkDistance*1.5)
         {
@@ -66,11 +66,11 @@ public class SnailChaseState : BaseState
     }
     private void ThrowShoot()
     {
-        // 生成石头
+        // 锟斤拷锟斤拷石头
      
 
 
-        // 计算抛物线运动参数
+        // 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟剿讹拷锟斤拷锟斤拷
         float distanceX = snail.aim.x - snail.transform.position.x;
         float distanceY = snail.aim.y - snail.transform.position.y;
         float time = snail.flyTime;
@@ -81,12 +81,16 @@ public class SnailChaseState : BaseState
         GameObject stone = Object.Instantiate(snail.bulletPrefab, snail.transform.position, Quaternion.identity);
 /*        Object.Instantiate(snail.bulletPrefab, snail.transform.position, Quaternion.identity);*/
 /*        Debug.Log(stone);*/
-        Bullet bullet = stone.GetComponent<Bullet>();
-        bullet.flyingSpeed = 0;
-        Rigidbody2D stoneRb = stone.GetComponent<Rigidbody2D>();
-        // 设置石头的初始速度
-        stoneRb.velocity = new Vector2(speedX, speedY)
-            ;
-        stoneRb.gravityScale = snail.gravity;
+        stone.GetComponent<Bullet>().flyingSpeed = 0;
+        stone.GetComponent<Rigidbody2D>().velocity = new Vector2(speedX, speedY);
+        stone.GetComponent<Rigidbody2D>().gravityScale = snail.gravity;
+
+        for(int i = 1; i < 3; i++)
+        {
+            stone = Object.Instantiate(snail.bulletPrefab, snail.transform.position, Quaternion.identity);
+            stone.GetComponent<Bullet>().flyingSpeed = 0;
+            stone.GetComponent<Rigidbody2D>().velocity = new Vector2(speedX * Random.Range(0.7f,1.3f), speedY * Random.Range(0.7f,1.3f));
+            stone.GetComponent<Rigidbody2D>().gravityScale = snail.gravity;
+        }
     }
 }

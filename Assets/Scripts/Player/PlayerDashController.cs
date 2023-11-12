@@ -9,20 +9,21 @@ public class PlayerDashController : MonoBehaviour
     private Character character;
     private PlayerController pc;
     private PlayerHealController phc;
+    private PlayerRebounceController prc;
     private PlayerDashAnimation pda;
     private Rigidbody2D rb;
     private PhysicsCheck PCheck;
 
 
-    [Header("Dash²ÎÊý")]
-    public float dashTime;//dashÊ±³¤
-    public float dashTimeLeft;//dashÊ£ÓàÊ±¼ä
+    [Header("Dashï¿½ï¿½ï¿½ï¿½")]
+    public float dashTime;//dashÊ±ï¿½ï¿½
+    public float dashTimeLeft;//dashÊ£ï¿½ï¿½Ê±ï¿½ï¿½
     public float currentCoolDown;
     public float dashCoolDown;
     public float dashSpeed;
     public bool isDashing;
     public bool isDashUnlocked;
-    //Ë«»÷A/D¼ü´¥·¢³å´Ì¶¯×÷
+    //Ë«ï¿½ï¿½A/Dï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ï¿½
     public float maxAwaitTime;
     private bool moving, canDash;
 
@@ -36,6 +37,7 @@ public class PlayerDashController : MonoBehaviour
     {
         pc = GetComponent<PlayerController>();
         phc = GetComponent<PlayerHealController>();
+        prc = GetComponent<PlayerRebounceController>();
         pda = GetComponent<PlayerDashAnimation>();
         character = GetComponent<Character>();
         rb = GetComponent<Rigidbody2D>();
@@ -108,7 +110,7 @@ public class PlayerDashController : MonoBehaviour
     {
         Debug.Log("Dash");
 
-        if (isDashUnlocked&&!isDashing && currentCoolDown <= 0 && !pc.isHurt && !phc.isHeal)
+        if (isDashUnlocked&&!isDashing && currentCoolDown <= 0 && !pc.isHurt && !phc.isHeal && !prc.isRebounce)
         {
             ReadyToDash();
             pda.PlayDash();
