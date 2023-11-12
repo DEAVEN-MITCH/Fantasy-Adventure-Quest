@@ -17,6 +17,9 @@ public class Snail : Enemy
     public float gravity = 9.8f;
     public float speed_X = 9.8f;
     public float random = 3f;
+    public float offect1 = 1f;
+    public float offect2 = 3f;
+    public float offect3 = 5f;
     protected override void Awake()
     {
         patrolState = new SnailPatrolState();
@@ -27,6 +30,13 @@ public class Snail : Enemy
         b2.offset = new Vector2(0, c2.offset.y - c2.size.y / 2 + b2.size.y / 2);
         currentSpeed = 0;
         attack = GetComponent<Attack>();
+    }
+    public void ChangeDir()
+    {
+        float dir = sr.flipX ? 1 : -1;
+        pointsForhit[0] = new Vector2(rb.position.x + offect1 * dir, rb.position.y);
+        pointsForhit[1] = new Vector2(rb.position.x + offect2 * dir, rb.position.y);
+        pointsForhit[2] = new Vector2(rb.position.x + offect3 * dir, rb.position.y);
     }
     void Start()
     {

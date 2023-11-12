@@ -18,6 +18,7 @@ public class SnailChaseState : BaseState
     }
     public override void LogicUpdate()
     {
+        snail.ChangeDir();
         float distance = Vector3.Distance(snail.transform.position, snail.players.transform.position);
         float distance_1 = Vector3.Distance(snail.pointsForhit[0], snail.players.transform.position);
         float distance_2 = Vector3.Distance(snail.pointsForhit[1], snail.players.transform.position);
@@ -35,11 +36,11 @@ public class SnailChaseState : BaseState
         {
             snail.aim = snail.pointsForhit[2] + new Vector2(Random.Range(-snail.random, snail.random), 0);
         }
-        if (distance > snail.checkDistance*1.5)
+/*        if (distance > snail.checkDistance*1.5)
         {
             snail.SwitchState(NPCState.Patrol);
             return;
-        }
+        }*/
         if(snail.cd<=0)
         {
             ThrowShoot();
@@ -50,6 +51,10 @@ public class SnailChaseState : BaseState
             snail.SwitchState(NPCState.Patrol);
             return;
         }
+        if (snail.players.transform.position.x - snail.transform.position.x >= 0)
+            snail.sr.flipX = true;
+        else
+            snail.sr.flipX = false;
     }
 
     public override void OnExit()
