@@ -21,7 +21,7 @@ public class PlayerDashController : MonoBehaviour
     public float dashCoolDown;
     public float dashSpeed;
     public bool isDashing;
-
+    public bool isDashUnlocked;
     //Ë«»÷A/D¼ü´¥·¢³å´Ì¶¯×÷
     public float maxAwaitTime;
     private bool moving, canDash;
@@ -108,7 +108,7 @@ public class PlayerDashController : MonoBehaviour
     {
         Debug.Log("Dash");
 
-        if (!isDashing && currentCoolDown <= 0 && !pc.isHurt && !phc.isHeal)
+        if (isDashUnlocked&&!isDashing && currentCoolDown <= 0 && !pc.isHurt && !phc.isHeal)
         {
             ReadyToDash();
             pda.PlayDash();
