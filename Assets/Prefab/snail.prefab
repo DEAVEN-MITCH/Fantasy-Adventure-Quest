@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2034894502645061648
+--- !u!1001 &415229298527357934
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 289165146837653709, guid: f8ed7144103163443a2ccb52e957595a, type: 3}
       propertyPath: m_Name
-      value: boar (1) Variant (1)
+      value: snail
       objectReference: {fileID: 0}
     - target: {fileID: 289165146837653709, guid: f8ed7144103163443a2ccb52e957595a, type: 3}
       propertyPath: m_IsActive
@@ -18,11 +18,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1617595439677577266, guid: f8ed7144103163443a2ccb52e957595a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -38.67
+      value: -30.98
       objectReference: {fileID: 0}
     - target: {fileID: 1617595439677577266, guid: f8ed7144103163443a2ccb52e957595a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.57
+      value: -2.45
       objectReference: {fileID: 0}
     - target: {fileID: 1617595439677577266, guid: f8ed7144103163443a2ccb52e957595a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -56,6 +56,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2058039701850348698, guid: f8ed7144103163443a2ccb52e957595a, type: 3}
+      propertyPath: maxHealth
+      value: 140
+      objectReference: {fileID: 0}
+    - target: {fileID: 2058039701850348698, guid: f8ed7144103163443a2ccb52e957595a, type: 3}
+      propertyPath: OnDie.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5429692009051201429}
+    - target: {fileID: 2058039701850348698, guid: f8ed7144103163443a2ccb52e957595a, type: 3}
+      propertyPath: OnTakeDamage.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5429692009051201429}
+    - target: {fileID: 2058039701850348698, guid: f8ed7144103163443a2ccb52e957595a, type: 3}
+      propertyPath: OnTakeDamage.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Snail, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 5179010120225189507, guid: f8ed7144103163443a2ccb52e957595a, type: 3}
       propertyPath: isGround
       value: 1
@@ -68,30 +84,47 @@ PrefabInstance:
       propertyPath: bottomOffset.y
       value: -1.4
       objectReference: {fileID: 0}
+    - target: {fileID: 5935819542661216147, guid: f8ed7144103163443a2ccb52e957595a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: bae356a06f66caf40a06779f6a1aa344, type: 2}
+    - target: {fileID: 7213486445184092087, guid: f8ed7144103163443a2ccb52e957595a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 3476102984753561351, guid: e11894562f1f02242a923071454c0f80, type: 3}
     - target: {fileID: 7392220754626063765, guid: f8ed7144103163443a2ccb52e957595a, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8091606862216212354, guid: f8ed7144103163443a2ccb52e957595a, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.6875
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091606862216212354, guid: f8ed7144103163443a2ccb52e957595a, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.375
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7392220754626063765, guid: f8ed7144103163443a2ccb52e957595a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 289165146837653709, guid: f8ed7144103163443a2ccb52e957595a, type: 3}
       insertIndex: 5
-      addedObject: {fileID: 8512716231583465375}
+      addedObject: {fileID: 5429692009051201429}
   m_SourcePrefab: {fileID: 100100000, guid: f8ed7144103163443a2ccb52e957595a, type: 3}
---- !u!1 &1746895207571603677 stripped
+--- !u!1 &126209587893261091 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 289165146837653709, guid: f8ed7144103163443a2ccb52e957595a, type: 3}
-  m_PrefabInstance: {fileID: 2034894502645061648}
+  m_PrefabInstance: {fileID: 415229298527357934}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8512716231583465375
+--- !u!114 &5429692009051201429
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1746895207571603677}
+  m_GameObject: {fileID: 126209587893261091}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bcdabf63ef0c0f740b5981ad7d65891e, type: 3}
@@ -108,7 +141,7 @@ MonoBehaviour:
   faceDir: {x: 0, y: 0, z: 0}
   hurtForce: 5
   attacker: {fileID: 0}
-  scoreValue: 200
+  scoreValue: 300
   centerOffset: {x: 0, y: -0.34}
   checkSize: {x: 1, y: 1}
   attackLayer:

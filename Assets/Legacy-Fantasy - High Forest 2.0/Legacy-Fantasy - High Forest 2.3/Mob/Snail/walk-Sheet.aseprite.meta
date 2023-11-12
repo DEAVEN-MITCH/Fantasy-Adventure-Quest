@@ -35,7 +35,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 100
+    spritePixelsToUnits: 16
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -71,7 +71,7 @@ ScriptedImporter:
     textureFormatSet: 0
     applyGammaDecoding: 0
   previousAsepriteImporterSettings:
-    fileImportMode: 1
+    fileImportMode: 0
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
@@ -83,7 +83,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   asepriteImporterSettings:
-    fileImportMode: 1
+    fileImportMode: 0
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 0
+  platformSettingsDirtyTick: 638353871573906628
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -139,7 +139,167 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: -7, y: 4}
-  spriteSheetImportData: []
+  spriteSheetImportData:
+  - name: walk-Sheet_0
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 27
+      height: 22
+    spriteID: 97e327fefb0707f4b824c925e72ea66c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: walk-Sheet_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 53
+      y: 4
+      width: 27
+      height: 22
+    spriteID: 5174b544c218ab7478f66904b59e2308
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: walk-Sheet_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 102
+      y: 4
+      width: 25
+      height: 22
+    spriteID: c4a230f5d005b814882c358dfa457386
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: walk-Sheet_3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 150
+      y: 4
+      width: 25
+      height: 21
+    spriteID: 1dcd426ae27d8264f837afe602553d07
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: walk-Sheet_4
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 187
+      y: 4
+      width: 36
+      height: 21
+    spriteID: 6137c161510d5324fbb7db7e25dd4739
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: walk-Sheet_5
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 233
+      y: 4
+      width: 39
+      height: 21
+    spriteID: 6fa72462761552643b2d894ca391b9dd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: walk-Sheet_6
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 286
+      y: 4
+      width: 32
+      height: 22
+    spriteID: 50ce685490df2d94c86d97ff545c11a9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: walk-Sheet_7
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 338
+      y: 4
+      width: 28
+      height: 22
+    spriteID: b039f85c65671ff40a89eb19cc0c1c2a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
   asepriteLayers:
   - layerIndex: 0
     guid: -1755078317
@@ -158,7 +318,43 @@ ScriptedImporter:
       spriteId: 9a3e11b399a3d374d91318d1a2779556
     linkedCells: []
     parentIndex: -1
-  platformSettings: []
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Server
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 384, y: 32}
