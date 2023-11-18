@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour
         character = GetComponent<Character>();
         waitCounter = waitTime;
     }
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         currentState = patrolState;
         currentState.OnEnter(this);
