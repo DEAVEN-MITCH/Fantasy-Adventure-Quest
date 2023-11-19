@@ -4,18 +4,32 @@ using UnityEngine;
 
 public class BossBrillianceState : BaseState
 {
+    Boss boss;
+    private int actTimes;  
+
     public override void OnEnter(Enemy enemy)
     {
-        //todo
+        Debug.Log("Brilliant!");
+        currentEnemy = enemy;
+        boss = (Boss)enemy;
+        actTimes = 0;
     }
     public override void LogicUpdate()
     {
-        //todo
+        if(actTimes == 0)
+        {
+            GameObject light = Object.Instantiate(boss.brilliance, boss.transform);
+            light.GetComponent<BossLight>().angle = 0;
+            actTimes += 1;
+        }
+        else
+            boss.SwitchBossState(BossState.Wait);
     }
 
     public override void OnExit()
     {
-        //todo
+        boss.lastAttackState = BossState.Brilliance;
+        actTimes = 0;
 
     }
 

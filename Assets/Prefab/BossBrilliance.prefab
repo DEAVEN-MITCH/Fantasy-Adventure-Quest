@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3354220389624371975}
   - component: {fileID: 6812023472838709163}
   - component: {fileID: 6365290893585194226}
-  - component: {fileID: 4313312817191570417}
+  - component: {fileID: 4245357503337910232}
   m_Layer: 0
   m_Name: BossBrilliance
   m_TagString: Untagged
@@ -177,7 +177,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8690758, y: 0.8647355}
   m_EdgeRadius: 0
---- !u!114 &4313312817191570417
+--- !u!114 &4245357503337910232
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -186,20 +186,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 2857797624851918940}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4858c9d9dfa67c4cbf7e1c019b0428f, type: 3}
+  m_Script: {fileID: 11500000, guid: 3cdd43f0d2f698a49b884e625271a314, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  touchLeftWall: 0
-  touchRightWall: 0
-  GroundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  checkRadius: 0.44
+  checkRadius: 0
   leftOffset: {x: 0, y: 0}
   rightOffset: {x: 0, y: 0}
-  flyingSpeed: 500
-  powerConsumption: 0
-  destroyDelay: 0.02
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 128
+  flyingSpeed: 100
+  angle: 0
+  rotateSpeed: 1
+  rotateReductionRate: 0.99
+  maxTime: 10
+  existTime: 0
+  rotateTime: 0

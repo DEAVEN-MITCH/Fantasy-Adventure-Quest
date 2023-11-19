@@ -13,6 +13,15 @@ public class Boss : Enemy
     protected BaseState rockFallState;
     protected BaseState brillianceState;
 
+    [Header("Bullet Prefabs")]
+    public GameObject barrage1;
+    public GameObject barrage2;
+    public GameObject nebula;
+    public GameObject nebulaSmall;
+    public GameObject rock;
+    public GameObject brilliance;
+    public GameObject star;
+
     override protected void Awake()
     {
         waitState = new BossWaitState();
