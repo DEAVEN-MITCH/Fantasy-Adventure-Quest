@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class BossWaitState : BaseState
 {
+    Boss boss;
     public override void OnEnter(Enemy enemy)
     {
+        currentEnemy = enemy;
+        boss = (Boss)enemy;
+        boss.wait = true;
         //todo
-    }
+    }   
     public override void LogicUpdate()
     {
-        //todo
+        if (!boss.wait)
+        {
+            //todo:add specific state switch rules
+            //boss.SwitchBossState(null);
+        }
     }
 
     public override void OnExit()

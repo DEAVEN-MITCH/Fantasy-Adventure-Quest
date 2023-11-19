@@ -99283,10 +99283,6 @@ PrefabInstance:
       propertyPath: pointsForMovememt.Array.data[4].y
       value: 122.6
       objectReference: {fileID: 0}
-    - target: {fileID: 5935819542661216147, guid: ec98a925f089aa14fb62756a94bb16d0, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: f7f8f7236ba3c6e449bdb101efa35019, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -103493,10 +103489,6 @@ PrefabInstance:
       propertyPath: pointsForMovememt.Array.data[4].y
       value: -31.1
       objectReference: {fileID: 0}
-    - target: {fileID: 5935819542661216147, guid: ec98a925f089aa14fb62756a94bb16d0, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: f7f8f7236ba3c6e449bdb101efa35019, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -104100,10 +104092,6 @@ PrefabInstance:
       propertyPath: pointsForMovememt.Array.data[4].y
       value: 122.6
       objectReference: {fileID: 0}
-    - target: {fileID: 5935819542661216147, guid: ec98a925f089aa14fb62756a94bb16d0, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: f7f8f7236ba3c6e449bdb101efa35019, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
