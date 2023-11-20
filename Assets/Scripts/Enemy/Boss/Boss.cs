@@ -5,6 +5,7 @@ using UnityEngine;
 public class Boss : Enemy
 {
     public bool isTeleport;
+    public bool isPreparingToCharge;
     public BossState lastAttackState;  //Default: wait
     protected BaseState waitState;
     protected BaseState chargeState;
@@ -48,6 +49,16 @@ public class Boss : Enemy
     {
         currentState = waitState;
         currentState.OnEnter(this);
+    }
+
+    override protected void FixedUpdate()
+    {
+        currentState.PhysicsUpdate();
+        if (transform.position.y < -1000 && !isDead)
+        {
+            isDead = true;
+            Die();
+        }
     }
 
     public void SwitchBossState(BossState state)

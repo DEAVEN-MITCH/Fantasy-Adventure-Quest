@@ -7,7 +7,6 @@ public class BossBrillianceState : BaseState
 {
     Boss boss;
     private int stage;
-    private float angle;
 
     public Vector2 teleportPoint1;
     public Vector2 teleportPoint2;
@@ -15,6 +14,7 @@ public class BossBrillianceState : BaseState
 
     private float waitTimer;
     private int choice;
+    private float angle;
 
     public override void OnEnter(Enemy enemy)
     {
