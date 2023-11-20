@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,8 +19,13 @@ public class BossBrillianceState : BaseState
     {
         if(actTimes == 0)
         {
-            GameObject light = Object.Instantiate(boss.brilliance, boss.transform);
-            light.GetComponent<BossLight>().angle = 0;
+            float angle = 0;
+            for(int i = 0; i < 6; i++)
+            {
+                GameObject light = UnityEngine.Object.Instantiate(boss.brilliance, boss.transform.position, Quaternion.identity);
+                light.GetComponent<BossLight>().angle = angle;
+                angle += (float)(Math.PI / 3.0);
+            }
             actTimes += 1;
         }
         else

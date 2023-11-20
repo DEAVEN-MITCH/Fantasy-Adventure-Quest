@@ -8,19 +8,25 @@ public class BossLight : MonoBehaviour
     public Vector2 leftOffset, rightOffset;
     private Vector3 dir;
     public LayerMask enemyLayer;
+    public GameObject starPrefab;
 
+    [Header("speed and rotation")]
     public float flyingSpeed;
     public float angle;
     public float rotateSpeed;
     public float rotateReductionRate;
 
+    [Header("time")]
     public float maxTime;
+    public float generateTime;
     public float existTime;
-    public float rotateTime;
+    public float rotateTimer;
+    public float generateTimer;
     private void OnEnable()
     {
         existTime = 0f;
-        rotateSpeed = 0f;
+        rotateTimer = 0f;
+        generateTimer = 0f;
         dir = new Vector3((float)Math.Sin(angle), (float)Math.Cos(angle), 0);
         //Debug.Log("enable!");
     }
@@ -32,18 +38,26 @@ public class BossLight : MonoBehaviour
     private void FixedUpdate()
     {
         existTime += Time.deltaTime;
-	Debug.Log(existTime);
         if (existTime > maxTime) Destroy(this.gameObject);
         GetComponent<Rigidbody2D>().velocity = flyingSpeed * Time.deltaTime * dir;
         
         //rotate
         angle += rotateSpeed * Time.deltaTime;
         dir = new Vector3((float)Math.Sin(angle), (float)Math.Cos(angle), 0);
-        rotateTime += Time.deltaTime;
-        if (rotateTime > 0.1f)
+        rotateTimer += Time.deltaTime;
+        if (rotateTimer > 0.1f)
         {
-            rotateTime -= 0.1f;
+            rotateTimer -= 0.1f;
             rotateSpeed *= rotateReductionRate;
+        }
+
+        //generateStar
+        generateTimer += Time.deltaTime;
+        if (generateTimer > generateTime)
+        {
+            UnityEngine.Object.Instantiate(starPrefab, this.transform.position, Quaternion.identity);
+            generateTimer -= generateTime;
+            generateTime += 0.25f;
         }
     }
 
