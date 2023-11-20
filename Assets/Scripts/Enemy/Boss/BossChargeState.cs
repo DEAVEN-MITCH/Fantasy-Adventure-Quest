@@ -31,7 +31,7 @@ public class BossChargeState : BaseState
 
         //These will be replaced by better codes later
         yOffset = 7;
-        chargeSpeed = 3600;
+        chargeSpeed = 4200;
         chargeTime = 1;
         waitTime = 0.3f;
         chargeNum = 3;
@@ -66,6 +66,7 @@ public class BossChargeState : BaseState
                 }
                 break;
             case 4:
+                boss.rb.velocity = chargeSpeed * Time.deltaTime * dir;
                 chargeTimer += Time.deltaTime;
                 if(chargeTimer >= chargeTime)
                 {

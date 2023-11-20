@@ -17,7 +17,18 @@ public class BossWaitState : BaseState
         if (!boss.wait)
         {
             //todo:add specific state switch rules
-            boss.SwitchBossState(boss.lastAttackState);
+            switch(boss.lastAttackState)
+            {
+                case BossState.Charge:
+                    boss.SwitchBossState(BossState.Brilliance);
+                    break;
+                case BossState.Brilliance:
+                    boss.SwitchBossState(BossState.Charge);
+                    break;
+                default:
+                    boss.SwitchBossState(boss.lastAttackState);
+                    break;
+            }
         }
     }
 
