@@ -22,6 +22,9 @@ public class Boss : Enemy
     public GameObject brilliance;
     public GameObject star;
 
+    [Header("Temporary Parameters")]
+    public Vector2 teleportPosition;
+
     override protected void Awake()
     {
         waitState = new BossWaitState();
@@ -33,6 +36,10 @@ public class Boss : Enemy
         brillianceState = new BossBrillianceState();
         base.Awake();
         CapsuleCollider2D c2 = GetComponent<CapsuleCollider2D>();
+
+        // ? TEST
+        // Teleport(new Vector2(-30,115));
+        Teleport(new Vector2(-40,105),new Vector2(-20,105));
     }
 
     override protected void OnEnable()
@@ -57,5 +64,48 @@ public class Boss : Enemy
         currentState.OnExit();
         currentState = newState;
         currentState.OnEnter(this);
+    }
+
+    /*
+        @ Author: Zhang Zirui
+        @ name: Teleport
+        @ Description: Set the trigger and teleportPosition.
+                       After finishing the animation, automatically transport to the position.
+        @ Parameters:
+            Vector2 position: The position teleports to.
+    */
+    public void Teleport(Vector2 position)
+    {
+        anim.SetTrigger("teleport");
+        teleportPosition = position;
+    }
+
+    /*
+        @ Author: Zhang Zirui
+        @ name: Teleport
+        @ Description: Set the trigger and teleportPosition.
+                       After finishing the animation, automatically transport to the position.
+                       The position will be randomly choosed between 2 given points.
+        @ Parameters:
+            Vector2 position1: a position candidate for destination;
+            Vector2 position2: a position candidate for destination.
+    */
+    public void Teleport(Vector2 position1, Vector2 position2)
+    {
+        anim.SetTrigger("teleport");
+        int choice = Random.Range(0,2);
+        teleportPosition = (choice == 0) ? position1 : position2;
+    }
+
+    /*
+        @ Author: Zhang Zirui
+        @ name: ActualTeleport
+        @ Description: The actual teleport function. Change the transform position.
+                       This function will be called after animation finishes.
+                       See StartTeleport.cs for details.
+    */
+    public void ActualTeleport()
+    {
+        transform.position = teleportPosition;
     }
 }

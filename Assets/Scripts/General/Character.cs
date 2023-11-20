@@ -11,9 +11,9 @@ public class Character : MonoBehaviour
     public float currentHealth;
     [Header("Invulnerable Attributes")]
     public float invulnerableDuration;
-    private float invulnerableCounter;
+    public float invulnerableCounter;
     public bool invulnerable;
-    public bool isDead=false;
+    public bool isDead = false;
     [Header("Events")]
     public UnityEvent<Transform> OnTakeDamage;
     public UnityEvent<Character> OnHealthChange;
@@ -30,8 +30,8 @@ public class Character : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        if(transform.gameObject.name =="player")
-        OnHealthChange?.Invoke(this);
+        if (transform.gameObject.name == "player")
+            OnHealthChange?.Invoke(this);
         isFrost = false;
         frostDuration = 0;
     }
@@ -46,7 +46,7 @@ public class Character : MonoBehaviour
             // take damage
             OnTakeDamage?.Invoke(attacker.transform);
         }
-        else if(!isDead)
+        else if (!isDead)
         {
             isDead = true;
             currentHealth = 0;
@@ -57,11 +57,11 @@ public class Character : MonoBehaviour
         //Apply abnormal status
         for (int i = 0; i < attacker.statusApply.Length; i++)
         {
-            switch(attacker.statusApply[i])
+            switch (attacker.statusApply[i])
             {
                 case AbnormalStatus.Frost:
-                    if(!frostImmune)
-                        if(!isFrost || frostDuration < attacker.statusDuration[i])
+                    if (!frostImmune)
+                        if (!isFrost || frostDuration < attacker.statusDuration[i])
                         {
                             isFrost = true;
                             frostDuration = attacker.statusDuration[i];
@@ -75,16 +75,16 @@ public class Character : MonoBehaviour
 
     public void FixedUpdate()
     {
-        if(isFrost && frostDuration > 0)
+        if (isFrost && frostDuration > 0)
         {
             frostDuration -= Time.deltaTime;
-            if(frostDuration <= 0)
+            if (frostDuration <= 0)
                 isFrost = false;
         }
-        
+
         //Correct Speed
         speedCorrection = 1.0f;
-        if(isFrost)
+        if (isFrost)
             speedCorrection *= 0.5f;
     }
 
@@ -119,7 +119,8 @@ public class Character : MonoBehaviour
     public void TriggerInvulnerable()
     {
         if (!invulnerable)
-        { invulnerable = true;
+        {
+            invulnerable = true;
             invulnerableCounter = invulnerableDuration;
         }
 
