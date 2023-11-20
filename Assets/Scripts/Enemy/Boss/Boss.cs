@@ -41,7 +41,7 @@ public class Boss : Enemy
 
         // ? TEST
         // Teleport(new Vector2(-30,115));
-        Teleport(new Vector2(-40,105),new Vector2(-20,105));
+        //Teleport(new Vector2(-40,105),new Vector2(-20,105));
     }
 
     override protected void OnEnable()
