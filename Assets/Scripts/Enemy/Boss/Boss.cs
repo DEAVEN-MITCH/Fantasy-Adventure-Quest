@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Boss : Enemy
 {
+    public bool isTeleport;
     public BossState lastAttackState;  //Default: wait
     protected BaseState waitState;
     protected BaseState chargeState;
@@ -36,6 +37,7 @@ public class Boss : Enemy
         brillianceState = new BossBrillianceState();
         base.Awake();
         CapsuleCollider2D c2 = GetComponent<CapsuleCollider2D>();
+        isTeleport = false;
 
         // ? TEST
         // Teleport(new Vector2(-30,115));
@@ -76,6 +78,7 @@ public class Boss : Enemy
     */
     public void Teleport(Vector2 position)
     {
+        isTeleport = true;
         anim.SetTrigger("teleport");
         teleportPosition = position;
     }
@@ -92,6 +95,7 @@ public class Boss : Enemy
     */
     public void Teleport(Vector2 position1, Vector2 position2)
     {
+        isTeleport = true;
         anim.SetTrigger("teleport");
         int choice = Random.Range(0,2);
         teleportPosition = (choice == 0) ? position1 : position2;
