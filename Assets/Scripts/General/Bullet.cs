@@ -38,9 +38,13 @@ public class Bullet : MonoBehaviour
     private void FixedUpdate()
     {
         float check = Math.Abs(flyingSpeed);
-        if (Vector3.Distance(transform.position, originalPosition) >= at.attackRange || touchLeftWall || touchRightWall) { /*Debug.Log("destroy!");*/ Destroy(this.gameObject); }
-        if(check >0.1)
-        GetComponent<Rigidbody2D>().velocity = flyingSpeed * Time.deltaTime * dir;
+        if (Vector3.Distance(transform.position, originalPosition) >= at.attackRange || touchLeftWall || touchRightWall)
+        {
+            /*Debug.Log("destroy!");*/
+            Destroy(this.gameObject);
+        }
+        if (check > 0.1)
+            GetComponent<Rigidbody2D>().velocity = flyingSpeed * Time.deltaTime * dir;
 
         //Debug.Log(player.GetComponent<Rigidbody2D>().velocity + "player");
     }

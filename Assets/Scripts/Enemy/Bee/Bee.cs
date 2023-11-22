@@ -107,7 +107,7 @@ public class Bee : Enemy
                 continue;
             else
             {
-                rb.velocity = direction * currentSpeed * character.speedCorrection;
+                rb.velocity = character.speedCorrection * currentSpeed * direction;
                 arrived = false;
                 break;
             }

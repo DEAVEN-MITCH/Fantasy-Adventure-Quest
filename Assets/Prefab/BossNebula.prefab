@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8337107355448798782}
   - component: {fileID: 5409273185675159300}
   - component: {fileID: 9094446348072028837}
-  - component: {fileID: 8469469002318249746}
+  - component: {fileID: 6066436445059709023}
   m_Layer: 0
   m_Name: BossNebula
   m_TagString: Untagged
@@ -177,7 +177,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.1709442, y: 1.1745493}
   m_EdgeRadius: 0
---- !u!114 &8469469002318249746
+--- !u!114 &6066436445059709023
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -186,20 +186,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 9053166771078341345}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4858c9d9dfa67c4cbf7e1c019b0428f, type: 3}
+  m_Script: {fileID: 11500000, guid: 4550af1583829374e9fd34f02e6d909b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  touchLeftWall: 0
-  touchRightWall: 0
   GroundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   checkRadius: 0.59
   leftOffset: {x: 0, y: 0}
   rightOffset: {x: 0, y: 0}
   flyingSpeed: 500
-  powerConsumption: 0
   destroyDelay: 0.02
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
+  targetPoint: {x: 0, y: 0}
+  subBulletPrefab: {fileID: 677700368066621659, guid: 70084a11414317d40a28ce735bb093e4, type: 3}

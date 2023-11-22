@@ -11,16 +11,22 @@ public class BossWaitState : BaseState
         boss = (Boss)enemy;
         boss.wait = true;
         //todo
-    }   
+    }
     public override void LogicUpdate()
     {
         if (!boss.wait)
         {
             //todo:add specific state switch rules
-            switch(boss.lastAttackState)
+            switch (boss.lastAttackState)
             {
                 case BossState.Charge:
                     boss.SwitchBossState(BossState.Brilliance);
+                    break;
+                case BossState.Barrage2:
+                    boss.SwitchBossState(BossState.Nebula);
+                    break;
+                case BossState.Nebula:
+                    boss.SwitchBossState(BossState.Barrage2);
                     break;
                 case BossState.Brilliance:
                     boss.SwitchBossState(BossState.Charge);
