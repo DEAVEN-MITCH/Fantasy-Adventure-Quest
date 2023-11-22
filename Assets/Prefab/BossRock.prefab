@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4691613939966644692}
   - component: {fileID: 5846995155959633896}
   - component: {fileID: 7416936648449361602}
-  - component: {fileID: 7124472245805673587}
+  - component: {fileID: 7626428532531050162}
   m_Layer: 0
   m_Name: BossRock
   m_TagString: Untagged
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 25
-  attackRange: 15
+  attackRange: 0
   attackRate: 0
   statusApply: 
   statusDuration: []
@@ -91,8 +91,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -256905805
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 1158048024, guid: 47c595a4db01b724ab244470b650da4b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -157,7 +157,7 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 2176
+    m_Bits: 128
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -177,7 +177,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.773037, y: 2.8975034}
   m_EdgeRadius: 0
---- !u!114 &7124472245805673587
+--- !u!114 &7626428532531050162
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -186,20 +186,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 558888028926329108}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4858c9d9dfa67c4cbf7e1c019b0428f, type: 3}
+  m_Script: {fileID: 11500000, guid: 62e39b5fe51df034da0991c17956a7b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  touchLeftWall: 0
-  touchRightWall: 0
-  GroundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  checkRadius: 1.39
-  leftOffset: {x: 0, y: 0}
-  rightOffset: {x: 0, y: 0}
-  flyingSpeed: 500
-  powerConsumption: 0
-  destroyDelay: 0.02
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 256
+  destroyY: 80
