@@ -19,6 +19,7 @@ public class BossChargeState : BaseState
     private GameObject player;
     private Vector2 teleportPoint;
     private Vector3 dir;
+    private BossChargeParameters para;
 
     public override void OnEnter(Enemy enemy)
     {
@@ -29,12 +30,12 @@ public class BossChargeState : BaseState
         chargeTimer = 0;
         waitTimer = 0;
 
-        //These will be replaced by better codes later
-        yOffset = 7;
-        chargeSpeed = 4200;
-        chargeTime = 1;
-        waitTime = 0.3f;
-        chargeNum = 3;
+        para = boss.GetComponent<BossChargeParameters>();
+        yOffset = para.yOffset;
+        chargeSpeed = para.chargeSpeed;
+        chargeTime = para.chargeTime;
+        waitTime = para.waitTime;
+        chargeNum = para.chargeNum;
         
         //Find player
         player = GameObject.Find("player");

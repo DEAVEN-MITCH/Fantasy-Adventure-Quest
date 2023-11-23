@@ -118,7 +118,7 @@ public class BossBarrage1State : BaseState
     void ShootBarrage1()
     {
         float angle = getAnticlockwiseAngleTowardsPlayerFromUp()+90;//because bullet by default face right
-        GameObject barrage = Object.Instantiate(boss.barrage2, boss.transform.position,Quaternion.Euler(0,0,angle));
+        GameObject barrage = Object.Instantiate(boss.barrage1, boss.transform.position,Quaternion.Euler(0,0,angle));
          Bullet bullet=barrage.GetComponent<Bullet>();
         bullet.flyingSpeed = parameters.shotSpeed;
         barrage.GetComponent<Attack>().attackRange = parameters.shotRange;

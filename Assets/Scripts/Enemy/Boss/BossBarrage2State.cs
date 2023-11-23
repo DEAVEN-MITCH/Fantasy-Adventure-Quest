@@ -19,6 +19,7 @@ public class BossBarrage2State : BaseState
     private float shootTimer;
     private GameObject player;
     private Vector3 dir;
+    private BossBarrage2Parameters para;
 
     public override void OnEnter(Enemy enemy)
     {
@@ -26,17 +27,18 @@ public class BossBarrage2State : BaseState
         currentEnemy = enemy;
         boss = (Boss)enemy;
         stage = 0;
-        bulletSpeed1 = 200;
-        bulletSpeed2 = 400;
-        bulletSpeed3 = 600;
-        bulletRange = 20;
-        attackInterval = 1;
-        attackNum = 20;
+        para = boss.GetComponent<BossBarrage2Parameters>();
+        bulletSpeed1 = para.bulletSpeed1;
+        bulletSpeed2 = para.bulletSpeed2;
+        bulletSpeed3 = para.bulletSpeed3;
+        bulletRange = para.bulletRange;
+        attackInterval = para.attackInterval;
+        attackNum = para.attackNum;
 
         attackCounter = 0;
         shootTimer = 0;
         player = GameObject.Find("player");
-        teleportPoint = new Vector2(-30, 105);
+        teleportPoint = para.teleportPoint;
     }
     public override void LogicUpdate()
     {
