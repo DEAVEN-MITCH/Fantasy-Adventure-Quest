@@ -20,22 +20,26 @@ public class BossNebulaState : BaseState
     private GameObject player;
     private Vector3 dir;
     private Vector3 lockedPosition;
+    private BossNebulaParameters para;
+
     public override void OnEnter(Enemy enemy)
     {
         // ? These parameter values are only set for testing.
         currentEnemy = enemy;
         boss = (Boss)enemy;
         stage = 0;
-        bigBulletSpeed = 500;
-        smallBulletSpeed = 500;
-        smallBulletRange = 20;
-        attackInterval = 1;
-        attackNum = 20;
+
+        para = boss.GetComponent<BossNebulaParameters>();
+        bigBulletSpeed = para.bigBulletSpeed;
+        smallBulletSpeed = para.smallBulletSpeed;
+        smallBulletRange = para.smallBulletRange;
+        attackInterval = para.attackInterval;
+        attackNum = para.attackNum;
 
         attackCounter = 0;
         shootTimer = 0;
         player = GameObject.Find("player");
-        teleportPoint = new Vector2(-30, 105);
+        teleportPoint = para.teleportPoint;
     }
     public override void LogicUpdate()
     {
@@ -55,7 +59,7 @@ public class BossNebulaState : BaseState
                     stage += 1;
                     break;
                 }
-                lockedPosition = player.transform.position;
+                lockedPosition = player.transform.position + new Vector3(0, 0.99f, 0);
                 dir = (lockedPosition - boss.transform.position).normalized;
                 shootTimer += Time.deltaTime;
                 if (shootTimer >= attackInterval)

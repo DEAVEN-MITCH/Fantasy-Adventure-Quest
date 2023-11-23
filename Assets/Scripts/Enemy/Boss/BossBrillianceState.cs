@@ -11,10 +11,12 @@ public class BossBrillianceState : BaseState
     public Vector2 teleportPoint1;
     public Vector2 teleportPoint2;
     public float waitTime;
+    public int shootNum;
 
     private float waitTimer;
     private int choice;
     private float angle;
+    private BossBrillianceParameters para;
 
     public override void OnEnter(Enemy enemy)
     {
@@ -24,10 +26,11 @@ public class BossBrillianceState : BaseState
         stage = 0;
         waitTimer = 0;
 
-        //These will be replaced by better codes later
-        waitTime = 1;
-        teleportPoint1 = new Vector2(-37, 111);
-        teleportPoint2 = new Vector2(-22.5f, 111);
+        para = boss.GetComponent<BossBrillianceParameters>();
+        waitTime = para.waitTime;
+        teleportPoint1 = para.teleportPoint1;
+        teleportPoint2 = para.teleportPoint2;
+        shootNum = para.shootNum;
     }
     public override void LogicUpdate()
     {
@@ -43,12 +46,12 @@ public class BossBrillianceState : BaseState
                 if(!boss.isTeleport) stage += 1;
                 break;
             case 2:
-                angle = UnityEngine.Random.Range(0f, (float)(Math.PI / 3.0));
-                for(int i = 0; i < 6; i++)
+                angle = UnityEngine.Random.Range(0f, (float)(2 * Math.PI / shootNum));
+                for(int i = 0; i < shootNum; i++)
                 {
                     GameObject light = UnityEngine.Object.Instantiate(boss.brilliance, boss.transform.position, Quaternion.identity);
                     light.GetComponent<BossLight>().angle = angle;
-                    angle += (float)(Math.PI / 3.0);
+                    angle += (float)(2 * Math.PI / shootNum);
                 }
                 stage += 1;
                 break;
@@ -69,12 +72,12 @@ public class BossBrillianceState : BaseState
                 if(!boss.isTeleport) stage += 1;
                 break;
             case 6:
-                angle = UnityEngine.Random.Range(0f, (float)(Math.PI / 3.0));
-                for(int i = 0; i < 6; i++)
+                angle = UnityEngine.Random.Range(0f, (float)(2 * Math.PI / shootNum));
+                for(int i = 0; i < shootNum; i++)
                 {
                     GameObject light = UnityEngine.Object.Instantiate(boss.brilliance, boss.transform.position, Quaternion.identity);
                     light.GetComponent<BossLight>().angle = angle;
-                    angle += (float)(Math.PI / 3.0);
+                    angle += (float)(2 * Math.PI / shootNum);
                 }
                 stage += 1;
                 break;
