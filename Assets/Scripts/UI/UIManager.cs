@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [Header("Attributes")]
@@ -17,6 +18,7 @@ public class UIManager : MonoBehaviour
     public TMP_Text scoreRenderer;
     private int score=0;
     private float startTime;
+    public GameObject 充值界面;
     // �����������ò����ڻ״̬ʱ���ô˺���
     private void OnEnable()
     {
@@ -102,5 +104,15 @@ public class UIManager : MonoBehaviour
         score += change;
         if (score <0) score = 0;
         UpdateScoreRenderer();
+    }
+    public void Show充值界面()
+    {
+        PauseGame();
+        充值界面.SetActive(true);
+    }
+    public void Close充值界面()
+    {
+        充值界面.SetActive(false);
+        ResumeGame();
     }
 }
