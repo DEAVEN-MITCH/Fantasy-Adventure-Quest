@@ -120,4 +120,12 @@ public class UIManager : MonoBehaviour
     {
         bossHealthBar.fillAmount = chara.currentHealth * 1f / chara.maxHealth;
     }
+    public void ShowBossHealthBar()
+    {
+        bossHealthBar.gameObject.SetActive(true);
+    }
+    public void HideBossHealthBar()
+    {
+        bossHealthBar.gameObject.SetActive(false);
+    }
 }
