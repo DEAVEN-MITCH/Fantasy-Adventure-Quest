@@ -26,6 +26,9 @@ public class Boss : Enemy
 
     [Header("Temporary Parameters")]
     public Vector2 teleportPosition;
+    public CapsuleCollider2D c2;
+    public LayerMask normalLayermask;
+    public LayerMask teleportLayermask;
 
     override protected void Awake()
     {
@@ -37,7 +40,7 @@ public class Boss : Enemy
         rockFallState = new BossRockFallState();
         brillianceState = new BossBrillianceState();
         base.Awake();
-        CapsuleCollider2D c2 = GetComponent<CapsuleCollider2D>();
+        c2 = GetComponent<CapsuleCollider2D>();
         isTeleport = false;
 
         // ? TEST

@@ -19,9 +19,11 @@ public class ExitTeleport : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.GetComponent<Boss>().isTeleport = false;
-       animator.GetComponent<Boss>().character.invulnerable = false;
-       animator.GetComponent<Boss>().character.invulnerableCounter = 0;
+        Boss boss = animator.GetComponent<Boss>();
+        boss.isTeleport = false;
+        boss.character.invulnerable = false;
+        boss.character.invulnerableCounter = 0;
+        boss.c2.excludeLayers = boss.normalLayermask;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
