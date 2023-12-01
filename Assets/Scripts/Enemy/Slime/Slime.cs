@@ -22,6 +22,7 @@ public class Slime : Enemy
     public float jumpEnhancedForce;
     // This is a helper boolean variable for jump controlling
     public bool isLand;
+    public bool newBorn;
 
     [Header("Prefabs")]
     // This sub slime should jump higher
@@ -37,19 +38,39 @@ public class Slime : Enemy
         patrolState = new SlimePatrolState();
         chaseState = new SlimeChaseState();
         isLand = true;
+        newBorn = true;
         jumpTime = Time.time;
         base.Awake();
     }
 
     public override void Move()
     {
+        // ? fixed: cannot overturn itself
+        transform.rotation = Quaternion.identity;
+        // ? fixed: cannot jump and move after dying
+        if (isDead)
+        {
+            rb.velocity = Vector2.zero;
+            return;
+        }
         // TODO: move horizontally before landing
+        /* 
+            ? fixed: when big slime killed in jumping
+            ? fixed: newborn sub slimes will not be treated as jumping
+        */
+        if (newBorn)
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        if (pc.isGround)
+            newBorn = false;
+        
         if (!pc.isGround)
             rb.velocity = new Vector2(character.speedCorrection * currentSpeed * faceDir.x * Time.deltaTime, rb.velocity.y);
         else if (!isLand)
         {
             isLand = true;
             jumpTime = Time.time;
+            // ? fixed: now cannot slip after jumping
+            rb.velocity = Vector2.zero;
         }
 
         if (Time.time - jumpTime <= jumpInterval)
@@ -71,12 +92,16 @@ public class Slime : Enemy
         {
             GameObject blue = Instantiate(blueSlimePrefab, transform.position + (Vector3)blueSlimeOffset, transform.rotation);
             GameObject green = Instantiate(greenSlimePrefab, transform.position + (Vector3)greenSlimeOffset, transform.rotation);
-        
+
             Slime blueSlime = blue.GetComponent<Slime>();
             Slime greenSlime = green.GetComponent<Slime>();
             // TODO: now inherit parent slime's bound correctly
             blueSlime.slimeBound = slimeBound;
             greenSlime.slimeBound = slimeBound;
+
+            // ? fixed: new born slimes should be invulnerable for a period of time
+            blueSlime.GetComponent<Character>().TriggerInvulnerable();
+            greenSlime.GetComponent<Character>().TriggerInvulnerable();
         }
         base.Die();
     }

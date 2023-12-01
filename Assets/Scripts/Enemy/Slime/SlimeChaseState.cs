@@ -14,26 +14,26 @@ public class SlimeChaseState : BaseState
     }
     public override void LogicUpdate()
     {
-        if(slime.lostCounter <= 0)
+        if (slime.isDead)
+            return;
+        if (slime.lostCounter <= 0)
         {
             slime.SwitchState(NPCState.Patrol);
             return;
         }
 
-        // ! may exist BUG: hurt will change the face dir, so the bound cannot make sense.
-        // ? how should we handle hitting the bound when jumping?
         if (slime.transform.position.x >= slime.slimeBound.bounds.max.x && slime.sr.flipX == true
-        || slime.transform.position.x <= slime.slimeBound.bounds.min.x && slime.sr.flipX == false) 
+        || slime.transform.position.x <= slime.slimeBound.bounds.min.x && slime.sr.flipX == false)
             slime.sr.flipX = !slime.sr.flipX;
     }
     public override void PhysicsUpdate()
     {
-        
+
     }
 
     public override void OnExit()
     {
-        
+
     }
 
 }

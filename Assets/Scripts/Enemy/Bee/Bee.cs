@@ -44,7 +44,6 @@ public class Bee : Enemy
     public bool isStop;
     // A time counter recording when start stopping
     public float stopTime;
-
     public LayerMask groundLayer;
     override protected void Awake()
     {
@@ -60,6 +59,12 @@ public class Bee : Enemy
 
     protected override void FixedUpdate()
     {
+        // ? fixed
+        if (isDead)
+        {
+            rb.velocity = Vector2.zero;
+            return;
+        }
         base.FixedUpdate();
         if (isStop)
         {
@@ -161,7 +166,7 @@ public class Bee : Enemy
                 Mathf.Min(detectionCircle.radius, Vector2.Distance(players[0].transform.position, transform.position)),
                 groundLayer).point;
 
-            if(Vector2.Distance(players[0].transform.position, transform.position) <= detectionCircle.radius)
+            if (Vector2.Distance(players[0].transform.position, transform.position) <= detectionCircle.radius)
             {
                 Vector2 hitPoint = (hitWallPoint == Vector2.zero) ? players[0].transform.position : hitWallPoint;
                 Gizmos.DrawLine(transform.position, hitPoint);

@@ -166,7 +166,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2285212838150157689}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: fcc7b5fac9107ce42bdcda5bc15e7cb9, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -223,7 +223,7 @@ MonoBehaviour:
   chaseSpeed: 200
   currentSpeed: 0
   faceDir: {x: 0, y: 0, z: 0}
-  hurtForce: 2
+  hurtForce: 0.5
   attacker: {fileID: 0}
   scoreValue: 50
   centerOffset: {x: 0, y: 0}
@@ -284,6 +284,7 @@ MonoBehaviour:
   maxHealth: 50
   currentHealth: 0
   invulnerableDuration: 0.1
+  invulnerableCounter: 0
   invulnerable: 1
   isDead: 0
   OnTakeDamage:
