@@ -59,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 4422464536749408843}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13, y: 29, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -146,7 +146,7 @@ Transform:
   m_GameObject: {fileID: 8001713762968023724}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13, y: 29, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -276,7 +276,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 8001713762968023724}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: fcc7b5fac9107ce42bdcda5bc15e7cb9, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -333,7 +333,7 @@ MonoBehaviour:
   chaseSpeed: 150
   currentSpeed: 0
   faceDir: {x: 0, y: 0, z: 0}
-  hurtForce: 2
+  hurtForce: 0.5
   attacker: {fileID: 0}
   scoreValue: 250
   centerOffset: {x: 0, y: 0}
@@ -373,6 +373,7 @@ MonoBehaviour:
   jumpNormalForce: 10
   jumpEnhancedForce: 15
   isLand: 0
+  newBorn: 0
   blueSlimePrefab: {fileID: 4300369755741600584, guid: 05573b5c618498b4c998d985726e1e53, type: 3}
   blueSlimeOffset: {x: -1, y: 0}
   greenSlimePrefab: {fileID: 2285212838150157689, guid: 895b1beff4de278499cdb82752609565, type: 3}
@@ -393,6 +394,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   invulnerableDuration: 0.1
+  invulnerableCounter: 0
   invulnerable: 0
   isDead: 0
   OnTakeDamage:

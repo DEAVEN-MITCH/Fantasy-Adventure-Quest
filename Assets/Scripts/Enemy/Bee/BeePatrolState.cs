@@ -14,6 +14,8 @@ public class BeePatrolState : BaseState
 
     public override void LogicUpdate()
     {
+        if (bee.isDead)
+            return;
         if (bee.FoundPlayer())
         {
             bee.SwitchState(NPCState.Chase);

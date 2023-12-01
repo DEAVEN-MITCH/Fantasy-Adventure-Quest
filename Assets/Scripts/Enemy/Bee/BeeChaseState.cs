@@ -19,6 +19,9 @@ public class BeeChaseState : BaseState
 
     public override void LogicUpdate()
     {
+        // ? fixed
+        if (bee.isDead)
+            return;
         if (bee.lostCounter <= 0)
         {
             bee.SwitchState(NPCState.Patrol);

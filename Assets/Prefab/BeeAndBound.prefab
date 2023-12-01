@@ -337,6 +337,7 @@ MonoBehaviour:
   maxHealth: 60
   currentHealth: 0
   invulnerableDuration: 0.1
+  invulnerableCounter: 0
   invulnerable: 0
   isDead: 0
   OnTakeDamage:
