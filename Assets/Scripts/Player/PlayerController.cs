@@ -13,9 +13,9 @@ public class PlayerController : MonoBehaviour
     private PhysicsCheck PCheck;// = GetComponent<PhysicsCheck>();
     private PlayerAnimation pa;
     private SpriteRenderer sr;
-    private PlayerHealController phc;
-    private PlayerDashController pdc;//add
-    private PlayerRebounceController prc;
+    public PlayerHealController phc;
+    public PlayerDashController pdc;//add
+    public PlayerRebounceController prc;
     [Header("Events")]
     public UnityEvent afterDeathAnimation;
     public UnityEvent<float> onPowerChange;

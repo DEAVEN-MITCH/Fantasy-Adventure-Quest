@@ -17,6 +17,7 @@ public class DashTreasure : MonoBehaviour
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        gameObject.tag = "Chest";
     }
     private void Update()
     {

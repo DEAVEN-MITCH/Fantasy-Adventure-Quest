@@ -599,7 +599,7 @@ GameObject:
   - component: {fileID: 113076864}
   m_Layer: 5
   m_Name: Message2
-  m_TagString: Untagged
+  m_TagString: Hint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98962,6 +98962,10 @@ MonoBehaviour:
   pauseMenuCanvas: {fileID: 1477466749}
   timeRenderer: {fileID: 1219611591}
   scoreRenderer: {fileID: 712313971}
+  score: 0
+  startTime: 0
+  "\u5145\u503C\u754C\u9762": {fileID: 0}
+  bossHealthBar: {fileID: 0}
 --- !u!4 &520130623
 Transform:
   m_ObjectHideFlags: 0
@@ -100414,7 +100418,7 @@ GameObject:
   - component: {fileID: 937309241}
   m_Layer: 5
   m_Name: Message0
-  m_TagString: Untagged
+  m_TagString: Hint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103270,7 +103274,7 @@ GameObject:
   - component: {fileID: 1574306138}
   m_Layer: 5
   m_Name: Message1
-  m_TagString: Untagged
+  m_TagString: Hint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104384,6 +104388,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   invulnerableDuration: 1.2
+  invulnerableCounter: 0
   invulnerable: 0
   isDead: 0
   OnTakeDamage:

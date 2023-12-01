@@ -14,7 +14,10 @@ public class TreasureTrigger : MonoBehaviour
     [Header("Hint Message")]
     public TextMeshProUGUI hintText;
     public UnityEvent<TextMeshProUGUI> onHintTrigger;
-
+    private void Awake()
+    {
+        //gameObject.tag = "Chest";
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (isGet)

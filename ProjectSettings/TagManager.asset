@@ -6,6 +6,11 @@ TagManager:
   tags:
   - character
   - player rebounce
+  - Enemy
+  - Chest
+  - UI
+  - Hint
+  - SavePoint
   layers:
   - Default
   - TransparentFX

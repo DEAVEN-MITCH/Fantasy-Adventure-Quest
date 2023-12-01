@@ -16,13 +16,14 @@ public class UIManager : MonoBehaviour
     public GameObject pauseMenuCanvas;
     public TMP_Text timeRenderer;
     public TMP_Text scoreRenderer;
-    private int score=0;
-    private float startTime;
+    public int score=0;
+    public float startTime;
     public GameObject 充值界面;
     public Image bossHealthBar;
     // �����������ò����ڻ״̬ʱ���ô˺���
     private void OnEnable()
     {
+        gameObject.tag = "UI";
         healthEvent.OnEventRaised += OnHealthEvent;
         scoreEvent.OnEventRaised += OnScoreChange;
         startTime = Time.time;

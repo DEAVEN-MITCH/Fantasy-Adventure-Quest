@@ -10,7 +10,8 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public PhysicsCheck pc;
     [HideInInspector] public SpriteRenderer sr;
     [HideInInspector] public Character character;
-
+    [Header("ID")]
+    public string EnemyID; // 用于标识敌人的唯一ID
     [Header("Basic Parameters")]
     public float normalSpeed;
     public float chaseSpeed;
@@ -45,6 +46,8 @@ public class Enemy : MonoBehaviour
     public UnityEvent<int> changeScore;
     protected virtual void Awake()
     {
+        gameObject.tag = "Enemy";
+        GenerateUniqueID();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         currentSpeed = normalSpeed;
@@ -178,5 +181,10 @@ public class Enemy : MonoBehaviour
     {
         Gizmos.DrawWireSphere(transform.position + (Vector3)(centerOffset), .2f);
         //Gizmos.DrawWireSphere((Vector2)transform.position + pc.bottomOffset, .2f);
+    }
+    private void GenerateUniqueID()
+    {
+        // 使用Guid生成唯一ID
+        EnemyID = Guid.NewGuid().ToString();
     }
 }
