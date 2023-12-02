@@ -78,10 +78,12 @@ public class BossRockFallState : BaseState
         float xOffset = Random.Range(parameters.horizontalLeftBound, parameters.horizontalRightBound);
         Vector3 initialPosition = playerPosition + new Vector3(xOffset, parameters.rockRelativeHeight, 0);
         GameObject rock= GameObject.Instantiate(boss.rock, initialPosition, Quaternion.identity);
+        if (!rock) yield break;
         rock.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         yield return new WaitForSeconds(parameters.stillTime);
         float f = Random.Range(0f, 1f);
         bool isHalfSpeed = f <= parameters.halfSpeedPrbability;
+        if (!rock) yield break;
         rock.GetComponent<Rigidbody2D>().velocity = new(0,-parameters.baseSpeed*(isHalfSpeed?.5f:2f));
         yield break;
     }

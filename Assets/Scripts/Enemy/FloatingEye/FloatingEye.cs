@@ -120,18 +120,23 @@ public class FloatingEye : Enemy
         // 发射射线
 
         //RaycastHit[] hits = Physics.SphereCastAll(transform.position, attackLineWidth/2, attackDir, attackDistance, attackLayer);
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, attackDir, attackDistance, attackLayer);
-        //Debug.Log(transform.position);
-        //Debug.Log(hits.Length.ToString()+attackDir.ToString()+attackDistance.ToString()+attackLayer.ToString());
-        // 遍历接触到的物体
-        foreach (RaycastHit2D hit in hits)
-        {
-            GameObject hitObject = hit.transform.gameObject;
-            // 在这里处理接触到的物体，例如打印名称或执行其他操作
-            //Debug.Log("接触到物体：" + hitObject.name);
-            hitObject.GetComponent<Character>().TakeDamage(rayAttack);
+        //RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, attackDir, attackDistance, attackLayer);
+        float timeAccumulator = 0f;
+        for (; timeAccumulator < attackRayDiaplayDuration;timeAccumulator+=Time.deltaTime) {
+            RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, new Vector2(0.1f, attackLineWidth), 0f, attackDir, attackDistance, attackLayer);
+            //Debug.Log(transform.position);
+            //Debug.Log(hits.Length.ToString()+attackDir.ToString()+attackDistance.ToString()+attackLayer.ToString());
+            // 遍历接触到的物体
+            foreach (RaycastHit2D hit in hits)
+            {
+                GameObject hitObject = hit.transform.gameObject;
+                // 在这里处理接触到的物体，例如打印名称或执行其他操作
+                //Debug.Log("接触到物体：" + hitObject.name);
+                hitObject.GetComponent<Character>().TakeDamage(rayAttack);
+            }
+            yield return null;
         }
-        yield return new WaitForSeconds(attackRayDiaplayDuration);
+        //yield return new WaitForSeconds(attackRayDiaplayDuration);
         lineRenderer.endWidth = lineRenderer.startWidth=indicativeLineWidth;
         //Debug.Log("reset linerenderer");
         DePreAttack();

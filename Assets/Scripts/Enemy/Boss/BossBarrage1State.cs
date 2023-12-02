@@ -144,7 +144,8 @@ public class BossBarrage1State : BaseState
     {
         float angleFromX = (laserAngle + 90) * Mathf.PI / 180;
         Vector3 dir = new(Mathf.Cos(angleFromX), Mathf.Sin(angleFromX), 0) ;
-        RaycastHit2D[] hits = Physics2D.RaycastAll(boss.transform.position, dir, parameters.laserLength,boss.attackLayer);
+        //RaycastHit2D[] hits = Physics2D.RaycastAll(boss.transform.position, dir, parameters.laserLength,boss.attackLayer);
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(boss.transform.position, new Vector2(0.1f, parameters.laserWidth), 0f, dir, parameters.laserLength, boss.attackLayer);
         foreach (RaycastHit2D hit in hits)
         {
             GameObject hitObject = hit.transform.gameObject;
