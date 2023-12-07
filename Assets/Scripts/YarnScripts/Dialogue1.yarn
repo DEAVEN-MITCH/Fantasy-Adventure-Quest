@@ -1,0 +1,28 @@
+title: Start
+position: -252,-22
+---
+<<StartDialogue DialogueController>>
+On the mystical land of Semlyria, a world with magic and wonder.
+A young boy, who has a great passion in exploring and adventuring, steps on his expedition.
+And the story begins...
+<<EndDialogue DialogueController>>
+<<jump CharacterIntroduction>>
+===
+
+title: CharacterIntroduction
+position: 85,-18
+---
+<<StartDialogue DialogueController>>
+Boy: It's the time to move on.
+<<EndDialogue DialogueController>>
+===
+
+
+title: EnemySpot
+position: 28,-144
+---
+<<StartDialogue DialogueController>>
+Boy: It seems to be a boar in the front.
+Boy: I may need to fight off it, or...
+<<EndDialogue DialogueController>>
+===

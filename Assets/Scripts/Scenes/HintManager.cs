@@ -9,10 +9,6 @@ public class HintManager : MonoBehaviour
     public TextMeshProUGUI text;
     public float timer;
 
-    private void Awake()
-    {
-        text.gameObject.SetActive(true);
-    }
     private void Update()
     {
         if (timer < 5)
