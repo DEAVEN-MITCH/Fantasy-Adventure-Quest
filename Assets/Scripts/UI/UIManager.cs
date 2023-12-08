@@ -19,7 +19,8 @@ public class UIManager : MonoBehaviour
     public int score=0;
     public float startTime;
     public GameObject 充值界面;
-    public Image bossHealthBar;
+    public GameObject bossHealthBar;
+    public Image bossHealth;
     // �����������ò����ڻ״̬ʱ���ô˺���
     private void OnEnable()
     {
@@ -119,7 +120,7 @@ public class UIManager : MonoBehaviour
     }
     public void UpdateBossHealthBar(Character chara)
     {
-        bossHealthBar.fillAmount = chara.currentHealth * 1f / chara.maxHealth;
+        bossHealth.fillAmount = chara.currentHealth * 1f / chara.maxHealth;
     }
     public void ShowBossHealthBar()
     {

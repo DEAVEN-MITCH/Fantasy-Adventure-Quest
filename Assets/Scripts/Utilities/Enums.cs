@@ -3,7 +3,7 @@ public enum NPCState{
 }
 
 public enum BossState{
-    Wait, Charge, Barrage1, Barrage2, Nebula, RockFall, Brilliance
+    Starting, Wait, Charge, Barrage1, Barrage2, Nebula, RockFall, Brilliance, SwitchStage
 }
 
 public enum AbnormalStatus{

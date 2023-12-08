@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Boss : Enemy
 {
     public bool isTeleport;
+    public bool isStarting;
     public bool isPreparingToCharge;
-    public BossState lastAttackState;  //Default: wait
+    public BossState lastAttackState;  //Default: starting
+    protected BaseState startingState;
     protected BaseState waitState;
     protected BaseState chargeState;
     protected BaseState barrage1State;
@@ -14,6 +17,10 @@ public class Boss : Enemy
     protected BaseState nebulaState;
     protected BaseState rockFallState;
     protected BaseState brillianceState;
+    protected BaseState switchState;
+    
+    public UnityEvent onStart;
+    public int stage;
 
     [Header("Bullet Prefabs")]
     public GameObject barrage1;
@@ -32,6 +39,7 @@ public class Boss : Enemy
 
     override protected void Awake()
     {
+        startingState = new BossStartingState();
         waitState = new BossWaitState();
         chargeState = new BossChargeState();
         barrage1State = new BossBarrage1State();
@@ -39,6 +47,7 @@ public class Boss : Enemy
         nebulaState = new BossNebulaState();
         rockFallState = new BossRockFallState();
         brillianceState = new BossBrillianceState();
+        switchState = new BossSwitchState();
         base.Awake();
         c2 = GetComponent<CapsuleCollider2D>();
         isTeleport = false;
@@ -50,7 +59,7 @@ public class Boss : Enemy
 
     override protected void OnEnable()
     {
-        currentState = waitState;
+        currentState = startingState;
         currentState.OnEnter(this);
     }
 
@@ -75,6 +84,7 @@ public class Boss : Enemy
             BossState.Nebula => nebulaState,
             BossState.RockFall => rockFallState,
             BossState.Brilliance => brillianceState,
+            BossState.SwitchStage => switchState,
             _ => null
         };
         currentState.OnExit();
@@ -125,5 +135,12 @@ public class Boss : Enemy
     public void ActualTeleport()
     {
         transform.position = teleportPosition;
+    }
+
+    override public void Die()
+    {
+        this.gameObject.layer = 2;
+        anim.SetTrigger("dead");
+        currentState.OnExit();
     }
 }

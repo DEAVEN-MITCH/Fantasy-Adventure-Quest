@@ -10,6 +10,8 @@ public class BossWaitState : BaseState
         currentEnemy = enemy;
         boss = (Boss)enemy;
         boss.wait = true;
+        if(boss.GetComponent<Character>().currentHealth <= 0.5f * boss.GetComponent<Character>().maxHealth && boss.stage < 2)
+            boss.SwitchBossState(BossState.SwitchStage);
         //todo
     }
     public override void LogicUpdate()
@@ -53,26 +55,6 @@ public class BossWaitState : BaseState
 
     public override void OnExit()
     {
-        //not good, but better than none
-        if(boss.GetComponent<Character>().currentHealth <= 0.5f * boss.GetComponent<Character>().maxHealth)
-        {
-            boss.GetComponent<BossChargeParameters>().chargeSpeed = 5000;
-            boss.GetComponent<BossChargeParameters>().waitTime = 0.2f;
-            boss.GetComponent<BossChargeParameters>().chargeNum = 5;
-            boss.GetComponent<BossBarrage1Parameters>().shotInterval = 0.16f;
-            boss.GetComponent<BossBarrage1Parameters>().shotNumber = 35;
-            boss.GetComponent<BossBarrage1Parameters>().shotSpeed = 360;
-            boss.GetComponent<BossBarrage1Parameters>().rotationRate = 90;
-            boss.GetComponent<BossBarrage2Parameters>().attackInterval = 0.75f;
-            boss.GetComponent<BossBarrage2Parameters>().attackNum = 12;
-            boss.GetComponent<BossNebulaParameters>().attackInterval = 0.6f;
-            boss.GetComponent<BossNebulaParameters>().attackNum = 15;
-            boss.GetComponent<BossRockFallParameters>().baseSpeed = 10;
-            boss.GetComponent<BossRockFallParameters>().rockInterval = 0.21f;
-            boss.GetComponent<BossRockFallParameters>().rockNumber = 35;
-            boss.GetComponent<BossBrillianceParameters>().waitTime = 0;
-            boss.GetComponent<BossBrillianceParameters>().shootNum = 8;
-        }
     }
 
     public override void PhysicsUpdate()
