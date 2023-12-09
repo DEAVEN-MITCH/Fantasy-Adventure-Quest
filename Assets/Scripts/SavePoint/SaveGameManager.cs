@@ -38,8 +38,9 @@ public class SaveGameManager : MonoBehaviour
 
     public void SaveGame(InputAction.CallbackContext obj)
     {
+        if(isused) return;
         isused = true;
-        Debug.Log("Save Game");
+/*        Debug.Log("Save Game");*/
         // »ñÈ¡µÐÈË×´Ì¬
         foreach (var enemy in GameObject.FindGameObjectsWithTag("Enemy"))
         {
@@ -63,7 +64,7 @@ public class SaveGameManager : MonoBehaviour
         }
         currentGameData.playerScore = GameObject.FindGameObjectWithTag("UI").GetComponent<UIManager>().score;
         currentGameData.gameTime = GameObject.FindGameObjectWithTag("UI").GetComponent<UIManager>().startTime;
-        foreach (var kvp in currentGameData.chestStatus)
+/*        foreach (var kvp in currentGameData.chestStatus)
         {
             Debug.Log($"Key: {kvp.Key}, Value: {kvp.Value}");
         }
@@ -74,7 +75,7 @@ public class SaveGameManager : MonoBehaviour
         foreach (var kvp in currentGameData.savePointStatus)
         {
             Debug.Log($"Key: {kvp.Key}, Value: {kvp.Value}");
-        }
+        }*/
     }
 
     public void RestoreGame()
