@@ -5,6 +5,7 @@ using UnityEngine;
 public class BossWaitState : BaseState
 {
     Boss boss;
+    private float dynamicWaitCounter;
     public override void OnEnter(Enemy enemy)
     {
         currentEnemy = enemy;
@@ -12,12 +13,19 @@ public class BossWaitState : BaseState
         if(((boss.hardmode && boss.GetComponent<Character>().currentHealth <= 0.6f * boss.GetComponent<Character>().maxHealth) || boss.GetComponent<Character>().currentHealth <= 0.5f * boss.GetComponent<Character>().maxHealth) && boss.stage < 2)
             boss.SwitchBossState(BossState.SwitchStage);
         else
-            boss.wait = true;
+            if(!boss.hardmode)
+                boss.wait = true;
+            else
+                dynamicWaitCounter = 0;
         //todo
     }
     public override void LogicUpdate()
     {
-        if (!boss.wait)
+        if(boss.hardmode)
+            if(boss.GetComponent<Character>().currentHealth <= 0.6f * boss.GetComponent<Character>().maxHealth)
+                dynamicWaitCounter += Time.deltaTime / (0.4f + boss.GetComponent<Character>().currentHealth / boss.GetComponent<Character>().maxHealth);
+            else dynamicWaitCounter += Time.deltaTime;
+        if ((!boss.hardmode && !boss.wait) || (boss.hardmode && dynamicWaitCounter >= boss.waitTime))
         {
             if(((boss.hardmode && boss.GetComponent<Character>().currentHealth <= 0.6f * boss.GetComponent<Character>().maxHealth) || boss.GetComponent<Character>().currentHealth <= 0.5f * boss.GetComponent<Character>().maxHealth) && boss.stage < 2)
             boss.SwitchBossState(BossState.SwitchStage);

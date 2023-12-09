@@ -12,7 +12,7 @@ public class BossStartingState : BaseState
         boss = (Boss)enemy;
         boss.transform.position = new Vector3(-30,124.2f,0);
         boss.stage = 1;
-        speed = 3000;
+        speed = 666;
         boss.isStarting = true;
         boss.anim.SetTrigger("start");
         boss.rb.velocity = new Vector3(0, -1, 0) * speed * Time.deltaTime;
