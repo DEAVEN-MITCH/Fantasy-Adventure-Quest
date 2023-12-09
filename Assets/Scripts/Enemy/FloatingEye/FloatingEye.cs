@@ -28,6 +28,8 @@ public class FloatingEye : Enemy
     public Attack rayAttack;
     public float attackRayDiaplayDuration;
 
+    public AudioSource teleport;
+
     protected override void Awake()
     {
         patrolState = new FloatingEyePatrolState();
@@ -86,9 +88,9 @@ public class FloatingEye : Enemy
     public void PreAttack()
     {
         Vector3 playerPosition = players[0].GetComponent<Transform>().position;
-        playerPosition += new Vector3(0, 0.95f, 0);//ÈËÎïÖÐÐÄµãÆ«ÒÆ
+        playerPosition += new Vector3(0, 0.95f, 0);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½Æ«ï¿½ï¿½
         attackDir = (playerPosition - transform.position).normalized;
-        // ÉèÖÃÏßµÄÎ»ÖÃ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ßµï¿½Î»ï¿½ï¿½
         Vector3 endPoint = transform.position + attackDir * attackDistance;
         lineRenderer.SetPosition(0, transform.position);
         lineRenderer.SetPosition(1, endPoint);
@@ -117,7 +119,7 @@ public class FloatingEye : Enemy
         //yield return null;
         //lineRenderer.enabled = true;
 
-        // ·¢ÉäÉäÏß
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
         //RaycastHit[] hits = Physics.SphereCastAll(transform.position, attackLineWidth/2, attackDir, attackDistance, attackLayer);
         //RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, attackDir, attackDistance, attackLayer);
@@ -126,12 +128,12 @@ public class FloatingEye : Enemy
             RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, new Vector2(0.1f, attackLineWidth), 0f, attackDir, attackDistance, attackLayer);
             //Debug.Log(transform.position);
             //Debug.Log(hits.Length.ToString()+attackDir.ToString()+attackDistance.ToString()+attackLayer.ToString());
-            // ±éÀú½Ó´¥µ½µÄÎïÌå
+            // ï¿½ï¿½ï¿½ï¿½ï¿½Ó´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             foreach (RaycastHit2D hit in hits)
             {
                 GameObject hitObject = hit.transform.gameObject;
-                // ÔÚÕâÀï´¦Àí½Ó´¥µ½µÄÎïÌå£¬ÀýÈç´òÓ¡Ãû³Æ»òÖ´ÐÐÆäËû²Ù×÷
-                //Debug.Log("½Ó´¥µ½ÎïÌå£º" + hitObject.name);
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï´¦ï¿½ï¿½ï¿½Ó´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½å£¬ï¿½ï¿½ï¿½ï¿½ï¿½Ó¡ï¿½ï¿½ï¿½Æ»ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                //Debug.Log("ï¿½Ó´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½å£º" + hitObject.name);
                 hitObject.GetComponent<Character>().TakeDamage(rayAttack);
             }
             yield return null;
@@ -147,7 +149,7 @@ public class FloatingEye : Enemy
     //    Vector2 center = (Vector2)bounds.transform.position+bounds.offset;
     //    Vector2 size = bounds.size;
     //    Vector2 point1 = center - 0.5f* size,point2=center+0.5f*size;
-    //    // Éú³ÉËæ»úµÄx×ø±êºÍy×ø±ê£¬È·±£ËüÃÇÔÚpoint1ºÍpoint2·¶Î§ÄÚ
+    //    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½ï¿½ï¿½yï¿½ï¿½ï¿½ê£¬È·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½point1ï¿½ï¿½point2ï¿½ï¿½Î§ï¿½ï¿½
     //    int count = 0;
     //    //max loop=1000 to avoid dead loop
     //    Vector2 checkArea = new Vector2(4, 4);//the rectangular size of the destination check area
@@ -156,7 +158,7 @@ public class FloatingEye : Enemy
     //        float randomX = UnityEngine.Random.Range(point1.x, point2.x);
     //        float randomY = UnityEngine.Random.Range(point1.y, point2.y);
 
-    //        // ´´½¨Vector2±íÊ¾Ëæ»úµã
+    //        // ï¿½ï¿½ï¿½ï¿½Vector2ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½
     //        Vector2 randomPoint = new Vector2(randomX, randomY);
     //        var curHeight = currentHeightAboveTheGround(randomPoint);
     //        //check the distance to the ground
@@ -203,6 +205,7 @@ public class FloatingEye : Enemy
         int size = pointsForMovememt.Length;
         int randomIndex = UnityEngine.Random.Range(0, size);
         transform.position = pointsForMovememt[randomIndex];
+        teleport.Play();
         return;
     }
     public void DirectionFollowPlayer()
@@ -214,16 +217,16 @@ public class FloatingEye : Enemy
             sr.flipX = dirX > 0 ? true : dirX < 0 ? false : sr.flipX;//assume the flipX ==false means face left
             Vector3 spriteDir = sr.flipX?new(1,0,0): new(-1, 0, 0);
             Vector3 dir = (playerPosition - transform.position).normalized ;
-            // ¼ÆËãÁ½¸öÏòÁ¿Ö®¼äµÄ¼Ð½Ç
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½Ä¼Ð½ï¿½
             float angle = Vector3.Angle(spriteDir, dir);
             //since angle < 180,so we need to judge the rotation dir from the cross product
-            // Ê¹ÓÃCross·½·¨À´¼ÆËãÁ½¸öÏòÁ¿µÄ²æ»ý£¬ÒÔÈ·¶¨Ðý×ªÖá
+            // Ê¹ï¿½ï¿½Crossï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½
             Vector3 cross = Vector3.Cross(spriteDir, dir);
             if (cross.z < 0)
             {
                 angle = 360 - angle;
             }
-            // ÏÖÔÚ£¬½«¼Ð½Ç±íÊ¾ÎªVector3Å·À­½Ç
+            // ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½Ð½Ç±ï¿½Ê¾ÎªVector3Å·ï¿½ï¿½ï¿½ï¿½
             Vector3 eulerAngle = new Vector3(0, 0, angle);
             transform.rotation =UnityEngine.Quaternion.Euler( eulerAngle);
         }

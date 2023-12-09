@@ -199,7 +199,7 @@ MonoBehaviour:
   leftOffset: {x: -0.01, y: 0}
   rightOffset: {x: 0.01, y: 0}
   flyingSpeed: 1000
-  powerConsumption: 10
+  powerConsumption: 8
   destroyDelay: 0.02
   enemyLayer:
     serializedVersion: 2

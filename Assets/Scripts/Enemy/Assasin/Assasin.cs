@@ -18,6 +18,8 @@ public class Assasin : Enemy
     
     public Vector2[] pointsForMovememt;
 
+    public AudioSource teleport;
+
     override protected void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -100,6 +102,7 @@ public class Assasin : Enemy
         int size = pointsForMovememt.Length;
         int randomIndex = UnityEngine.Random.Range(0, size);
         transform.position = pointsForMovememt[randomIndex];
+        teleport.Play();
         return;
     }
 }

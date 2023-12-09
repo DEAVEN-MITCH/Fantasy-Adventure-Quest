@@ -39,6 +39,7 @@ public class BombChaseState : BaseState
             currentEnemy.anim.SetBool("run", false);
             return; 
         }
+        bomb.explode.Play();
         bomb.currentSpeed = 0;
         bomb.bombing = true;
         bomb.bomb1.SetActive(true);

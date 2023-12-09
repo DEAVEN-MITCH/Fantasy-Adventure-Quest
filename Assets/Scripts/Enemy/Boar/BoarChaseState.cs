@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class BoarChaseState : BaseState
 {
+    Boar boar;
     public override void OnEnter(Enemy enemy)
     {
         currentEnemy = enemy;
+        boar = (Boar)enemy;
         enemy.anim.SetBool("run", true);
         currentEnemy.currentSpeed = currentEnemy.chaseSpeed;
         currentEnemy.lostCounter = currentEnemy.lostTime;
+        boar.roar.Play();
     }
     public override void LogicUpdate()
     {

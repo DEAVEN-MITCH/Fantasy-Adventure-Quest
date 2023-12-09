@@ -38,6 +38,9 @@ public class Boss : Enemy
     public LayerMask normalLayermask;
     public LayerMask teleportLayermask;
 
+    [Header("Sound")]
+    public AudioSource sonic;
+
     override protected void Awake()
     {
         startingState = new BossStartingState();

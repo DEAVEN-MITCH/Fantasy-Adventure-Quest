@@ -8,9 +8,10 @@ public class Bomb : Enemy
     public GameObject players;
     RaycastHit2D hit;
     public Vector3 aim;
-    public float aim_x; //µØÖ·Æ«ÒÆÁ¿
+    public float aim_x; //ï¿½ï¿½Ö·Æ«ï¿½ï¿½ï¿½ï¿½
     public bool bombing;
     public GameObject bomb1;
+    public AudioSource explode;
     override protected void Awake()
     {
         bomb1.SetActive(false);

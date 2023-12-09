@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class BlackBoarChaseState : BaseState
 {
+    BlackBoar boar;
     private float acceleration;
     private float timeToMaxChaseSpeed=1;
     public override void OnEnter(Enemy enemy)
     {
         currentEnemy = enemy;
+        boar = (BlackBoar)enemy;
         enemy.anim.SetBool("run", true);
         //currentEnemy.currentSpeed = currentEnemy.chaseSpeed;
         currentEnemy.lostCounter = currentEnemy.lostTime;
         acceleration = (currentEnemy.chaseSpeed - currentEnemy.normalSpeed)/timeToMaxChaseSpeed;
+        boar.roar.Play();
     }
     public override void LogicUpdate()
     {

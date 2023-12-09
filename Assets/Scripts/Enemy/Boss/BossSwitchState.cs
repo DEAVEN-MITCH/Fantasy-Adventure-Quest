@@ -29,6 +29,7 @@ public class BossSwitchState : BaseState
         boss.GetComponent<BossRockFallParameters>().horizontalRightBound = boss.GetComponent<BossStage2Parameters>().horizontalRightBound;
         boss.GetComponent<BossBrillianceParameters>().waitTime = boss.GetComponent<BossStage2Parameters>().waitTime6;
         boss.GetComponent<BossBrillianceParameters>().shootNum = boss.GetComponent<BossStage2Parameters>().shootNum;
+        boss.sonic.Play();
     }
     public override void LogicUpdate()
     {

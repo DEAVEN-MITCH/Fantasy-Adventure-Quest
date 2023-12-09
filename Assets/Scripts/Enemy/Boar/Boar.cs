@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Boar : Enemy
 {
+    public AudioSource roar;
     override protected void Awake()
     {
         patrolState = new BoarPatrolState();

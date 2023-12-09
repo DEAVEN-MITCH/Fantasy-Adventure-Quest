@@ -26,6 +26,7 @@ public class Character : MonoBehaviour
     public Vector2 speedBeforeCorrection;
     public Vector2 speedAfterCorrection;
     public float speedCorrection;
+    public AudioSource getHurt;
 
     void Start()
     {
@@ -39,6 +40,8 @@ public class Character : MonoBehaviour
     {
         //Debug.Log(attacker.damage);
         if (invulnerable) return;
+        if (transform.gameObject.name == "player")
+            getHurt.Play();
         if (currentHealth - attacker.damage > 0)
         {
             currentHealth -= attacker.damage;

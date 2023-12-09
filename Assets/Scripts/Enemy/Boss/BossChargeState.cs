@@ -60,7 +60,7 @@ public class BossChargeState : BaseState
             case 3:
                 if(!boss.isPreparingToCharge)
                 {
-                    dir = (player.transform.position - boss.transform.position) / (boss.transform.position - player.transform.position).magnitude;
+                    dir = (player.transform.position - boss.transform.position).normalized;
                     boss.rb.velocity = chargeSpeed * Time.deltaTime * dir;
                     boss.GetComponent<Attack>().damage *= 2;
                     stage += 1;
