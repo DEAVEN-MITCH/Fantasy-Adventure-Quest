@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,8 @@ public class BossRockFallState : BaseState
         rockFallCountdown = parameters.rockInterval;
         restCountdown = parameters.restTime;
         player = GameObject.Find("player");
+        if(boss.hardmode)
+            player.GetComponent<PlayerDashController>().isDashUnlocked = false;
     }
     public override void LogicUpdate()
     {
@@ -63,6 +66,8 @@ public class BossRockFallState : BaseState
     public override void OnExit()
     {
         boss.lastAttackState = BossState.RockFall;
+        if(boss.hardmode)
+            player.GetComponent<PlayerDashController>().isDashUnlocked = true;
     }
 
     public override void PhysicsUpdate()
@@ -74,17 +79,25 @@ public class BossRockFallState : BaseState
     }
     IEnumerator AsynchronousRockFall()
     {
+        Vector3 initialPosition;
         Vector3 playerPosition = player.transform.position;
-        float xOffset = Random.Range(parameters.horizontalLeftBound, parameters.horizontalRightBound);
-        Vector3 initialPosition = playerPosition + new Vector3(xOffset, parameters.rockRelativeHeight, 0);
+        float xOffset = UnityEngine.Random.Range(parameters.horizontalLeftBound, parameters.horizontalRightBound);
+        if(!boss.hardmode)
+            initialPosition = playerPosition + new Vector3(xOffset, parameters.rockRelativeHeight, 0);
+        else
+        {
+            float yOffset = parameters.rockRelativeHeight * (1- UnityEngine.Random.Range ((float)Math.Pow(Math.Abs(xOffset) / parameters.horizontalRightBound,2.0), (float)Math.Abs(xOffset) / parameters.horizontalRightBound));
+            initialPosition = playerPosition + new Vector3(xOffset, yOffset, 0);
+        }
         GameObject rock= GameObject.Instantiate(boss.rock, initialPosition, Quaternion.identity);
         if (!rock) yield break;
-        rock.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        if(!boss.hardmode)
+        {rock.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         yield return new WaitForSeconds(parameters.stillTime);
-        float f = Random.Range(0f, 1f);
+        float f = UnityEngine.Random.Range(0f, 1f);
         bool isHalfSpeed = f <= parameters.halfSpeedPrbability;
         if (!rock) yield break;
-        rock.GetComponent<Rigidbody2D>().velocity = new(0,-parameters.baseSpeed*(isHalfSpeed?.5f:2f));
+        rock.GetComponent<Rigidbody2D>().velocity = new(0,-parameters.baseSpeed*(isHalfSpeed?.5f:2f));}
         yield break;
     }
 }

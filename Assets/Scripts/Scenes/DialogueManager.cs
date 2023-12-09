@@ -24,6 +24,8 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue()
     {
         player.GetComponent<PlayerController>().inputControl.Disable();
+        player.GetComponent<Character>().invulnerable = true;
+        player.GetComponent<Character>().invulnerableCounter = 1000;
     }
 
     // YarnSpinner中的对话结束时调用
@@ -31,6 +33,8 @@ public class DialogueManager : MonoBehaviour
     public void EndDialogue()
     {
         player.GetComponent<PlayerController>().inputControl.Enable();
+        player.GetComponent<Character>().invulnerable = false;
+        player.GetComponent<Character>().invulnerableCounter = 0;
     }
 
     public void SkipDialogue()

@@ -10,13 +10,16 @@ public class BossStartingState : BaseState
     {
         currentEnemy = enemy;
         boss = (Boss)enemy;
-        {boss.transform.position = new Vector3(-30,124.2f,0);
+        boss.transform.position = new Vector3(-30,124.2f,0);
         boss.stage = 1;
         speed = 3000;
         boss.isStarting = true;
         boss.anim.SetTrigger("start");
-        boss.rb.velocity = new Vector3(0, -1, 0) * speed * Time.deltaTime;}
-        Debug.Log("start");
+        boss.rb.velocity = new Vector3(0, -1, 0) * speed * Time.deltaTime;
+        
+        boss.character.invulnerable = true;
+        boss.character.invulnerableCounter = 100;
+        boss.c2.excludeLayers = boss.teleportLayermask;
     }
     public override void LogicUpdate()
     {
@@ -33,7 +36,9 @@ public class BossStartingState : BaseState
 
     public override void OnExit()
     {
-        Debug.Log("show bar");
+        boss.character.invulnerable = false;
+        boss.character.invulnerableCounter = 0;
+        boss.c2.excludeLayers = boss.normalLayermask;
         boss.onStart.Invoke();
     }
 

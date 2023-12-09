@@ -21,6 +21,7 @@ public class Boss : Enemy
     
     public UnityEvent onStart;
     public int stage;
+    public bool hardmode;
 
     [Header("Bullet Prefabs")]
     public GameObject barrage1;

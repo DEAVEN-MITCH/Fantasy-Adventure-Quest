@@ -9,15 +9,18 @@ public class BossWaitState : BaseState
     {
         currentEnemy = enemy;
         boss = (Boss)enemy;
-        boss.wait = true;
-        if(boss.GetComponent<Character>().currentHealth <= 0.5f * boss.GetComponent<Character>().maxHealth && boss.stage < 2)
+        if(((boss.hardmode && boss.GetComponent<Character>().currentHealth <= 0.6f * boss.GetComponent<Character>().maxHealth) || boss.GetComponent<Character>().currentHealth <= 0.5f * boss.GetComponent<Character>().maxHealth) && boss.stage < 2)
             boss.SwitchBossState(BossState.SwitchStage);
+        else
+            boss.wait = true;
         //todo
     }
     public override void LogicUpdate()
     {
         if (!boss.wait)
         {
+            if(((boss.hardmode && boss.GetComponent<Character>().currentHealth <= 0.6f * boss.GetComponent<Character>().maxHealth) || boss.GetComponent<Character>().currentHealth <= 0.5f * boss.GetComponent<Character>().maxHealth) && boss.stage < 2)
+            boss.SwitchBossState(BossState.SwitchStage);
             int choice = Random.Range(0,2);
             switch (boss.lastAttackState)
             {

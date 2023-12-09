@@ -10,7 +10,6 @@ public class BossSwitchState : BaseState
         currentEnemy = enemy;
         boss = (Boss)enemy;
         boss.anim.SetTrigger("switchstage");
-        boss.stage = 2;
         boss.GetComponent<BossChargeParameters>().chargeSpeed = boss.GetComponent<BossStage2Parameters>().chargeSpeed;
         boss.GetComponent<BossChargeParameters>().waitTime = boss.GetComponent<BossStage2Parameters>().waitTime1;
         boss.GetComponent<BossChargeParameters>().chargeNum = boss.GetComponent<BossStage2Parameters>().chargeNum;
@@ -22,6 +21,7 @@ public class BossSwitchState : BaseState
         boss.GetComponent<BossBarrage2Parameters>().attackNum = boss.GetComponent<BossStage2Parameters>().attackNum3;
         boss.GetComponent<BossNebulaParameters>().attackInterval = boss.GetComponent<BossStage2Parameters>().attackInterval4;
         boss.GetComponent<BossNebulaParameters>().attackNum = boss.GetComponent<BossStage2Parameters>().attackNum4;
+        boss.GetComponent<BossNebulaParameters>().bigBulletSpeed = boss.GetComponent<BossStage2Parameters>().speed4;
         boss.GetComponent<BossRockFallParameters>().baseSpeed = boss.GetComponent<BossStage2Parameters>().baseSpeed;
         boss.GetComponent<BossRockFallParameters>().rockInterval = boss.GetComponent<BossStage2Parameters>().rockInterval;
         boss.GetComponent<BossRockFallParameters>().rockNumber = boss.GetComponent<BossStage2Parameters>().rockNumber;
@@ -32,7 +32,7 @@ public class BossSwitchState : BaseState
     }
     public override void LogicUpdate()
     {
-        if (!boss.wait)
+        if (boss.stage >= 2)
         {
             int choice = Random.Range(0,2);
             switch (boss.lastAttackState)

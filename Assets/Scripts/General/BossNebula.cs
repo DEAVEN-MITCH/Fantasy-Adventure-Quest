@@ -42,8 +42,11 @@ public class BossNebula : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Split();
-        Destroy(this.gameObject, destroyDelay);//must has delay here so that the attack's OnTriggerStay2D can work
+        if(!(collision.gameObject.layer == LayerMask.NameToLayer("Player")) || !(collision.GetComponent<Character>().invulnerable))
+        {
+            Split();
+            Destroy(this.gameObject, destroyDelay);//must has delay here so that the attack's OnTriggerStay2D can work
+        }
     }
 
     /*

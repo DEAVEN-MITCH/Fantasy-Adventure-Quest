@@ -58,7 +58,7 @@ public class BossBarrage2State : BaseState
                     stage += 1;
                     break;
                 }
-                dir = (player.transform.position - boss.transform.position).normalized;
+                dir = (player.transform.position + new Vector3(0, 0.99f, 0) - boss.transform.position).normalized;
                 shootTimer += Time.deltaTime;
                 if (shootTimer >= attackInterval)
                 {

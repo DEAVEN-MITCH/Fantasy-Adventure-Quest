@@ -30,6 +30,7 @@ public class BossStage2Parameters : MonoBehaviour
     public int attackNum3;
     public float attackInterval4;
     public int attackNum4;
+    public float speed4;
     public float baseSpeed;
     public float rockInterval;
     public int rockNumber;

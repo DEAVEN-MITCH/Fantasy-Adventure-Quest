@@ -54,7 +54,7 @@ public class BossNebulaState : BaseState
                     stage += 1;
                 break;
             case 2:
-                if (attackCounter > attackNum)
+                if (attackCounter >= attackNum)
                 {
                     stage += 1;
                     break;
@@ -65,10 +65,16 @@ public class BossNebulaState : BaseState
                 if (shootTimer >= attackInterval)
                 {
                     GameObject bigBullet = Object.Instantiate(boss.nebula, boss.transform.position, Quaternion.LookRotation(Vector3.forward, dir) * Quaternion.Euler(0, 0, 90));
-                    bigBullet.GetComponent<BossNebula>().targetPoint = lockedPosition;
+                    if(!boss.hardmode)
+                    {bigBullet.GetComponent<BossNebula>().targetPoint = lockedPosition;
                     bigBullet.GetComponent<BossNebula>().flyingSpeed = bigBulletSpeed;
                     bigBullet.GetComponent<BossNebula>().subBulletSpeed = smallBulletSpeed;
-                    bigBullet.GetComponent<BossNebula>().subBulletRange = smallBulletRange;
+                    bigBullet.GetComponent<BossNebula>().subBulletRange = smallBulletRange;}
+                    else
+                    {bigBullet.GetComponent<BossNebulaV2>().targetPoint = lockedPosition;
+                    bigBullet.GetComponent<BossNebulaV2>().flyingSpeed = bigBulletSpeed;
+                    bigBullet.GetComponent<BossNebulaV2>().subBulletSpeed = smallBulletSpeed;
+                    bigBullet.GetComponent<BossNebulaV2>().subBulletRange = smallBulletRange;}
                     shootTimer = 0;
                     attackCounter += 1;
                 }
