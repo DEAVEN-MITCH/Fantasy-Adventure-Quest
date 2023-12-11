@@ -9,8 +9,12 @@ public class Restart_2 : MonoBehaviour
     private PlayerInputControl pc;
     private Rigidbody2D rb;
     private PlayerController pr;
+
+    private SaveGameManager saveGameManager; // add
+
     private void Awake() {
         Debug.Log("awake");
+        saveGameManager = new SaveGameManager(); // add
     }
 
     // Start is called before the first frame update
@@ -32,6 +36,9 @@ public class Restart_2 : MonoBehaviour
     //}
     void RRestart(InputAction.CallbackContext obj)
     {
+        // Çå³ý´æµµÊý¾Ý
+        saveGameManager.ClearSaveData(); // add
+
         rb.velocity = new Vector2();
         transform.position = new Vector3(-0.5112553f, 3, 0f);
         pr.isDead = false;
