@@ -26,3 +26,29 @@ Boy: It seems to be a boar in the front.
 Boy: I may need to fight off it, or...
 <<EndDialogue DialogueController>>
 ===
+
+title: NPC1
+---
+<<StartDialogue DialogueController>>
+Jack: Hello! How's it going?
+    -> I'm fine, thank you.
+        Boy: Yeah, fine.
+        Jack: That's great. Move on with your courage!
+    -> Just so so.
+        Boy: Just so so.
+        Jack: Don't be so pessimestic. Cheer up!
+<<EndDialogue DialogueController>>
+===
+
+title: NPC2
+---
+<<StartDialogue DialogueController>>
+Mark: It is hell ahead. Do you want to continue?
+    -> I've made up my mind.
+        Boy: I've made up my mind. I'm ready to go.
+        Mark: Okay. I can only pray for you. Good luck.
+    -> Need more preparations.
+        Boy: I need more preparations.
+        Mark: Doesn't matter, that is wise of you.
+<<EndDialogue DialogueController>>
+===
