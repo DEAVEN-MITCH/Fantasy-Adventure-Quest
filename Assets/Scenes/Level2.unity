@@ -99888,6 +99888,9 @@ MonoBehaviour:
     playerScore: 0
     gameTime: 0
   SaveID: 
+  player: {fileID: 0}
+  uiManager: {fileID: 0}
+  character: {fileID: 0}
 --- !u!61 &681017181
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -100005,6 +100008,9 @@ MonoBehaviour:
     playerScore: 0
     gameTime: 0
   SaveID: 
+  player: {fileID: 0}
+  uiManager: {fileID: 0}
+  character: {fileID: 0}
 --- !u!4 &681017184
 Transform:
   m_ObjectHideFlags: 0
@@ -101314,7 +101320,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -104328,7 +104334,7 @@ MonoBehaviour:
 
     yourself against bullets'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
+  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
