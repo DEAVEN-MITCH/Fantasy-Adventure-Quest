@@ -53,7 +53,9 @@ public class SaveGameManager : MonoBehaviour
 
     public void SaveGame(InputAction.CallbackContext obj)
     {
+        if(isused)return;
         isused = true;
+        
         Debug.Log("Save Game");
         // 获取玩家位置add
         currentGameData.playerSpawnPoint = transform.position;
