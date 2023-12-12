@@ -1,0 +1,30 @@
+title: NPC1
+---
+<<StartDialogue DialogueController>>
+Guard: The bridge was destroyed by waterfall long ago.
+Guard: If you want to go on, you will have to seek another path.
+Guard: But beware of thorn and traps!
+<<EndDialogue DialogueController>>
+===
+
+title: NPC2
+---
+<<StartDialogue DialogueController>>
+Warrior: Strange creatures are appearing in this area!
+Boy: They seem to come from another world.
+Warrior: Maybe, and now they are making local creatures rampage.
+Boy: What should I do then?
+Warrior: You must find and defeat the villian who brought all the disasters!
+<<EndDialogue DialogueController>>
+===
+
+title: NPC3
+---
+<<StartDialogue DialogueController>>
+Magician: Hello, young man. What can I do for you?
+Boy: I'm investigating the strange creatures in this area. Do you have any clue?
+Magician: Ah, last night I saw a star falling from the sky. 
+Magician: Well...that's all I can tell you.
+Magician: Anyway, let me enhance your magic power so that shooting won't consume energy in the next level.
+<<EndDialogue DialogueController>>
+===
